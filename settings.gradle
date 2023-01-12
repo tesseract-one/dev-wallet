@@ -1,0 +1,23 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+includeBuild('../Tesseract.android') {
+    dependencySubstitution {
+        substitute module('one.tesseract.android:interop-rust') using project(':java:interop-rust')
+        substitute module('one.tesseract.android:tesseract-ipc') using project(':java:tesseract-ipc')
+        substitute module('one.tesseract.android:tesseract-ipc-service') using project(':java:tesseract-ipc-service')
+    }
+}
+rootProject.name = "Developer Wallet"
+include ':android'

@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Developer Wallet</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_test_settings">Test Protocol</string>
+    <string name="signature">Signature</string>
+    <string name="label_invalidator">Request that produces error:</string>
+    <string name="save">Save</string>
+    <string name="revert">Revert</string>
+</resources>
