@@ -2,8 +2,7 @@ package one.tesseract.devwallet.ui.test
 
 import android.util.Log
 import androidx.lifecycle.*
-
-data class TestSettings(var signature: String, var invalidator: String)
+import one.tesseract.devwallet.entity.TestSettings
 
 class TestSettingsViewModel : ViewModel() {
     private val _cache = MutableLiveData<TestSettings>().apply {
