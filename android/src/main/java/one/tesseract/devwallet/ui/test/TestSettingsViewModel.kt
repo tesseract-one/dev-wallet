@@ -3,6 +3,7 @@ package one.tesseract.devwallet.ui.test
 import android.util.Log
 import androidx.lifecycle.*
 import one.tesseract.devwallet.entity.TestSettings
+import one.tesseract.devwallet.rust.TestSettingsProvider
 
 class TestSettingsViewModel : ViewModel() {
     private val _cache = MutableLiveData<TestSettings>().apply {
@@ -28,22 +29,27 @@ class TestSettingsViewModel : ViewModel() {
         }
     }
 
-    var saved = cache.value!!
+    //var saved = cache.value!!
+
+    lateinit var provider: TestSettingsProvider
 
     fun save() {
         val settings = TestSettings(signature.value!!, invalidator.value!!)
 
         //TODO: write to file (in rust)
-        saved = settings
-        Log.d("SAVE", "Sig " + settings.signature)
-        Log.d("SAVE", "Inv " + settings.invalidator)
+
+        provider.save(settings)
+
+//        saved = settings
+//        Log.d("SAVE", "Sig " + settings.signature)
+//        Log.d("SAVE", "Inv " + settings.invalidator)
 
         cache.value = settings
     }
 
     fun load() {
         //TODO: load from file (in rust)
-        val loaded = saved
+        val loaded = provider.load()//saved
 
         cache.value = loaded
         signature.value = loaded.signature

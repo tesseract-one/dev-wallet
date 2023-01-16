@@ -1,6 +1,6 @@
 pub(crate) struct TestSettings {
-    signature: String,
-    invalidator: String
+    pub signature: String,
+    pub invalidator: String
 }
 
 pub(crate) struct TestSettingsProvider {
@@ -8,10 +8,14 @@ pub(crate) struct TestSettingsProvider {
 
 impl TestSettingsProvider {
     pub (crate) fn load(&self) -> TestSettings {
-        todo!()
+        TestSettings {
+            signature: "signed_by_rust_on_steroids".to_owned(),
+            invalidator: "eee".to_owned(),
+        }
     }
 
     pub (crate) fn save(&self, settings: TestSettings) {
-        todo!()
+        debug!("Sig: {}, Err: {}", settings.signature, settings.invalidator);
     }
 }
+

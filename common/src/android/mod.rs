@@ -9,10 +9,15 @@ use jni_fn::jni_fn;
 
 use interop_android::env::AndroidEnv;
 
-mod wrappable;
-mod test_settings;
+mod interop;
 
-pub use wrappable::{JavaWrappableDesc, JavaWrappable};
+mod test_settings;
+mod test_settings_provider;
+
+pub use interop::wrappable::{JavaWrappableDesc, JavaWrappable};
+pub use interop::convertible::{JavaConvertibleDesc, JavaConvertible};
+
+use crate::test_settings::TestSettingsProvider;
 
 fn test() {
     android_log::init("MyApp").unwrap();
@@ -36,6 +41,15 @@ pub fn hello(env: JNIEnv, application: JObject, hi: JString) {
     //test2()
 
     //env.
+}
+
+#[jni_fn("one.tesseract.devwallet.Application")]
+pub fn createTestSettingsProvider<'a>(env: JNIEnv<'a>, application: JObject<'a>, data_dir: JString<'a>) -> JObject<'a> {
+    let provider = Arc::new(TestSettingsProvider {});
+
+    let jref = provider.java_ref(&env).unwrap();
+
+    return jref;
 }
 
 

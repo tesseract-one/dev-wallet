@@ -1,6 +1,6 @@
 package one.tesseract.devwallet.interop
 
-open class RustObject(private val handle: Long) {
+open class RustObject(protected val handle: Long) {
     private external fun drop()
 
     protected fun finalize() {

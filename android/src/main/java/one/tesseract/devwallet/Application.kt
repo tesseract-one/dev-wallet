@@ -1,6 +1,10 @@
 package one.tesseract.devwallet
 
+import one.tesseract.devwallet.rust.TestSettingsProvider
+
 class Application: android.app.Application() {
+    lateinit var testSettingsProvider: TestSettingsProvider
+
     companion object {
         init {
             System.loadLibrary("wallet")
@@ -9,8 +13,12 @@ class Application: android.app.Application() {
 
     private external fun hello(dataDir: String)
 
+    private external fun createTestSettingsProvider(dataDir: String): TestSettingsProvider
+
     override fun onCreate() {
         super.onCreate()
+
+        testSettingsProvider = createTestSettingsProvider("mmm")
 
         hello("here we go!")
     }

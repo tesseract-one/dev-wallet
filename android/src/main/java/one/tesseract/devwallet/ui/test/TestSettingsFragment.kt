@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import one.tesseract.devwallet.Application
 import one.tesseract.devwallet.databinding.FragmentTestSettingsBinding
 
 class TestSettingsFragment : Fragment() {
@@ -21,6 +22,10 @@ class TestSettingsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val viewModel = ViewModelProvider(this).get(TestSettingsViewModel::class.java)
+
+        //late bind
+        val application = this.activity?.application as Application
+        viewModel.provider = application.testSettingsProvider
 
         _binding = FragmentTestSettingsBinding.inflate(inflater, container, false)
         binding.model = viewModel
