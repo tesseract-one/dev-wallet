@@ -1,27 +1,21 @@
 package one.tesseract.devwallet
 
-import one.tesseract.devwallet.rust.TestSettingsProvider
+import one.tesseract.devwallet.rust.Core
 
 class Application: android.app.Application() {
-    lateinit var testSettingsProvider: TestSettingsProvider
-
     companion object {
         init {
             System.loadLibrary("wallet")
         }
     }
 
-    private external fun hello(dataDir: String)
-
-    private external fun createTestSettingsProvider(dataDir: String): TestSettingsProvider
+    lateinit var core: Core
 
     override fun onCreate() {
         super.onCreate()
 
-        hello("here we go!")
-
-        testSettingsProvider = createTestSettingsProvider(this.applicationInfo.dataDir)
-
-
+        core = createCore(applicationInfo.dataDir)
     }
+
+    private external fun createCore(dataDir: String): Core
 }

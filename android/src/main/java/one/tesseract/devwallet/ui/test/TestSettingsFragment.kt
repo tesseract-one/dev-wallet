@@ -25,7 +25,7 @@ class TestSettingsFragment : Fragment() {
 
         //late bind
         val application = this.activity?.application as Application
-        viewModel.provider = application.testSettingsProvider
+        viewModel.provider = application.core.testSettingsProvider()
 
         viewModel.load()
 
