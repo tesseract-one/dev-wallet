@@ -27,6 +27,8 @@ class TestSettingsFragment : Fragment() {
         val application = this.activity?.application as Application
         viewModel.provider = application.testSettingsProvider
 
+        viewModel.load()
+
         _binding = FragmentTestSettingsBinding.inflate(inflater, container, false)
         binding.model = viewModel
         binding.lifecycleOwner = this

@@ -16,7 +16,9 @@ impl SettingsProvider {
     }
 
     pub (super) fn read<T, F: FnOnce(&Ini)->T>(&self, read: F) -> T {
-        let data = self.config.lock().unwrap();
+        let mut data = self.config.lock().unwrap();
+
+        data.load(&self.location).unwrap();
         
         read(&data)
     }

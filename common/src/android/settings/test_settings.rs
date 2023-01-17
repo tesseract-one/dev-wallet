@@ -1,6 +1,6 @@
 use jni::{JNIEnv, objects::JValue, errors::Result};
 
-use super::interop::JavaConvertibleDesc;
+use crate::android::interop::JavaConvertibleDesc;
 use crate::settings::TestSettings;
 
 impl JavaConvertibleDesc for TestSettings {

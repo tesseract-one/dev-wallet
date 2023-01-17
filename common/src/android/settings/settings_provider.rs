@@ -1,6 +1,6 @@
 use crate::settings::SettingsProvider;
 
-use super::interop::{JavaDesc, JavaWrappableDesc};
+use crate::android::interop::{JavaDesc, JavaWrappableDesc};
 
 impl JavaDesc for SettingsProvider {
     fn java_class<'a>(&'a self) -> &'a str {
@@ -11,16 +11,16 @@ impl JavaDesc for SettingsProvider {
 impl JavaWrappableDesc for SettingsProvider {
 }
 
-pub (super) enum SettingsProviderType {
-    test,
-    substrate
+pub (crate) enum SettingsProviderType {
+    Test,
+    Substrate
 }
 
 impl JavaDesc for SettingsProviderType {
     fn java_class<'a>(&'a self) -> &'a str {
         match self {
-            SettingsProviderType::test => "one/tesseract/devwallet/rust/TestSettingsProvider",
-            SettingsProviderType::substrate => "one/tesseract/devwallet/rust/SubstrateSettingsProvider",
+            SettingsProviderType::Test => "one/tesseract/devwallet/rust/TestSettingsProvider",
+            SettingsProviderType::Substrate => "one/tesseract/devwallet/rust/SubstrateSettingsProvider",
         }
     }
 }

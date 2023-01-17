@@ -10,10 +10,7 @@ use jni_fn::jni_fn;
 use interop_android::env::AndroidEnv;
 
 mod interop;
-
-mod settings_provider;
-mod test_settings;
-mod test_settings_provider;
+mod settings;
 
 // pub use interop::wrappable::{JavaWrappableDesc, JavaWrappable};
 // pub use interop::convertible::{JavaConvertibleDesc, JavaConvertible};
@@ -47,7 +44,7 @@ pub fn hello(env: JNIEnv, application: JObject, hi: JString) {
 
 pub use interop::{JavaWrappableDesc, JavaWrappable};
 
-use self::settings_provider::SettingsProviderType;
+use self::settings::SettingsProviderType;
 
 #[jni_fn("one.tesseract.devwallet.Application")]
 pub fn createTestSettingsProvider<'a>(env: JNIEnv<'a>, application: JObject<'a>, data_dir: JString<'a>) -> JObject<'a> {
@@ -61,7 +58,7 @@ pub fn createTestSettingsProvider<'a>(env: JNIEnv<'a>, application: JObject<'a>,
 
     debug!("####Try to ref");
 
-    let jref = provider.java_ref(&env, Some(SettingsProviderType::test)).unwrap();
+    let jref = provider.java_ref(&env, Some(SettingsProviderType::Test)).unwrap();
 
     debug!("####It worked");
 

@@ -12,16 +12,21 @@ pub(crate) trait TestSettingsProvider {
 
 impl TestSettingsProvider for SettingsProvider {
     fn load_test_settings(&self) -> TestSettings {
-        self.read(|settings| {
+        self.read(|config| {
+            let signature = config.get("test", "signature").unwrap_or_else(|| "signed_by_tesseract".to_owned());
+            let invalidator = config.get("test", "invalidator").unwrap_or_else(|| "err".to_owned());
             TestSettings {
-                signature: "signed_by_rust_on_steroids".to_owned(),
-                invalidator: "eee1231".to_owned(),
+                signature: signature,
+                invalidator: invalidator,
             }
         })
     }
 
     fn save_test_settings(&self, settings: TestSettings) {
-        panic!()
+        self.write(|config| {
+            config.set("test", "signature", Some(settings.signature));
+            config.set("test", "invalidator", Some(settings.invalidator));
+        })
     }
 }
 
