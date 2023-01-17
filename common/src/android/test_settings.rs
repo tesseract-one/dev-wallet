@@ -1,7 +1,7 @@
 use jni::{JNIEnv, objects::JValue, errors::Result};
 
-use super::JavaConvertibleDesc;
-use crate::test_settings::TestSettings;
+use super::interop::JavaConvertibleDesc;
+use crate::settings::TestSettings;
 
 impl JavaConvertibleDesc for TestSettings {
     fn java_class<'a>(&'a self) -> &'a str {

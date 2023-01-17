@@ -18,8 +18,10 @@ class Application: android.app.Application() {
     override fun onCreate() {
         super.onCreate()
 
-        testSettingsProvider = createTestSettingsProvider("mmm")
-
         hello("here we go!")
+
+        testSettingsProvider = createTestSettingsProvider(this.applicationInfo.dataDir)
+
+
     }
 }

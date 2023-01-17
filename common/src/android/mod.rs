@@ -11,13 +11,15 @@ use interop_android::env::AndroidEnv;
 
 mod interop;
 
+mod settings_provider;
 mod test_settings;
 mod test_settings_provider;
 
-pub use interop::wrappable::{JavaWrappableDesc, JavaWrappable};
-pub use interop::convertible::{JavaConvertibleDesc, JavaConvertible};
+// pub use interop::wrappable::{JavaWrappableDesc, JavaWrappable};
+// pub use interop::convertible::{JavaConvertibleDesc, JavaConvertible};
+// pub use interop::desc::{JavaDesc};
 
-use crate::test_settings::TestSettingsProvider;
+use crate::settings::SettingsProvider;
 
 fn test() {
     android_log::init("MyApp").unwrap();
@@ -43,11 +45,25 @@ pub fn hello(env: JNIEnv, application: JObject, hi: JString) {
     //env.
 }
 
+pub use interop::{JavaWrappableDesc, JavaWrappable};
+
+use self::settings_provider::SettingsProviderType;
+
 #[jni_fn("one.tesseract.devwallet.Application")]
 pub fn createTestSettingsProvider<'a>(env: JNIEnv<'a>, application: JObject<'a>, data_dir: JString<'a>) -> JObject<'a> {
-    let provider = Arc::new(TestSettingsProvider {});
+    //android_log::init("MyApp").unwrap();
 
-    let jref = provider.java_ref(&env).unwrap();
+    let data_dir: String = env.get_string(data_dir).unwrap().into();
+
+    debug!("####Data dir: {}", &data_dir);
+
+    let provider = Arc::new(SettingsProvider::new(&(data_dir + "/settings.ini")));
+
+    debug!("####Try to ref");
+
+    let jref = provider.java_ref(&env, Some(SettingsProviderType::test)).unwrap();
+
+    debug!("####It worked");
 
     return jref;
 }

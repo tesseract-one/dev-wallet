@@ -9,6 +9,8 @@ use jni_fn::jni_fn;
 use interop_android::env::AndroidEnv;
 use interop_android::pointer::ArcPointer;
 
+use super::desc::JavaDesc;
+
 struct WrappableHandle {
     pointer: i64,
     dropper: Option<Box<dyn FnOnce(i64)>>
@@ -48,19 +50,23 @@ impl Drop for WrappableHandle {
     }
 }
 
-pub trait JavaWrappableDesc {
-    fn java_class<'a>(&'a self) -> &'a str;
+pub trait JavaWrappableDesc: JavaDesc {
 }
 
 pub trait JavaWrappable {
-    fn java_ref<'a: 'b, 'b>(self: Arc<Self>, env: &'b JNIEnv<'a>) -> Result<JObject<'a>>;
+    fn java_ref<'a: 'b, 'b, D: JavaDesc>(self: Arc<Self>, env: &'b JNIEnv<'a>, desc: Option<D>) -> Result<JObject<'a>>;
     fn from_java_ref(object: JObject, env: &JNIEnv) -> Result<Arc<Self>>;
 }
 
 impl<T> JavaWrappable for T where T: JavaWrappableDesc {
-    fn java_ref<'a: 'b, 'b>(self: Arc<Self>, env: &'b JNIEnv<'a>) -> Result<JObject<'a>> {
+    fn java_ref<'a: 'b, 'b, D: JavaDesc>(self: Arc<Self>, env: &'b JNIEnv<'a>, desc: Option<D>) -> Result<JObject<'a>> {
+        let clazz = match &desc {
+            Some(desc) => desc.java_class(),
+            None => self.java_class(),
+        };
+
         let clazz = env
-            .find_class_android(self.java_class())?;
+            .find_class_android(clazz)?;
 
         let handle = WrappableHandle::from_arc(self);
         let handle_p = Box::into_raw(Box::new(handle)) as *const () as i64;
