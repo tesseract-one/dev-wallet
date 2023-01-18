@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <variable name="model" type="one.tesseract.devwallet.ui.test.TestSettingsViewModel" />
+        <variable name="model" type="one.tesseract.devwallet.ui.settings.test.TestSettingsViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.test.TestSettingsFragment">
+        tools:context=".ui.settings.test.TestSettingsFragment">
 
         <TextView
             android:id="@+id/label_signature"

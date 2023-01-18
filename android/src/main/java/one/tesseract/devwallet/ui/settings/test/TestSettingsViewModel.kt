@@ -1,4 +1,4 @@
-package one.tesseract.devwallet.ui.test
+package one.tesseract.devwallet.ui.settings.test
 
 import android.util.Log
 import androidx.lifecycle.*

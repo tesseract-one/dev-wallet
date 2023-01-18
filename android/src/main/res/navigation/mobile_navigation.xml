@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="one.tesseract.devwallet.ui.substrate.HomeFragment"
+        android:name="one.tesseract.devwallet.ui.settings.substrate.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="one.tesseract.devwallet.ui.dashboard.DashboardFragment"
+        android:name="one.tesseract.devwallet.ui.settings.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
         android:id="@+id/navigation_test_settings"
-        android:name="one.tesseract.devwallet.ui.test.TestSettingsFragment"
+        android:name="one.tesseract.devwallet.ui.settings.test.TestSettingsFragment"
         android:label="@string/title_test_settings"
         tools:layout="@layout/fragment_test_settings" />
 </navigation>
