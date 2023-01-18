@@ -8,3 +8,6 @@ mod android;
 
 mod settings;
 mod error;
+mod core;
+
+pub(crate) use crate::core::Core;

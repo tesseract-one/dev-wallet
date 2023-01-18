@@ -1,28 +1,13 @@
-use std::sync::Arc;
-
 use jni::objects::JObject;
 use jni::JNIEnv;
 use jni_fn::jni_fn;
 
 use super::interop::deresultify;
 
-use crate::settings::SettingsProvider;
+use crate::Core;
 
 use crate::android::settings::SettingsProviderType;
 use crate::android::interop::{JavaDesc, JavaWrappableDesc, JavaWrappable};
-
-pub (super) struct Core {
-    settings_provider: Arc<SettingsProvider>
-}
-
-impl Core {
-    pub (super) fn new(data_dir: &str) -> Self {
-        let location = format!("{}/settings.ini", data_dir);
-        let settings_provider = Arc::new(SettingsProvider::new(&location));
-
-        Self { settings_provider: settings_provider }
-    }
-}
 
 impl JavaDesc for Core {
     fn java_class<'a>(&'a self) -> &'a str {
@@ -38,7 +23,7 @@ pub fn testSettingsProvider<'a>(env: JNIEnv<'a>, this: JObject<'a>) -> JObject<'
     deresultify(&env, || {
         let this = Core::from_java_ref(this, &env)?;
     
-        let res = Arc::clone(&this.settings_provider).java_ref(&env, Some(SettingsProviderType::Test))?;
+        let res = this.settings_provider().java_ref(&env, Some(SettingsProviderType::Test))?;
     
         Ok(res)
     })

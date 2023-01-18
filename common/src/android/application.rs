@@ -8,7 +8,7 @@ use jni_fn::jni_fn;
 
 use crate::android::interop::{JavaWrappable, deresultify};
 
-use super::core::Core;
+use crate::Core;
 
 #[jni_fn("one.tesseract.devwallet.Application")]
 pub fn createCore<'a>(env: JNIEnv<'a>, _application: JObject<'a>, data_dir: JString<'a>) -> JObject<'a> {
