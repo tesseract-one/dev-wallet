@@ -1,4 +1,4 @@
-package one.tesseract.devwallet.ui.settings.substrate
+package one.tesseract.devwallet.ui.settings.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

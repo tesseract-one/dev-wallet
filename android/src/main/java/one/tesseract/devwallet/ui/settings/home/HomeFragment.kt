@@ -1,4 +1,4 @@
-package one.tesseract.devwallet.ui.settings.substrate
+package one.tesseract.devwallet.ui.settings.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
