@@ -5,6 +5,8 @@
     <string name="title_test_settings">Test Protocol</string>
     <string name="signature">Signature</string>
     <string name="label_invalidator">Request that produces error:</string>
-    <string name="save">Save</string>
-    <string name="revert">Revert</string>
+    <string name="caption_save">Save</string>
+    <string name="caption_revert">Revert</string>
+    <string name="caption_sign">Sign</string>
+    <string name="caption_cancel">Cancel</string>
 </resources>

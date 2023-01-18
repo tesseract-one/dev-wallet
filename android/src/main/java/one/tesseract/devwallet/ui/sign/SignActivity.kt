@@ -4,6 +4,7 @@ import java.util.concurrent.CompletionStage
 
 import android.os.Bundle
 import android.os.Parcelable
+import android.widget.Button
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
@@ -13,6 +14,7 @@ import one.tesseract.ipc.activity.free.Launcher
 import one.tesseract.devwallet.R
 import one.tesseract.devwallet.entity.request.TestSign
 import one.tesseract.devwallet.ui.sign.fragments.test.TestSignFragment
+import one.tesseract.ipc.activity.free.finishFreeActivity
 
 class SignActivity : AppCompatActivity() {
     companion object {
@@ -49,5 +51,16 @@ class SignActivity : AppCompatActivity() {
         }
 
         setContentView(R.layout.activity_sign)
+
+        val buttonSign = findViewById<Button>(R.id.buttonSign)
+        val buttonCancel = findViewById<Button>(R.id.buttonCancel)
+
+        buttonSign.setOnClickListener {
+            this.finishFreeActivity(RESULT_OK, true)
+        }
+
+        buttonCancel.setOnClickListener {
+            this.finishFreeActivity(RESULT_CANCELED, false)
+        }
     }
 }
