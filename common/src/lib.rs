@@ -7,3 +7,4 @@ extern crate log;
 mod android;
 
 mod settings;
+//mod error;

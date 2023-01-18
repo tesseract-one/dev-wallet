@@ -6,18 +6,20 @@ use jni::objects::{JObject, JString};
 use jni::JNIEnv;
 use jni_fn::jni_fn;
 
-use crate::android::interop::JavaWrappable;
+use crate::android::interop::{JavaWrappable, deresultify};
 
 use super::core::Core;
 
 #[jni_fn("one.tesseract.devwallet.Application")]
-pub fn createCore<'a>(env: JNIEnv<'a>, application: JObject<'a>, data_dir: JString<'a>) -> JObject<'a> {
-    android_log::init("DevWallet").unwrap();
+pub fn createCore<'a>(env: JNIEnv<'a>, _application: JObject<'a>, data_dir: JString<'a>) -> JObject<'a> {
+    deresultify(&env, || {
+        android_log::init("DevWallet")?;
 
-    let data_dir: String = env.get_string(data_dir).unwrap().into();
+        let data_dir: String = env.get_string(data_dir)?.into();
 
-    let core = Arc::new(Core::new(&data_dir));
+        let core = Arc::new(Core::new(&data_dir));
 
-    core.java_ref::<Core>(&env, None).unwrap()
+        Ok(core.java_ref::<Core>(&env, None)?)
+    })
 }
 
