@@ -9,5 +9,6 @@ mod android;
 mod settings;
 mod error;
 mod core;
+mod service;
 
 pub(crate) use crate::core::Core;
