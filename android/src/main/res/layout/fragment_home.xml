@@ -36,6 +36,7 @@
             app:layout_constraintBottom_toTopOf="@+id/text_home"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteX="158dp" />
+            tools:layout_editor_absoluteX="158dp"
+            android:onClick="@{(_) -> model.showSign()}"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
