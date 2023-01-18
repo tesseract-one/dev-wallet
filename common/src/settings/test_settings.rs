@@ -1,3 +1,5 @@
+use crate::error::Result;
+
 use super::SettingsProvider;
 
 pub(crate) struct TestSettings {
@@ -6,12 +8,12 @@ pub(crate) struct TestSettings {
 }
 
 pub(crate) trait TestSettingsProvider {
-    fn load_test_settings(&self) -> TestSettings;
-    fn save_test_settings(&self, settings: TestSettings);
+    fn load_test_settings(&self) -> Result<TestSettings>;
+    fn save_test_settings(&self, settings: TestSettings) -> Result<()>;
 }
 
 impl TestSettingsProvider for SettingsProvider {
-    fn load_test_settings(&self) -> TestSettings {
+    fn load_test_settings(&self) -> Result<TestSettings> {
         self.read(|config| {
             let signature = config.get("test", "signature").unwrap_or_else(|| "signed_by_tesseract".to_owned());
             let invalidator = config.get("test", "invalidator").unwrap_or_else(|| "err".to_owned());
@@ -22,7 +24,7 @@ impl TestSettingsProvider for SettingsProvider {
         })
     }
 
-    fn save_test_settings(&self, settings: TestSettings) {
+    fn save_test_settings(&self, settings: TestSettings) -> Result<()> {
         self.write(|config| {
             config.set("test", "signature", Some(settings.signature));
             config.set("test", "invalidator", Some(settings.invalidator));

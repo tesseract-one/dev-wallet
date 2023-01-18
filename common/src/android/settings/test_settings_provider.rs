@@ -11,7 +11,7 @@ pub fn load<'a>(env: JNIEnv<'a>, this: JObject<'a>) -> JObject<'a> {
 
         let settings = provider.load_test_settings();
 
-        Ok(settings.into_java(&env)?)
+        Ok(settings?.into_java(&env)?)
     })
 }
 
@@ -22,6 +22,6 @@ pub fn save<'a>(env: JNIEnv<'a>, this: JObject<'a>, settings: JObject<'a>) {
 
         let settings = TestSettings::from_java(&env, settings)?;
 
-        Ok(provider.save_test_settings(settings))
+        Ok(provider.save_test_settings(settings)?)
     })
 }

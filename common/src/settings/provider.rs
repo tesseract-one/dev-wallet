@@ -2,6 +2,8 @@ use std::sync::Mutex;
 
 use configparser::ini::Ini;
 
+use crate::error::{Error, Result};
+
 pub(crate) struct SettingsProvider {
     config: Mutex<Ini>,
     location: String
@@ -15,19 +17,19 @@ impl SettingsProvider {
         }
     }
 
-    pub (super) fn read<T, F: FnOnce(&Ini)->T>(&self, read: F) -> T {
-        let mut data = self.config.lock().unwrap();
+    pub (super) fn read<T, F: FnOnce(&Ini)->T>(&self, read: F) -> Result<T> {
+        let mut data = self.config.lock()?;
 
-        data.load(&self.location).unwrap();
+        data.load(&self.location).map_err(|err| Error::Config(err))?;
         
-        read(&data)
+        Ok(read(&data))
     }
 
-    pub (super) fn write<F: FnOnce(&mut Ini)>(&self, write: F) {
-        let mut data = self.config.lock().unwrap();
+    pub (super) fn write<F: FnOnce(&mut Ini)>(&self, write: F) -> Result<()> {
+        let mut data = self.config.lock()?;
         
         write(&mut data);
 
-        data.write(&self.location).unwrap()
+        Ok(data.write(&self.location)?)
     }
 }

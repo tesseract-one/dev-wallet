@@ -10,6 +10,7 @@ use interop_android::env::AndroidEnv;
 use interop_android::pointer::ArcPointer;
 
 use super::desc::JavaDesc;
+use super::error::deresultify;
 
 struct WrappableHandle {
     pointer: i64,
@@ -84,7 +85,9 @@ impl<T> JavaWrappable for T where T: JavaWrappableDesc {
 
 #[jni_fn("one.tesseract.devwallet.interop.RustObject")]
 pub fn drop(env: JNIEnv, this: JObject) {
-    let handle = WrappableHandle::from_java_ref(this, &env).unwrap();//TODO: handle unwrap throwing exception?
-    drop(handle);
+    deresultify(&env, || {
+        let handle = WrappableHandle::from_java_ref(this, &env)?;
+        Ok(drop(handle))
+    })
 }
 
