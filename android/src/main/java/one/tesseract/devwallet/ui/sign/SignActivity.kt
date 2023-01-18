@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
 
 import one.tesseract.devwallet.R
+import one.tesseract.devwallet.entity.request.TestSign
 import one.tesseract.devwallet.ui.settings.home.HomeFragment
 import one.tesseract.devwallet.ui.sign.fragments.test.TestSignFragment
 
@@ -16,7 +17,7 @@ class SignActivity : AppCompatActivity() {
         if(savedInstanceState == null) {
             supportFragmentManager.commit {
                 setReorderingAllowed(true) //must be here. otherwise compat mode
-                replace(R.id.transactionFragmentContainerView, TestSignFragment())
+                replace(R.id.transactionFragmentContainerView, TestSignFragment(TestSign("hardcodetest")))
             }
         }
 

@@ -11,7 +11,7 @@ buildscript {
     def DEFAULT_NDK_TARGETS = ["arm", "x86", "arm64", "x86_64"]
 
     ext {
-        compileSdkVersion = 32
+        compileSdkVersion = 33
         minSdkVersion = 24
         targetSdkVersion = 32
         ndkVersion = ndkVersionProp == null ? DEFAULT_NDK_VERSION : ndkVersionProp
