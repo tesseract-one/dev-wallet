@@ -1,9 +1,11 @@
 package one.tesseract.devwallet.ui.sign
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
 
+import one.tesseract.devwallet.R
 import one.tesseract.devwallet.ui.settings.home.HomeFragment
 
 class SignActivity : AppCompatActivity() {
@@ -13,8 +15,10 @@ class SignActivity : AppCompatActivity() {
         if(savedInstanceState == null) {
             supportFragmentManager.commit {
                 setReorderingAllowed(true) //must be here. otherwise compat mode
-                replace(android.R.id.content, HomeFragment())
+                replace(R.id.transactionFragmentContainerView, HomeFragment())
             }
         }
+
+        setContentView(R.layout.activity_sign)
     }
 }
