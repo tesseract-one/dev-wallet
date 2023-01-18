@@ -1,15 +1,16 @@
 package one.tesseract.devwallet.ui.settings.home
 
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import one.tesseract.devwallet.databinding.FragmentHomeBinding
+import one.tesseract.devwallet.entity.request.TestSign
 import one.tesseract.devwallet.ui.sign.SignActivity
+import one.tesseract.ipc.activity.ActivityMonitor
+import one.tesseract.ipc.activity.free.Launcher
 
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
@@ -29,9 +30,10 @@ class HomeFragment : Fragment() {
         binding.model = viewModel
         binding.lifecycleOwner = this
 
+        val launcher = Launcher(ActivityMonitor(requireActivity().application))
+
         viewModel.open.observe(viewLifecycleOwner) { it?.let {
-            var intent = Intent(context, SignActivity::class.java)
-            activity?.startActivity(intent)
+            SignActivity.requestUserConfirmation(launcher, TestSign("hardcode_from_home"))
         }}
 
         return binding.root

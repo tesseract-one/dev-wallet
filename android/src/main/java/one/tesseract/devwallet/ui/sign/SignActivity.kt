@@ -1,23 +1,50 @@
 package one.tesseract.devwallet.ui.sign
 
+import java.util.concurrent.CompletionStage
+
 import android.os.Bundle
+import android.os.Parcelable
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
 
+import one.tesseract.ipc.activity.free.Launcher
+
 import one.tesseract.devwallet.R
 import one.tesseract.devwallet.entity.request.TestSign
-import one.tesseract.devwallet.ui.settings.home.HomeFragment
 import one.tesseract.devwallet.ui.sign.fragments.test.TestSignFragment
 
 class SignActivity : AppCompatActivity() {
+    companion object {
+        private const val REQUEST = "request"
+
+        fun <T: Parcelable>requestUserConfirmation(launcher: Launcher, request: T): CompletionStage<Boolean> {
+            val bundle = Bundle()
+
+            bundle.putParcelable(REQUEST, request)
+
+            return launcher.startFreeActivityForResult<Boolean>(SignActivity::class.java, bundle).thenApply {
+                it.second
+            }
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val extras = intent.extras ?: throw RuntimeException("No Extras :(")
+        val request: Any = extras.getParcelable(REQUEST) ?: throw RuntimeException("No Request")
+
+        val fragment = if(request is TestSign) {
+            TestSignFragment(request)
+        } else {
+            throw RuntimeException("Please, don't send garbage here")
+        }
 
         if(savedInstanceState == null) {
             supportFragmentManager.commit {
                 setReorderingAllowed(true) //must be here. otherwise compat mode
-                replace(R.id.transactionFragmentContainerView, TestSignFragment(TestSign("hardcodetest")))
+                replace(R.id.transactionFragmentContainerView, fragment)
             }
         }
 
