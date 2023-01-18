@@ -14,7 +14,7 @@
         android:theme="@style/Theme.DeveloperWallet"
         tools:targetApi="31">
         <activity
-            android:name=".SignActivity"
+            android:name=".ui.sign.SignActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
