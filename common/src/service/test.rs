@@ -57,9 +57,7 @@ impl tesseract_protocol_test::TestService for TestService {
         let settings = self.settings_provider.load_test_settings().map_err(|e| e.into())?;
 
         if req == settings.invalidator {
-            debug!("@@@@@req222");
             let error = format!("Intentional error. Because your transaction `{}` is set as the invalidator in DevWallet settings", req);
-            debug!("@@@@@req333");
 
             let request = TestError {
                 transaction: req.to_owned(),
@@ -82,6 +80,8 @@ impl tesseract_protocol_test::TestService for TestService {
 
             let request = TestSign {
                 transaction: req.to_owned(),
+                signature: signature,
+                result: signed.clone()
             };
 
             let allow = self.ui.request_user_confirmation(request).await.map_err(|e| e.into())?;
