@@ -1,4 +1,5 @@
 #![feature(iterator_try_collect)]
+#![feature(result_option_inspect)]
 
 #[macro_use]
 extern crate log;

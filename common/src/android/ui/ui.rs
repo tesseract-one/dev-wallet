@@ -25,11 +25,11 @@ impl UI {
 #[async_trait]
 impl UIProtocol for UI {
     async fn request_user_confirmation<R: Request>(&self, request: R) -> DWResult<bool> {
-        let allow = self.internal.do_in_context_rret(64, |env, core| {
+        let allow = self.internal.do_in_context_rret(64, |env, ui| {
             let request = request.into_java(&env)?;
 
-            let core = JUI::from_env(&env, core);
-            let allow = core.request_user_confirmation(request);
+            let jui = JUI::from_env(&env, ui);
+            let allow = jui.request_user_confirmation(request);
 
             Ok(JFuture::from_stage_result(allow))
         })?.await?;

@@ -55,7 +55,7 @@ impl<'a: 'b, 'b> JUI<'a, 'b> {
             .call_method(
                 self.internal,
                 "requestUserConfirmation",
-                "(android/os/Parcelable;)Ljava/util/concurrent/CompletionStage;",
+                "(Landroid/os/Parcelable;)Ljava/util/concurrent/CompletionStage;",
                 &[JValue::from(request)],
             )?
             .l()?;
