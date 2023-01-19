@@ -1,4 +1,4 @@
-package one.tesseract.devwallet.ui.sign.fragments.test
+package one.tesseract.devwallet.ui.sign.fragments.test.sign
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle

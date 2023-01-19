@@ -1,6 +1,5 @@
-package one.tesseract.devwallet.ui.sign.fragments.test
+package one.tesseract.devwallet.ui.sign.fragments.test.sign
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import one.tesseract.devwallet.entity.request.TestSign

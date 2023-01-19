@@ -12,8 +12,10 @@ import androidx.fragment.app.commit
 import one.tesseract.ipc.activity.free.Launcher
 
 import one.tesseract.devwallet.R
+import one.tesseract.devwallet.entity.request.TestError
 import one.tesseract.devwallet.entity.request.TestSign
-import one.tesseract.devwallet.ui.sign.fragments.test.TestSignFragment
+import one.tesseract.devwallet.ui.sign.fragments.test.error.TestErrorFragment
+import one.tesseract.devwallet.ui.sign.fragments.test.sign.TestSignFragment
 import one.tesseract.ipc.activity.free.finishFreeActivity
 
 class SignActivity : AppCompatActivity() {
@@ -37,10 +39,16 @@ class SignActivity : AppCompatActivity() {
         val extras = intent.extras ?: throw RuntimeException("No Extras :(")
         val request: Any = extras.getParcelable(REQUEST) ?: throw RuntimeException("No Request")
 
-        val fragment = if(request is TestSign) {
-            TestSignFragment(request)
-        } else {
-            throw RuntimeException("Please, don't send garbage here")
+        val fragment = when (request) {
+            is TestSign -> {
+                TestSignFragment(request)
+            }
+            is TestError -> {
+                TestErrorFragment(request)
+            }
+            else -> {
+                throw RuntimeException("Please, don't send garbage here")
+            }
         }
 
         if(savedInstanceState == null) {
