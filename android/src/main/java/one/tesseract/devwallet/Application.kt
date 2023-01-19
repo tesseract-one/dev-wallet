@@ -14,8 +14,10 @@ class Application: android.app.Application() {
     override fun onCreate() {
         super.onCreate()
 
-        core = createCore(applicationInfo.dataDir)
+        val ui = UI(this)
+
+        core = createCore(ui, applicationInfo.dataDir)
     }
 
-    private external fun createCore(dataDir: String): Core
+    private external fun createCore(ui: UI, dataDir: String): Core
 }

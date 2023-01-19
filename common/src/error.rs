@@ -26,3 +26,9 @@ impl<T> From<std::sync::PoisonError<T>> for Error {
 }
 
 pub (crate) type Result<T> = std::result::Result<T, Error>;
+
+impl Into<tesseract::Error> for Error {
+    fn into(self) -> tesseract::Error {
+        tesseract::Error::nested(Box::new(self))
+    }
+}

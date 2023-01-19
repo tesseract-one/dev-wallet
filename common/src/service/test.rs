@@ -21,18 +21,18 @@ use async_trait::async_trait;
 use tesseract::{Error, ErrorKind};
 use tesseract_protocol_test::Test;
 
-//use super::ui::UI;
+use crate::request::TestSign;
+use crate::ui::{UI, UIProtocol};
 use crate::settings::SettingsProvider;
-use crate::settings::TestSettingsProvider;
 
 pub(crate) struct TestService {
-    //ui: UI,
+    ui: UI,
     settings_provider: Arc<SettingsProvider>
 }
 
 impl TestService {
-    pub fn new(/*ui: UI, */settings_provider: Arc<SettingsProvider>) -> Self {
-        Self { /*ui: ui,*/ settings_provider: settings_provider }
+    pub fn new(ui: UI, settings_provider: Arc<SettingsProvider>) -> Self {
+        Self { ui: ui, settings_provider: settings_provider }
     }
 }
 
@@ -53,7 +53,11 @@ impl tesseract::service::Service for TestService {
 #[async_trait]
 impl tesseract_protocol_test::TestService for TestService {
     async fn sign_transaction(self: Arc<Self>, req: &str) -> tesseract::Result<String> {
-        let allow = true;//self.ui.request_user_confirmation(req).await?;
+        let request = TestSign {
+            transaction: req.to_owned()
+        };
+
+        let allow = self.ui.request_user_confirmation(request).await.map_err(|e| e.into())?;
 
         if allow {
             if req == "make_error" {
