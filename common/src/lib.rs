@@ -7,6 +7,9 @@ extern crate log;
 #[cfg(target_os = "android")]
 mod android;
 
+#[cfg(target_os = "ios")]
+mod ios;
+
 mod settings;
 mod error;
 mod core;

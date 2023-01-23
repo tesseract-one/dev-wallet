@@ -32,6 +32,13 @@ jni_fn = "0.1.0"
 interop_android = { path = "../../Tesseract.android/rust/interop" }
 tesseract_ipc_android = { path = "../../Tesseract.android/rust/ipc", features = ["service"] }
 
+[target.'cfg(target_os = "ios")'.dependencies]
+tesseract_utils = { git = "https://github.com/tesseract-one/Tesseract.swift", branch = "master" }
+tesseract_service = { git = "https://github.com/tesseract-one/Tesseract.swift", branch = "master" }
+
+[build-dependencies]
+cbindgen = "0.24"
+
 [lib]
 #[target.'cfg(target_os = "android")'.lib]
-crate_type = ["cdylib"]
+crate_type = ["cdylib", "staticlib"]
