@@ -10,13 +10,23 @@ import CWallet
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        TabView {
+            TestSettingsView()
+                .tabItem {
+                    Image(systemName: "testtube.2")
+                    Text("Test")
+                }
+            Text("Screen2")
+                .tabItem {
+                    Image(systemName: "globe")
+                    Text("Screen2")
+                }
+            Text("Screen3")
+                .tabItem {
+                    Image(systemName: "mappin.circle.fill")
+                    Text("Screen3")
+                }
         }
-        .padding()
     }
 }
 

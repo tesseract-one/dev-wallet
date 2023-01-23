@@ -16,6 +16,8 @@
 		656A7197297F1EC100FC66CC /* ActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656A7196297F1EC100FC66CC /* ActionViewController.swift */; };
 		656A719E297F1EC100FC66CC /* Signer.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 656A718F297F1EC100FC66CC /* Signer.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		65710606297F39F6003DC875 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65710605297F39F6003DC875 /* ContentView.swift */; };
+		65710609297F3BE4003DC875 /* TestSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65710608297F3BE4003DC875 /* TestSettingsViewModel.swift */; };
+		6571060B297F3C1A003DC875 /* TestSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6571060A297F3C1A003DC875 /* TestSettingsView.swift */; };
 		657F9207297F1863006771BF /* Developer_WalletApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657F9206297F1863006771BF /* Developer_WalletApp.swift */; };
 		657F9209297F1863006771BF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657F9208297F1863006771BF /* ContentView.swift */; };
 		657F920B297F1865006771BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 657F920A297F1865006771BF /* Assets.xcassets */; };
@@ -53,6 +55,8 @@
 		656A7196297F1EC100FC66CC /* ActionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionViewController.swift; sourceTree = "<group>"; };
 		656A719B297F1EC100FC66CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		65710605297F39F6003DC875 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		65710608297F3BE4003DC875 /* TestSettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSettingsViewModel.swift; sourceTree = "<group>"; };
+		6571060A297F3C1A003DC875 /* TestSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSettingsView.swift; sourceTree = "<group>"; };
 		657F9203297F1863006771BF /* Developer Wallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Developer Wallet.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		657F9206297F1863006771BF /* Developer_WalletApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Developer_WalletApp.swift; sourceTree = "<group>"; };
 		657F9208297F1863006771BF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -102,6 +106,15 @@
 			path = Signer;
 			sourceTree = "<group>";
 		};
+		65710607297F3BBC003DC875 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				65710608297F3BE4003DC875 /* TestSettingsViewModel.swift */,
+				6571060A297F3C1A003DC875 /* TestSettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		657F91FA297F1863006771BF = {
 			isa = PBXGroup;
 			children = (
@@ -124,6 +137,7 @@
 		657F9205297F1863006771BF /* Developer Wallet */ = {
 			isa = PBXGroup;
 			children = (
+				65710607297F3BBC003DC875 /* Settings */,
 				657F9206297F1863006771BF /* Developer_WalletApp.swift */,
 				657F9208297F1863006771BF /* ContentView.swift */,
 				657F920A297F1865006771BF /* Assets.xcassets */,
@@ -283,6 +297,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65710609297F3BE4003DC875 /* TestSettingsViewModel.swift in Sources */,
+				6571060B297F3C1A003DC875 /* TestSettingsView.swift in Sources */,
 				657F9209297F1863006771BF /* ContentView.swift in Sources */,
 				657F9207297F1863006771BF /* Developer_WalletApp.swift in Sources */,
 			);
