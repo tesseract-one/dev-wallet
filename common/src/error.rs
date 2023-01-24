@@ -6,6 +6,10 @@ pub (crate) enum Error {
     #[error("JNI error")]
     JNI(#[from] jni::errors::Error),
 
+    #[cfg(target_os = "ios")]
+    #[error("C error")]
+    CError(#[from] tesseract_utils::error::CError),
+
     #[error("Lock poison error: {0}")]
     Poison(String),
 

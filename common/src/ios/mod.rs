@@ -1,23 +1,14 @@
-//pub mod request;
+mod request;
+mod error;
+mod ui;
 
-use async_trait::async_trait;
+mod settings;
 
-//use crate::request::Request;
-use crate::ui::UIProtocol;
-use crate::error::Result as DWResult;
+mod core;
 
-pub (crate) trait Request: Send {
-}
+pub (crate) use request::Request;
+pub (crate) use ui::UI;
 
-pub struct UI {
-}
-
-#[async_trait]
-impl UIProtocol for UI {
-    async fn request_user_confirmation<R: Request>(&self, request: R) -> DWResult<bool> {
-        todo!()
-    }
-}
-
+//need this for the sake of proper headers generation
 pub use tesseract_utils::*;
 pub use tesseract_service::*;

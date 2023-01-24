@@ -9,6 +9,8 @@ import SwiftUI
 
 @main
 struct Developer_WalletApp: App {
+    //let core
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
