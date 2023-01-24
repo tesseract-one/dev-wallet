@@ -9,7 +9,7 @@ import SwiftUI
 
 @main
 struct Developer_WalletApp: App {
-    //let core
+    let core = try! Core(ui: UI(), dataDir: "lalala")
     
     var body: some Scene {
         WindowGroup {
