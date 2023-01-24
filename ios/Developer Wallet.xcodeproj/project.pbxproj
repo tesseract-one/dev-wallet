@@ -13,6 +13,7 @@
 		650C3B55297F2B8A009D6095 /* TesseractUtils in Frameworks */ = {isa = PBXBuildFile; productRef = 650C3B54297F2B8A009D6095 /* TesseractUtils */; };
 		6534236329805AA800472C6C /* TestSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6534236229805AA800472C6C /* TestSettings.swift */; };
 		6534236529805ACF00472C6C /* CTestSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6534236429805ACF00472C6C /* CTestSettings.swift */; };
+		653423672980993900472C6C /* UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653423662980993900472C6C /* UI.swift */; };
 		656A7192297F1EC100FC66CC /* UniformTypeIdentifiers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 656A7191297F1EC100FC66CC /* UniformTypeIdentifiers.framework */; };
 		656A7195297F1EC100FC66CC /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 656A7194297F1EC100FC66CC /* Media.xcassets */; };
 		656A7197297F1EC100FC66CC /* ActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656A7196297F1EC100FC66CC /* ActionViewController.swift */; };
@@ -54,6 +55,7 @@
 /* Begin PBXFileReference section */
 		6534236229805AA800472C6C /* TestSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSettings.swift; sourceTree = "<group>"; };
 		6534236429805ACF00472C6C /* CTestSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTestSettings.swift; sourceTree = "<group>"; };
+		653423662980993900472C6C /* UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UI.swift; sourceTree = "<group>"; };
 		656A718F297F1EC100FC66CC /* Signer.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Signer.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		656A7191297F1EC100FC66CC /* UniformTypeIdentifiers.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UniformTypeIdentifiers.framework; path = System/Library/Frameworks/UniformTypeIdentifiers.framework; sourceTree = SDKROOT; };
 		656A7194297F1EC100FC66CC /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 				6534236029805A7F00472C6C /* Entity */,
 				6534235E298059C300472C6C /* Rust */,
 				6534235D2980598C00472C6C /* UI */,
+				653423662980993900472C6C /* UI.swift */,
 				657F9206297F1863006771BF /* Developer_WalletApp.swift */,
 				657F9208297F1863006771BF /* ContentView.swift */,
 				657F920A297F1865006771BF /* Assets.xcassets */,
@@ -347,6 +350,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6534236329805AA800472C6C /* TestSettings.swift in Sources */,
+				653423672980993900472C6C /* UI.swift in Sources */,
 				65710609297F3BE4003DC875 /* TestSettingsViewModel.swift in Sources */,
 				6571060B297F3C1A003DC875 /* TestSettingsView.swift in Sources */,
 				657F9209297F1863006771BF /* ContentView.swift in Sources */,

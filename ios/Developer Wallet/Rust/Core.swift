@@ -12,10 +12,10 @@ import TesseractUtils
 class Core {
     private var `internal`: CCore
     
-    public init(dataDir: String) throws {
+    public init(ui: UI, dataDir: String) throws {
         self.internal = try dataDir.withRef { dataDir in
             try CResult<CCore>.wrap { value, error in
-                wallet_ccore_create(dataDir, value, error)
+                wallet_ccore_create(UI().asRust(), dataDir, value, error)
             }.get()
         }
     }

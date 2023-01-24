@@ -5,7 +5,7 @@ use tesseract_utils::error::CError;
 use tesseract_utils::panic::handle_exception_result;
 use tesseract_utils::{ptr::{CAnyRustPtr, IntoAnyPtr}, string::CStringRef, traits::TryAsRef, response::CResponse};
 
-use crate::settings;
+use super::ui::SUI;
 use crate::{core::Core, ios::settings::test_settings::CTestSettings, settings::TestSettings};
 
 pub type CCore = CAnyRustPtr;
@@ -24,11 +24,11 @@ impl Transport for TR {
 
 //TODO: change to result
 #[no_mangle]
-pub unsafe extern "C" fn wallet_ccore_create(/*ui: ManuallyDrop<UI>,*/ data_dir: CStringRef, value: &mut ManuallyDrop<CCore>, error: &mut ManuallyDrop<CError>) -> bool {
+pub unsafe extern "C" fn wallet_ccore_create(ui: ManuallyDrop<SUI>, data_dir: CStringRef, value: &mut ManuallyDrop<CCore>, error: &mut ManuallyDrop<CError>) -> bool {
     handle_exception_result(|| {
         let data_dir = data_dir.try_as_ref()?;
 
-        let core = Core::new(super::UI {}, data_dir, || {TR {}});
+        let core = Core::new(super::UI::new(ManuallyDrop::into_inner(ui)), data_dir, || {TR {}});
     
         Ok(core.into())
     }).response(value, error)
