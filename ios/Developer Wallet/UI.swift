@@ -31,7 +31,7 @@ private func fn_request_user_confirmation(this: UnsafePointer<SUI>!, tx: CString
 
 public class UI {
     func requestUserConfirmation(tx: String) async throws -> Bool {
-        true
+        fatalError("No UI is implemented in the Wallet. Use extension.")
     }
     
     func asRust() -> SUI {
