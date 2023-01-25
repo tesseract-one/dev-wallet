@@ -32,15 +32,9 @@ pub unsafe extern "C" fn wallet_ccore_create(ui: ManuallyDrop<SUI>, data_dir: CS
     handle_exception_result(|| {
         let data_dir = data_dir.try_as_ref()?;
 
-        println!("1111111111111111111111111asd");
         let core = Core::new(super::UI::new(ManuallyDrop::into_inner(ui)), data_dir, || {TR {}});
-        println!("2222222222222222222222222asd");
-    
-        let aa:CCore = core.into();
 
-        println!("3333333333333333333333333asd");
-
-        Ok(aa)
+        Ok(core.into())
     }).response(value, error)
 }
 
