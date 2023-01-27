@@ -9,8 +9,8 @@ import Foundation
 import CWallet
 import TesseractUtils
 
-class Core {
-    private var `internal`: CCore
+final class Core {
+    fileprivate var `internal`: CCore
     
     public init(ui: UI, dataDir: String) throws {
         self.internal = try dataDir.withRef { dataDir in
@@ -20,11 +20,7 @@ class Core {
         }
     }
     
-    public static func dummy() throws -> Core {
-        try Core(ui: UI(), dataDir: "lalala")
-    }
-    
-    var settingsProvider: SettingsProvider {
+    fileprivate var settingsProvider: SettingsProvider {
         get throws {
             let rust = try CResult<CSettingsProvider>.wrap { value, error in
                 wallet_ccore_test_settings_provider(self.internal, value, error)
@@ -39,6 +35,10 @@ class Core {
     }
 }
 
-func test111() {
-    
+extension Core: CoreProtocol {
+    var testSettingsProvider: TestSettingsProvider {
+        get throws {
+            try self.settingsProvider
+        }
+    }
 }

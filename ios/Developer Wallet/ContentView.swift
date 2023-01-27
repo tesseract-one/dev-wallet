@@ -9,18 +9,18 @@ import SwiftUI
 import CWallet
 
 struct ContentView: View {
-    let core: Core;
+    let core: CoreProtocol;
     
-    init(core: Core) {
+    init(core: CoreProtocol) {
         self.core = core
     }
     
     var body: some View {
         TabView {
-            try! TestSettingsView(settingsProvider: try! core.settingsProvider)
+            try! TestSettingsView(settingsProvider: try! core.testSettingsProvider)
                 .tabItem {
                     Image(systemName: "testtube.2")
-                    Text("Test")
+                    Text("Test Protocol")
                 }
             Text("Screen2")
                 .tabItem {
@@ -38,6 +38,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(core: try! Core.dummy())
+        ContentView(core: PreviewCore())
     }
 }
