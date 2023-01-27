@@ -17,7 +17,11 @@ final class Core {
     public init(ui: UI, dataDir: String, transport: IPCTransportIOS?) throws {
         self.internal = try dataDir.withRef { dataDir in
             try CResult<CCore>.wrap { value, error in
-                wallet_ccore_create(ui.asRust(), dataDir, transport!.asNative(), value, error)
+                if let transport = transport {
+                    return wallet_ccore_create_extension(ui.asRust(), dataDir, transport.asNative(), value, error)
+                } else {
+                    return wallet_ccore_create_app(ui.asRust(), dataDir, value, error)
+                }
             }.get()
         }
     }

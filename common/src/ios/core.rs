@@ -15,11 +15,24 @@ impl IntoAnyPtr for Core {
 }
 
 #[no_mangle]
-pub unsafe extern "C" fn wallet_ccore_create(ui: SUI, data_dir: CStringRef, transport: tesseract_service::transport::Transport, ret: &mut ManuallyDrop<CCore>, err: &mut ManuallyDrop<CError>) -> bool {
+pub unsafe extern "C" fn wallet_ccore_create_app(ui: SUI, data_dir: CStringRef, ret: &mut ManuallyDrop<CCore>, err: &mut ManuallyDrop<CError>) -> bool {
     handle_exception_result(|| {
         let data_dir = data_dir.try_as_ref()?;
 
-        let core = Core::new(super::UI::new(ui), data_dir, || transport);
+        let core = Core::new(super::UI::new(ui), data_dir, |tesseract| tesseract);
+
+        Ok(core.into())
+    }).response(ret, err)
+}
+
+#[no_mangle]
+pub unsafe extern "C" fn wallet_ccore_create_extension(ui: SUI, data_dir: CStringRef, transport: tesseract_service::transport::Transport, ret: &mut ManuallyDrop<CCore>, err: &mut ManuallyDrop<CError>) -> bool {
+    handle_exception_result(|| {
+        let data_dir = data_dir.try_as_ref()?;
+
+        let core = Core::new(super::UI::new(ui), data_dir, |tesseract| {
+            tesseract.transport(transport)
+        });
 
         Ok(core.into())
     }).response(ret, err)

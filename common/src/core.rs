@@ -10,12 +10,11 @@ pub (crate) struct Core {
 }
 
 impl Core {
-    pub (crate) fn new<T: Transport, F: FnOnce()->T>(ui:UI, data_dir: &str, ipc: F) -> Self {
+    pub (crate) fn new<F: FnOnce(Tesseract)->Tesseract>(ui:UI, data_dir: &str, apply_transports: F) -> Self {
         let location = format!("{}/settings.ini", data_dir);
         let settings_provider = Arc::new(SettingsProvider::new(&location));
 
-        let tesseract = Tesseract::new()
-            .transport(ipc())
+        let tesseract = apply_transports(Tesseract::new())
             .service(TestService::new(ui, Arc::clone(&settings_provider)));
 
         Self {
