@@ -21,13 +21,13 @@ struct TestSettingsView: View {
                 Text("Signature:")
                 Spacer()
             }.padding(.top, 20.0)
-            TextField("Signature", text: $model.signature).padding(.bottom)
+            TextField("Signature", text: $model.settings.signature).padding(.bottom)
             
             HStack {
                 Text("Invalidator:")
                 Spacer()
             }
-            TextField("Invalidator", text: $model.invalidator)
+            TextField("Invalidator", text: $model.settings.invalidator)
             
             Spacer()
             
@@ -36,12 +36,12 @@ struct TestSettingsView: View {
                 Button(action: model.revert) {
                     Image(systemName: "arrow.counterclockwise")
                     Text("Revert")
-                }
+                }.disabled(model.settings == model.cache)
                 Spacer()
                 Button(action: model.save) {
                     Image(systemName: "square.and.arrow.down")
                     Text("Save")
-                }
+                }.disabled(model.settings == model.cache)
                 Spacer()
             }
             

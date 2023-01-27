@@ -6,24 +6,28 @@
 //
 
 import Foundation
+import SwiftUI
 
 class TestSettingsViewModel: ObservableObject {
     let settingsProvider: SettingsProvider
     
-    @Published var signature: String
-    @Published var invalidator: String
+    @Published var settings: TestSettings
+    @Published var cache: TestSettings
     
     init(settingsProvider: SettingsProvider) throws {
         self.settingsProvider = settingsProvider
         
         let settings = try self.settingsProvider.load();
         
-        self.signature = settings.signature
-        self.invalidator = settings.invalidator
+        self.settings = settings
+        self.cache = settings
     }
     
     func revert() {
+        let settings = try! self.settingsProvider.load();
         
+        self.settings = settings
+        self.cache = settings
     }
     
     func save() {

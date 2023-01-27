@@ -8,6 +8,11 @@
 import Foundation
 
 public struct TestSettings {
-    public let signature: String
-    public let invalidator: String
+    public var signature: String
+    public var invalidator: String
 }
+
+extension TestSettings: Equatable {
+}
+
+
