@@ -7,8 +7,6 @@
 
 import Foundation
 
-import TesseractUtils
-
 import CWallet
 
 public class UI {

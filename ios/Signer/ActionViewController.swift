@@ -42,8 +42,18 @@ class ActionViewController: UIHostingController<ContentView> {
         super.init(coder: aDecoder, rootView: ContentView(model: self.model))
     }
     
+    private static func settingsFolder() -> String? {
+        FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "one.tesseract.Developer-Wallet.settings")?.path()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let core = try! Core(ui: UI(), dataDir: Self.settingsFolder()!)
+        let settingsProvider = try! core.testSettingsProvider
+        let settings = try! settingsProvider.load()
+        
+        print("!!!!!Settings: {} and {}", settings.signature, settings.invalidator)
     
         // Get the item[s] we're handling from the extension context.
         

@@ -72,6 +72,7 @@
 		650A8EE0298435C800489BE2 /* PreviewCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewCore.swift; sourceTree = "<group>"; };
 		650A8EE9298440B300489BE2 /* SUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SUI.swift; sourceTree = "<group>"; };
 		650A8EEC298440F000489BE2 /* UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UI.swift; sourceTree = "<group>"; };
+		650A8EEE29844A7300489BE2 /* Signer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Signer.entitlements; sourceTree = "<group>"; };
 		6534236229805AA800472C6C /* TestSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSettings.swift; sourceTree = "<group>"; };
 		6534236429805ACF00472C6C /* CTestSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTestSettings.swift; sourceTree = "<group>"; };
 		653423662980993900472C6C /* UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UI.swift; sourceTree = "<group>"; };
@@ -182,6 +183,7 @@
 		656A7193297F1EC100FC66CC /* Signer */ = {
 			isa = PBXGroup;
 			children = (
+				650A8EEE29844A7300489BE2 /* Signer.entitlements */,
 				656A7196297F1EC100FC66CC /* ActionViewController.swift */,
 				65710605297F39F6003DC875 /* ContentView.swift */,
 				650A8EEC298440F000489BE2 /* UI.swift */,
@@ -427,6 +429,7 @@
 		656A71A0297F1EC100FC66CC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Signer/Signer.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -451,6 +454,7 @@
 		656A71A1297F1EC100FC66CC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Signer/Signer.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
