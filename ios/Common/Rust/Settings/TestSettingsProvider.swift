@@ -22,9 +22,8 @@ extension SettingsProvider: TestSettingsProvider {
     }
     
     func save(settings: TestSettings) throws {
-        //TODO: make Nothing=>CType and fix
-        let _ret = try CResult<Bool>.wrap { ret, err  in
-            wallet_test_settings_provider_save(self.rust, settings.copiedPtr(), ret, err)
+        try CResult<Void>.wrap { err  in
+            wallet_test_settings_provider_save(self.rust, settings.copiedPtr(), err)
         }.get()
     }
 }
