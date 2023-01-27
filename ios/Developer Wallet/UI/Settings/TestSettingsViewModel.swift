@@ -17,20 +17,21 @@ class TestSettingsViewModel: ObservableObject {
     init(settingsProvider: SettingsProvider) throws {
         self.settingsProvider = settingsProvider
         
-        let settings = try self.settingsProvider.load();
+        let settings = try self.settingsProvider.load()
         
         self.settings = settings
         self.cache = settings
     }
     
     func revert() {
-        let settings = try! self.settingsProvider.load();
+        let settings = try! self.settingsProvider.load()
         
         self.settings = settings
         self.cache = settings
     }
     
     func save() {
-        
+        try! self.settingsProvider.save(settings: self.settings)
+        self.cache = self.settings
     }
 }

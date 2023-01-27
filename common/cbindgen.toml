@@ -18,5 +18,5 @@ include = ["tesseract_utils", "tesseract_service"]
 exclude = [
   "CFutureBool", "SyncPtr_Void", "BoundTransport", "Transport",
   "TransportProcessor", "Void", "CError", "CString", "CStringRef", 
-  "CAnyDropPtr", "CAnyRustPtr"
+  "CAnyDropPtr", "CAnyRustPtr", "Nothing"
 ]

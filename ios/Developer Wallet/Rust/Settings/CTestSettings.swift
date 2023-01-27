@@ -13,7 +13,7 @@ import CWallet
 
 extension TestSettings: AsCPtrCopy {
     public func copiedPtr() -> CTestSettings {
-        CTestSettings(signature: self.signature.copiedPtr(), invalidator: self.signature.copiedPtr())
+        CTestSettings(signature: self.signature.copiedPtr(), invalidator: self.invalidator.copiedPtr())
     }
     
     public typealias CopyPtr = CTestSettings
