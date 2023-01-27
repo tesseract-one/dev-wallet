@@ -43,7 +43,9 @@ pub fn create<'a>(env: JNIEnv<'a>, _core_class: JClass<'a>, ui: JObject<'a>, dat
         let data_dir: String = env.get_string(data_dir)?.into();
         let ipc = Transport::default(&env)?;
 
-        let core = Arc::new(Core::new(ui, &data_dir, || ipc));
+        let core = Arc::new(Core::new(ui, &data_dir, |tesseract| {
+            tesseract.transport(ipc)
+        }));
 
         Ok(core.java_ref::<Core>(&env, None)?)
     })
