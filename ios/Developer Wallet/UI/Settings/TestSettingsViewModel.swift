@@ -8,10 +8,16 @@
 import Foundation
 
 class TestSettingsViewModel: ObservableObject {
+    let settingsProvider: SettingsProvider
+    
     @Published var signature: String
     @Published var invalidator: String
     
-    init() {
+    init(settingsProvider: SettingsProvider) {
+        self.settingsProvider = settingsProvider
+        
+        let a = try! self.settingsProvider.load();
+        
         self.signature = "sig_cardcoded"
         self.invalidator = "errorhardcoded"
     }

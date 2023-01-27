@@ -15,8 +15,22 @@ class Core {
     public init(ui: UI, dataDir: String) throws {
         self.internal = try dataDir.withRef { dataDir in
             try CResult<CCore>.wrap { value, error in
-                wallet_ccore_create(UI().asRust(), dataDir, value, error)
+                wallet_ccore_create(ui.asRust(), dataDir, value, error)
             }.get()
+        }
+    }
+    
+    public static func dummy() throws -> Core {
+        try Core(ui: UI(), dataDir: "lalala")
+    }
+    
+    var settingsProvider: SettingsProvider {
+        get throws {
+            let rust = try CResult<CSettingsProvider>.wrap { value, error in
+                wallet_ccore_test_settings_provider(self.internal, value, error)
+            }.get()
+            
+            return SettingsProvider(rust: rust)
         }
     }
     

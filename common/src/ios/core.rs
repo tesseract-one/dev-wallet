@@ -6,7 +6,8 @@ use tesseract_utils::panic::handle_exception_result;
 use tesseract_utils::{ptr::{CAnyRustPtr, IntoAnyPtr}, string::CStringRef, traits::TryAsRef, response::CResponse};
 
 use super::ui::SUI;
-use crate::{core::Core, ios::settings::test_settings::CTestSettings, settings::TestSettings};
+use super::settings::CSettingsProvider;
+use crate::{core::Core, /*ios::settings::test_settings::CTestSettings,*/ settings::TestSettings};
 
 pub type CCore = CAnyRustPtr;
 
@@ -39,6 +40,18 @@ pub unsafe extern "C" fn wallet_ccore_create(ui: ManuallyDrop<SUI>, data_dir: CS
 }
 
 #[no_mangle]
+pub unsafe extern "C" fn wallet_ccore_test_settings_provider(ccore: ManuallyDrop<CCore>, value: &mut ManuallyDrop<CSettingsProvider>, error: &mut ManuallyDrop<CError>) -> bool {
+    handle_exception_result(|| {
+        let core = ccore.as_ref::<Core>()?;
+        let provider = core.settings_provider();
+
+        let rust_ptr = CAnyRustPtr::new(provider);
+
+        Ok(rust_ptr)
+    }).response(value, error)
+}
+
+/*#[no_mangle]
 pub unsafe extern "C" fn wallet_seee() -> ManuallyDrop<CTestSettings> {
     let test_settings = TestSettings {
         signature: "sig".to_owned(),
@@ -46,11 +59,11 @@ pub unsafe extern "C" fn wallet_seee() -> ManuallyDrop<CTestSettings> {
     };
 
     ManuallyDrop::new(test_settings.into())
-}
+}*/
 
-#[no_mangle]
+/*#[no_mangle]
 pub unsafe extern "C" fn wallet_s2(settings: ManuallyDrop<CTestSettings>) {
     let settings: TestSettings = ManuallyDrop::into_inner(settings).try_into().unwrap();
 
-}
+}*/
 

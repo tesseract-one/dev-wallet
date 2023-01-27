@@ -1,4 +1,4 @@
-use std::sync::Mutex;
+use std::{sync::Mutex, fs::OpenOptions, io::Read};
 
 use configparser::ini::Ini;
 
@@ -18,11 +18,17 @@ impl SettingsProvider {
     }
 
     pub (super) fn read<T, F: FnOnce(&Ini)->T>(&self, read: F) -> Result<T> {
-        let mut data = self.config.lock()?;
+        let mut config = self.config.lock()?;
 
-        data.load(&self.location).map_err(|err| Error::Config(err))?;
+        let mut file = OpenOptions::new().create(true).write(true).open(&self.location)?;
+        let len = file.metadata()?.len();
+        let mut content = String::with_capacity(len as usize);
+
+        file.read_to_string(&mut content)?;
+
+        config.read(content).map_err(|err| Error::Config(err))?;
         
-        Ok(read(&data))
+        Ok(read(&config))
     }
 
     pub (super) fn write<F: FnOnce(&mut Ini)>(&self, write: F) -> Result<()> {

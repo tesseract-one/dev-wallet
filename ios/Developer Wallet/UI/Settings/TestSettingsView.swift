@@ -8,7 +8,11 @@
 import SwiftUI
 
 struct TestSettingsView: View {
-    @StateObject var model = TestSettingsViewModel()
+    @StateObject private var model: TestSettingsViewModel
+    
+    init(settingsProvider: SettingsProvider) {
+        _model = StateObject(wrappedValue: TestSettingsViewModel(settingsProvider: settingsProvider))
+    }
     
     var body: some View {
         VStack {
@@ -47,6 +51,6 @@ struct TestSettingsView: View {
 
 struct TestSettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        TestSettingsView()
+        TestSettingsView(settingsProvider: SettingsProvider.dummy())
     }
 }

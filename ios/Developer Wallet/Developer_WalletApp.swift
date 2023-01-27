@@ -9,11 +9,28 @@ import SwiftUI
 
 @main
 struct Developer_WalletApp: App {
-    let core = try! Core(ui: UI(), dataDir: "lalala")
+    let core = try! Core(ui: UI(), dataDir: FileManager.default.temporaryDirectory.path())
+    
+    init() {
+        //let aaa = FileManager.default.temporaryDirectory.path()
+        let url = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "one.tessteract.Developer-Wallet")
+        
+        print(url ?? "!!!none!!!")
+        
+        print("lalala")
+//        
+////        let url = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "one.tessteract.Developer-Wallet.settings");
+//
+//        if let stringData = "test data".data(using: .utf8) {
+//            try? stringData.write(to: url!)
+//        }
+        
+        //Date(from: "Test")
+    }
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(core: core)
         }
     }
 }
