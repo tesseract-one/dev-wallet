@@ -10,7 +10,7 @@ import SwiftUI
 struct TestSettingsView: View {
     @StateObject private var model: TestSettingsViewModel
     
-    init(settingsProvider: SettingsProvider) throws {
+    init(settingsProvider: TestSettingsProvider) throws {
         let model = try TestSettingsViewModel(settingsProvider: settingsProvider)
         _model = StateObject(wrappedValue: model)
     }
@@ -51,7 +51,8 @@ struct TestSettingsView: View {
 }
 
 struct TestSettingsView_Previews: PreviewProvider {
+    
     static var previews: some View {
-        try! TestSettingsView(settingsProvider: SettingsProvider.dummy())
+        try! TestSettingsView(settingsProvider: PreviewSettingsProvider())
     }
 }

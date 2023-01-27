@@ -11,6 +11,7 @@ import CWallet
 
 protocol TestSettingsProvider {
     func load() throws -> TestSettings;
+    func save(settings: TestSettings) throws;
 }
 
 extension SettingsProvider: TestSettingsProvider {

@@ -6,15 +6,14 @@
 //
 
 import Foundation
-import SwiftUI
 
 class TestSettingsViewModel: ObservableObject {
-    let settingsProvider: SettingsProvider
+    let settingsProvider: TestSettingsProvider
     
     @Published var settings: TestSettings
     @Published var cache: TestSettings
     
-    init(settingsProvider: SettingsProvider) throws {
+    init(settingsProvider: TestSettingsProvider) throws {
         self.settingsProvider = settingsProvider
         
         let settings = try self.settingsProvider.load()

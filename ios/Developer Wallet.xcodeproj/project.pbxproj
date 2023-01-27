@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		650A8EDD2983730000489BE2 /* PreviewSettingsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650A8EDC2983730000489BE2 /* PreviewSettingsProvider.swift */; };
 		650C3B4B297F2A9C009D6095 /* TesseractService in Frameworks */ = {isa = PBXBuildFile; productRef = 650C3B4A297F2A9C009D6095 /* TesseractService */; };
 		650C3B4D297F2A9C009D6095 /* TesseractUtils in Frameworks */ = {isa = PBXBuildFile; productRef = 650C3B4C297F2A9C009D6095 /* TesseractUtils */; };
 		650C3B53297F2B8A009D6095 /* TesseractService in Frameworks */ = {isa = PBXBuildFile; productRef = 650C3B52297F2B8A009D6095 /* TesseractService */; };
@@ -55,6 +56,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		650A8EDC2983730000489BE2 /* PreviewSettingsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewSettingsProvider.swift; sourceTree = "<group>"; };
 		6534236229805AA800472C6C /* TestSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSettings.swift; sourceTree = "<group>"; };
 		6534236429805ACF00472C6C /* CTestSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTestSettings.swift; sourceTree = "<group>"; };
 		653423662980993900472C6C /* UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UI.swift; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 			isa = PBXGroup;
 			children = (
 				657F920D297F1865006771BF /* Preview Assets.xcassets */,
+				650A8EDC2983730000489BE2 /* PreviewSettingsProvider.swift */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -367,6 +370,7 @@
 				6571060D297F42D3003DC875 /* Core.swift in Sources */,
 				6534236529805ACF00472C6C /* CTestSettings.swift in Sources */,
 				653423692982F63600472C6C /* SettingsProvider.swift in Sources */,
+				650A8EDD2983730000489BE2 /* PreviewSettingsProvider.swift in Sources */,
 				657F9207297F1863006771BF /* Developer_WalletApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

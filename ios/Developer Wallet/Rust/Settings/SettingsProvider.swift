@@ -14,8 +14,4 @@ class SettingsProvider {
     public init(rust: CSettingsProvider) {
         self.rust = rust
     }
-    
-    public static func dummy() -> SettingsProvider {
-        SettingsProvider(rust: CSettingsProvider())
-    }
 }
