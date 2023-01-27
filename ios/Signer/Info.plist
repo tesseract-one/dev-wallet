@@ -2,6 +2,11 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>UIExtension</key>
+	<dict>
+		<key>UIExtentionMain</key>
+		<string>$(PRODUCT_MODULE_NAME).SignerExtention</string>
+	</dict>
 	<key>NSExtension</key>
 	<dict>
 		<key>NSExtensionAttributes</key>
@@ -20,7 +25,7 @@
 			<string>NSActionTemplate</string>
 		</dict>
 		<key>NSExtensionPrincipalClass</key>
-		<string>$(PRODUCT_MODULE_NAME).ActionViewController</string>
+		<string>$(PRODUCT_MODULE_NAME).UIExtentionController</string>
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.ui-services</string>
 	</dict>
