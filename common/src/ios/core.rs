@@ -1,6 +1,6 @@
 use std::mem::ManuallyDrop;
 
-use tesseract::service::{Transport, BoundTransport};
+//use tesseract::service::{Transport, BoundTransport};
 use tesseract_utils::error::CError;
 use tesseract_utils::panic::handle_exception_result;
 use tesseract_utils::{ptr::{CAnyRustPtr, IntoAnyPtr}, string::CStringRef, traits::TryAsRef, response::CResponse};
@@ -14,29 +14,15 @@ pub type CCore = CAnyRustPtr;
 impl IntoAnyPtr for Core {
 }
 
-struct TR {
-}
-
-impl BoundTransport for TR {
-
-}
-
-impl Transport for TR {
-    fn bind(self, processor: std::sync::Arc<dyn tesseract::service::TransportProcessor + Send + Sync>) -> Box<dyn tesseract::service::BoundTransport> {
-        Box::new(self)
-    }
-}
-
-//TODO: change to result
 #[no_mangle]
-pub unsafe extern "C" fn wallet_ccore_create(ui: ManuallyDrop<SUI>, data_dir: CStringRef, value: &mut ManuallyDrop<CCore>, error: &mut ManuallyDrop<CError>) -> bool {
+pub unsafe extern "C" fn wallet_ccore_create(ui: SUI, data_dir: CStringRef, transport: tesseract_service::transport::Transport, ret: &mut ManuallyDrop<CCore>, err: &mut ManuallyDrop<CError>) -> bool {
     handle_exception_result(|| {
         let data_dir = data_dir.try_as_ref()?;
 
-        let core = Core::new(super::UI::new(ManuallyDrop::into_inner(ui)), data_dir, || {TR {}});
+        let core = Core::new(super::UI::new(ui), data_dir, || transport);
 
         Ok(core.into())
-    }).response(value, error)
+    }).response(ret, err)
 }
 
 #[no_mangle]

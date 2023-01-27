@@ -23,6 +23,8 @@
 		650A8EF5298469A700489BE2 /* Bundle+UIExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650A8EF4298469A700489BE2 /* Bundle+UIExtension.swift */; };
 		650A8EF729846A8E00489BE2 /* UIExtensionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650A8EF629846A8E00489BE2 /* UIExtensionController.swift */; };
 		650A8EF929846EB400489BE2 /* UIExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650A8EF829846EB400489BE2 /* UIExtension.swift */; };
+		650A8EFD2984716000489BE2 /* SettingsSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650A8EFC2984716000489BE2 /* SettingsSettings.swift */; };
+		650A8EFE2984716200489BE2 /* SettingsSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650A8EFC2984716000489BE2 /* SettingsSettings.swift */; };
 		650C3B4B297F2A9C009D6095 /* TesseractService in Frameworks */ = {isa = PBXBuildFile; productRef = 650C3B4A297F2A9C009D6095 /* TesseractService */; };
 		650C3B4D297F2A9C009D6095 /* TesseractUtils in Frameworks */ = {isa = PBXBuildFile; productRef = 650C3B4C297F2A9C009D6095 /* TesseractUtils */; };
 		650C3B53297F2B8A009D6095 /* TesseractService in Frameworks */ = {isa = PBXBuildFile; productRef = 650C3B52297F2B8A009D6095 /* TesseractService */; };
@@ -79,6 +81,7 @@
 		650A8EF4298469A700489BE2 /* Bundle+UIExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+UIExtension.swift"; sourceTree = "<group>"; };
 		650A8EF629846A8E00489BE2 /* UIExtensionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtensionController.swift; sourceTree = "<group>"; };
 		650A8EF829846EB400489BE2 /* UIExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtension.swift; sourceTree = "<group>"; };
+		650A8EFC2984716000489BE2 /* SettingsSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSettings.swift; sourceTree = "<group>"; };
 		6534236229805AA800472C6C /* TestSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSettings.swift; sourceTree = "<group>"; };
 		6534236429805ACF00472C6C /* CTestSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTestSettings.swift; sourceTree = "<group>"; };
 		653423662980993900472C6C /* UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UI.swift; sourceTree = "<group>"; };
@@ -129,6 +132,7 @@
 				6534235E298059C300472C6C /* Rust */,
 				650A8EE9298440B300489BE2 /* SUI.swift */,
 				650A8EDE2984334100489BE2 /* CoreProtocol.swift */,
+				650A8EFC2984716000489BE2 /* SettingsSettings.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -407,6 +411,7 @@
 				650A8EE82984402600489BE2 /* TestSettings.swift in Sources */,
 				650A8EE72984401F00489BE2 /* CoreProtocol.swift in Sources */,
 				650A8EF5298469A700489BE2 /* Bundle+UIExtension.swift in Sources */,
+				650A8EFD2984716000489BE2 /* SettingsSettings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -427,6 +432,7 @@
 				650A8EE1298435C800489BE2 /* PreviewCore.swift in Sources */,
 				650A8EDD2983730000489BE2 /* PreviewSettingsProvider.swift in Sources */,
 				657F9207297F1863006771BF /* Developer_WalletApp.swift in Sources */,
+				650A8EFE2984716200489BE2 /* SettingsSettings.swift in Sources */,
 				650A8EEA298440B300489BE2 /* SUI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

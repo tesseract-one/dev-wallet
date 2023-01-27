@@ -9,11 +9,7 @@ import SwiftUI
 
 @main
 struct Developer_WalletApp: App {
-    let core = try! Core(ui: UI(), dataDir: settingsFolder()!)
-    
-    private static func settingsFolder() -> String? {
-        FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "one.tesseract.Developer-Wallet.settings")?.path()
-    }
+    let core = try! Core(ui: UI(), dataDir: settingsFolder()!, transport: .none)
     
     init() {
         //let aaa = FileManager.default.temporaryDirectory.path()

@@ -19,10 +19,10 @@ log = "0.4.17"
 configparser = "3.0.2"
 
 
-tesseract = { path = "../../Tesseract.rs/tesseract", features = ["service"] }
-tesseract-protocol-test = { path = "../../Tesseract.rs/protocols/test", features = ["service"] }
-#tesseract = {git = "https://github.com/tesseract-one/Tesseract.rs", branch="master", features=["service"]}
-#tesseract-protocol-test = {git = "https://github.com/tesseract-one/Tesseract.rs", branch="master", features=["service"]}
+#tesseract = { path = "../../Tesseract.rs/tesseract", features = ["service"] }
+#tesseract-protocol-test = { path = "../../Tesseract.rs/protocols/test", features = ["service"] }
+tesseract = {git = "https://github.com/tesseract-one/Tesseract.rs", branch="master", features=["service"]}
+tesseract-protocol-test = {git = "https://github.com/tesseract-one/Tesseract.rs", branch="master", features=["service"]}
 
 [target.'cfg(target_os = "android")'.dependencies]
 android_log = "0.1.3"

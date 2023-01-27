@@ -6,16 +6,18 @@
 //
 
 import Foundation
-import CWallet
 import TesseractUtils
+import TesseractService
+
+import CWallet
 
 final class Core {
     fileprivate var `internal`: CCore
     
-    public init(ui: UI, dataDir: String) throws {
+    public init(ui: UI, dataDir: String, transport: IPCTransportIOS?) throws {
         self.internal = try dataDir.withRef { dataDir in
             try CResult<CCore>.wrap { value, error in
-                wallet_ccore_create(ui.asRust(), dataDir, value, error)
+                wallet_ccore_create(ui.asRust(), dataDir, transport!.asNative(), value, error)
             }.get()
         }
     }
