@@ -9,15 +9,19 @@ import SwiftUI
 
 @main
 struct Developer_WalletApp: App {
-    let core = try! Core(ui: UI(), dataDir: FileManager.default.temporaryDirectory.path())
+    let core = try! Core(ui: UI(), dataDir: settingsFolder()!)
+    
+    private static func settingsFolder() -> String? {
+        FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "one.tesseract.Developer-Wallet.settings")?.path()
+    }
     
     init() {
         //let aaa = FileManager.default.temporaryDirectory.path()
-        let url = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "one.tessteract.Developer-Wallet")
+//        let url = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "one.tesseract.Developer-Wallet.settings")
         
-        print(url ?? "!!!none!!!")
+//        print(url ?? "!!!none!!!")
         
-        print("lalala")
+//        print("lalala")
 //        
 ////        let url = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "one.tessteract.Developer-Wallet.settings");
 //

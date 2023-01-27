@@ -20,7 +20,14 @@ impl SettingsProvider {
     pub (super) fn read<T, F: FnOnce(&Ini)->T>(&self, read: F) -> Result<T> {
         let mut config = self.config.lock()?;
 
-        let mut file = OpenOptions::new().create(true).write(true).open(&self.location)?;
+        //TODO: init loger for iOS and maybe don't create a file here. Just log it doesn't exist
+        //debug!("!!!file: {}", &self.location);
+
+        let mut file = OpenOptions::new()
+            .create(true)
+            .write(true)
+            .read(true)
+            .open(&self.location)?;
         let len = file.metadata()?.len();
         let mut content = String::with_capacity(len as usize);
 

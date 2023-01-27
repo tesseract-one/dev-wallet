@@ -60,6 +60,7 @@
 		653423662980993900472C6C /* UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UI.swift; sourceTree = "<group>"; };
 		653423682982F63600472C6C /* SettingsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsProvider.swift; sourceTree = "<group>"; };
 		6534236A298300C000472C6C /* TestSettingsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSettingsProvider.swift; sourceTree = "<group>"; };
+		6534236E298357C200472C6C /* Developer Wallet.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Developer Wallet.entitlements"; sourceTree = "<group>"; };
 		656A718F297F1EC100FC66CC /* Signer.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Signer.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		656A7191297F1EC100FC66CC /* UniformTypeIdentifiers.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UniformTypeIdentifiers.framework; path = System/Library/Frameworks/UniformTypeIdentifiers.framework; sourceTree = SDKROOT; };
 		656A7194297F1EC100FC66CC /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
@@ -192,6 +193,7 @@
 		657F9205297F1863006771BF /* Developer Wallet */ = {
 			isa = PBXGroup;
 			children = (
+				6534236E298357C200472C6C /* Developer Wallet.entitlements */,
 				6534236029805A7F00472C6C /* Entity */,
 				6534235E298059C300472C6C /* Rust */,
 				6534235D2980598C00472C6C /* UI */,
@@ -548,6 +550,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Developer Wallet/Developer Wallet.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Developer Wallet/Preview Content\"";
@@ -577,6 +580,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Developer Wallet/Developer Wallet.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Developer Wallet/Preview Content\"";

@@ -17,7 +17,7 @@ struct ContentView: View {
     
     var body: some View {
         TabView {
-            TestSettingsView(settingsProvider: try! core.settingsProvider)
+            try! TestSettingsView(settingsProvider: try! core.settingsProvider)
                 .tabItem {
                     Image(systemName: "testtube.2")
                     Text("Test")

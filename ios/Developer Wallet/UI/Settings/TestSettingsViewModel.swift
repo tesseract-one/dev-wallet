@@ -13,13 +13,13 @@ class TestSettingsViewModel: ObservableObject {
     @Published var signature: String
     @Published var invalidator: String
     
-    init(settingsProvider: SettingsProvider) {
+    init(settingsProvider: SettingsProvider) throws {
         self.settingsProvider = settingsProvider
         
-        let a = try! self.settingsProvider.load();
+        let settings = try self.settingsProvider.load();
         
-        self.signature = "sig_cardcoded"
-        self.invalidator = "errorhardcoded"
+        self.signature = settings.signature
+        self.invalidator = settings.invalidator
     }
     
     func revert() {
