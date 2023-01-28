@@ -50,19 +50,3 @@ pub unsafe extern "C" fn wallet_ccore_test_settings_provider(ccore: ManuallyDrop
     }).response(value, error)
 }
 
-/*#[no_mangle]
-pub unsafe extern "C" fn wallet_seee() -> ManuallyDrop<CTestSettings> {
-    let test_settings = TestSettings {
-        signature: "sig".to_owned(),
-        invalidator: "inv".to_owned(),
-    };
-
-    ManuallyDrop::new(test_settings.into())
-}*/
-
-/*#[no_mangle]
-pub unsafe extern "C" fn wallet_s2(settings: ManuallyDrop<CTestSettings>) {
-    let settings: TestSettings = ManuallyDrop::into_inner(settings).try_into().unwrap();
-
-}*/
-
