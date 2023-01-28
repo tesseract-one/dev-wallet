@@ -29,12 +29,12 @@ struct SignerView: View {
             HStack {
                 Spacer()
                 Button(action: model.cancel) {
-                    Image(systemName: "xmark.seal")
+                    Image(systemName: "xmark.seal.fill")
                     Text("Reject")
                 }
                 Spacer()
                 Button(action: model.sign) {
-                    Image(systemName: "checkmark.seal")
+                    Image(systemName: "checkmark.seal.fill")
                     Text("Sign")
                 }
                 Spacer()
