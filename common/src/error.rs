@@ -19,6 +19,7 @@ pub (crate) enum Error {
     #[error("A string was returned as error: {0}")]
     Config(String),
 
+    #[allow(dead_code)]
     #[error("Unknown error")]
     Unknown,
 }

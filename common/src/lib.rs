@@ -1,8 +1,8 @@
 #![feature(iterator_try_collect)]
 #![feature(result_option_inspect)]
 
-#[macro_use]
-extern crate log;
+//#[macro_use]
+//extern crate log;
 
 #[cfg(target_os = "android")]
 mod android;

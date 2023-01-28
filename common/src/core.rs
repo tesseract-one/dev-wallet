@@ -1,11 +1,11 @@
 use std::sync::Arc;
 
-use tesseract::service::{Tesseract, Transport};
+use tesseract::service::Tesseract;
 
 use crate::{settings::SettingsProvider, service::TestService, ui::UI};
 
 pub (crate) struct Core {
-    tesseract: Tesseract,
+    _tesseract: Tesseract,
     settings_provider: Arc<SettingsProvider>,
 }
 
@@ -18,7 +18,7 @@ impl Core {
             .service(TestService::new(ui, Arc::clone(&settings_provider)));
 
         Self {
-            tesseract: tesseract,
+            _tesseract: tesseract,
             settings_provider: settings_provider
         }
     }
