@@ -16,37 +16,36 @@ struct TestSettingsView: View {
     }
     
     var body: some View {
-        VStack {
-            HStack {
-                Text("Signature:")
-                Spacer()
-            }.padding(.top, 20.0)
-            TextField("Signature", text: $model.settings.signature).padding(.bottom)
+        VStack(alignment: .leading) {
+            Text("Test Protocol settings:")
+                .font(.system(size: 32))
             
-            HStack {
-                Text("Invalidator:")
+            VStack(alignment: .leading) {
+                Text("Signature:").padding(.top)
+                TextField("Signature", text: $model.settings.signature)
+                
+                Text("Invalidator:").padding(.top)
+                TextField("Invalidator", text: $model.settings.invalidator)
+                
                 Spacer()
-            }
-            TextField("Invalidator", text: $model.settings.invalidator)
-            
-            Spacer()
-            
-            HStack {
+                
+                HStack {
+                    Spacer()
+                    Button(action: model.revert) {
+                        Image(systemName: "arrow.counterclockwise")
+                        Text("Revert")
+                    }.disabled(model.settings == model.cache)
+                    Spacer()
+                    Button(action: model.save) {
+                        Image(systemName: "square.and.arrow.down")
+                        Text("Save")
+                    }.disabled(model.settings == model.cache)
+                    Spacer()
+                }
+                
                 Spacer()
-                Button(action: model.revert) {
-                    Image(systemName: "arrow.counterclockwise")
-                    Text("Revert")
-                }.disabled(model.settings == model.cache)
-                Spacer()
-                Button(action: model.save) {
-                    Image(systemName: "square.and.arrow.down")
-                    Text("Save")
-                }.disabled(model.settings == model.cache)
-                Spacer()
-            }
-            
-            Spacer()
-        }.padding()
+            }.padding()
+        }
     }
 }
 
