@@ -11,12 +11,16 @@ struct TestSignView: View {
     @Binding var request: TestSign
     
     var body: some View {
-        Text("Transaction: ")
-        Text(request.transaction)
-        Text("Signature: ")
-        Text(request.signature)
-        Text("Result: ")
-        Text(request.result)
+        VStack(alignment: .leading) {
+            
+            Text("Transaction: ")
+            Text(request.transaction).padding(.bottom)
+            Text("Signature: ")
+            Text(request.signature).padding(.bottom)
+            Text("Result: ")
+            Text(request.result).padding(.bottom)
+        }
+        .padding()
     }
 }
 

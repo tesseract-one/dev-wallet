@@ -15,7 +15,21 @@ struct SignerView: View {
     }
     
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
+            ZStack(alignment: .leading) {
+                Color(red: 0xFF/0xFF,
+                      green: 0x7D/0xFF,
+                      blue: 0x00/0xFF)
+                .edgesIgnoringSafeArea(.top)
+                VStack(alignment: .leading) {
+                    Text("Tesseract")
+                        .font(.system(size: 48))
+                        .padding(.bottom, 1)
+                    Text("Developer Wallet")
+                        .font(.system(size: 32))
+                }.padding(.leading)
+            }.aspectRatio(contentMode: .fit)
+        
             Spacer()
             switch model.request {
             case .testSign(let request):
