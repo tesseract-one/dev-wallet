@@ -14,9 +14,9 @@ import CWallet
 extension CRequest: CType, CPtr {
     public func copied() -> Request {
         switch self.tag {
-            case CRequest_Tag.init(rawValue: 0): //TODO: investigate cases more
+            case CRequest_TestSign:
                 return Request.testSign(self.test_sign.copied())
-            case CRequest_Tag.init(rawValue: 1): //TODO: investigate cases more
+            case CRequest_TestError:
                 return Request.testError(self.test_error.copied())
         default:
             fatalError("shity data")
