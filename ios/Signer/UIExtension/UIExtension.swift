@@ -8,12 +8,13 @@
 import Foundation
 import SwiftUI
 
+@MainActor
 public protocol UIExtension {
     associatedtype Body: View
     
     init(controller: UIViewController)
     
-    @ViewBuilder @MainActor var body: Body {
+    @ViewBuilder var body: Body {
         get
     }
 }
