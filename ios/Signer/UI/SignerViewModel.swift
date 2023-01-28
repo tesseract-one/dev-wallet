@@ -12,6 +12,7 @@ class SignerViewModel: ObservableObject {
     
     @Published var request: Request?
     
+    @MainActor
     func confirm(request: Request) async throws -> Bool {
         if (self.continuation != nil) {
             throw SignerError.invalidState
@@ -19,9 +20,7 @@ class SignerViewModel: ObservableObject {
         
         return try await withUnsafeThrowingContinuation { cont in
             self.continuation = cont
-            DispatchQueue.main.async {
-                self.request = request
-            }
+            self.request = request
         }
     }
     
