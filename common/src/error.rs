@@ -7,6 +7,10 @@ pub (crate) enum Error {
     JNI(#[from] jni::errors::Error),
 
     #[cfg(target_os = "ios")]
+    #[error("Logger initialization error")]
+    LoggerInit(#[from] log::SetLoggerError),
+
+    #[cfg(target_os = "ios")]
     #[error("C error")]
     CError(#[from] tesseract_utils::error::CError),
 

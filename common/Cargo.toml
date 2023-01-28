@@ -33,6 +33,8 @@ interop_android = { path = "../../Tesseract.android/rust/interop" }
 tesseract_ipc_android = { path = "../../Tesseract.android/rust/ipc", features = ["service"] }
 
 [target.'cfg(target_os = "ios")'.dependencies]
+stderrlog = "0.5.4"
+
 tesseract_utils = { git = "https://github.com/tesseract-one/Tesseract.swift", branch = "master" }
 tesseract_service = { git = "https://github.com/tesseract-one/Tesseract.swift", branch = "master" }
 

@@ -12,9 +12,24 @@ pub type CCore = CAnyRustPtr;
 impl IntoAnyPtr for Core {
 }
 
+fn init_logger() -> crate::error::Result<()> {
+    use stderrlog::LogLevelNum;
+
+    let level = if cfg!(debug_assertions) {
+        LogLevelNum::Debug
+        //LogLevelNum::Trace
+    } else {
+        LogLevelNum::Error
+    };
+
+    Ok(stderrlog::new().verbosity(level).show_module_names(true).init()?)
+}
+
 #[no_mangle]
 pub unsafe extern "C" fn wallet_ccore_create_app(ui: SUI, data_dir: CStringRef, ret: &mut ManuallyDrop<CCore>, err: &mut ManuallyDrop<CError>) -> bool {
     handle_exception_result(|| {
+        init_logger().map_err(|err| Into::<CError>::into(err))?;
+        
         let data_dir = data_dir.try_as_ref()?;
 
         let core = Core::new(super::UI::new(ui), data_dir, |tesseract| tesseract);
@@ -26,6 +41,8 @@ pub unsafe extern "C" fn wallet_ccore_create_app(ui: SUI, data_dir: CStringRef, 
 #[no_mangle]
 pub unsafe extern "C" fn wallet_ccore_create_extension(ui: SUI, data_dir: CStringRef, transport: tesseract_service::transport::Transport, ret: &mut ManuallyDrop<CCore>, err: &mut ManuallyDrop<CError>) -> bool {
     handle_exception_result(|| {
+        init_logger().map_err(|err| Into::<CError>::into(err))?;
+
         let data_dir = data_dir.try_as_ref()?;
 
         let core = Core::new(super::UI::new(ui), data_dir, |tesseract| {

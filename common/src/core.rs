@@ -17,6 +17,8 @@ impl Core {
         let tesseract = apply_transports(Tesseract::new())
             .service(TestService::new(ui, Arc::clone(&settings_provider)));
 
+        info!("Core created successfully");
+
         Self {
             _tesseract: tesseract,
             settings_provider: settings_provider
