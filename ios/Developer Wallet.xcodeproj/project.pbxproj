@@ -59,6 +59,8 @@
 		6585D2C42984BAEA008D4A7F /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6585D2BA2984B0EC008D4A7F /* Request.swift */; };
 		6585D2C52984BAEC008D4A7F /* TestSign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6585D2B62984AC1A008D4A7F /* TestSign.swift */; };
 		6585D2C62984BAEF008D4A7F /* TestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6585D2BE2984B774008D4A7F /* TestError.swift */; };
+		6585D2CA2984C334008D4A7F /* TestSignView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6585D2C92984C334008D4A7F /* TestSignView.swift */; };
+		6585D2CC2984C344008D4A7F /* TestErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6585D2CB2984C344008D4A7F /* TestErrorView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -124,6 +126,8 @@
 		6585D2BA2984B0EC008D4A7F /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		6585D2BC2984B769008D4A7F /* CTestError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTestError.swift; sourceTree = "<group>"; };
 		6585D2BE2984B774008D4A7F /* TestError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestError.swift; sourceTree = "<group>"; };
+		6585D2C92984C334008D4A7F /* TestSignView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSignView.swift; sourceTree = "<group>"; };
+		6585D2CB2984C344008D4A7F /* TestErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestErrorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -228,10 +232,9 @@
 			isa = PBXGroup;
 			children = (
 				650A8EF32984698F00489BE2 /* UIExtension */,
+				6585D2C72984C2A4008D4A7F /* UI */,
 				650A8EEC298440F000489BE2 /* UI.swift */,
 				6585D2AB2984A625008D4A7F /* SignerError.swift */,
-				6585D2A72984945E008D4A7F /* SignerViewModel.swift */,
-				6585D2A92984A3DD008D4A7F /* SignerView.swift */,
 				650A8EF12984527D00489BE2 /* SignerExtention.swift */,
 				656A719B297F1EC100FC66CC /* Info.plist */,
 				656A7194297F1EC100FC66CC /* Media.xcassets */,
@@ -309,6 +312,25 @@
 				6585D2BA2984B0EC008D4A7F /* Request.swift */,
 				6585D2B62984AC1A008D4A7F /* TestSign.swift */,
 				6585D2BE2984B774008D4A7F /* TestError.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		6585D2C72984C2A4008D4A7F /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				6585D2C82984C307008D4A7F /* Request */,
+				6585D2A72984945E008D4A7F /* SignerViewModel.swift */,
+				6585D2A92984A3DD008D4A7F /* SignerView.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		6585D2C82984C307008D4A7F /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				6585D2C92984C334008D4A7F /* TestSignView.swift */,
+				6585D2CB2984C344008D4A7F /* TestErrorView.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -451,6 +473,7 @@
 				6585D2B92984B0B1008D4A7F /* CRequest.swift in Sources */,
 				6585D2A82984945E008D4A7F /* SignerViewModel.swift in Sources */,
 				650A8EF929846EB400489BE2 /* UIExtension.swift in Sources */,
+				6585D2CC2984C344008D4A7F /* TestErrorView.swift in Sources */,
 				650A8EE329843FDB00489BE2 /* Core.swift in Sources */,
 				6585D2BF2984B774008D4A7F /* TestError.swift in Sources */,
 				650A8EE429843FDE00489BE2 /* TestSettingsProvider.swift in Sources */,
@@ -468,6 +491,7 @@
 				650A8EF5298469A700489BE2 /* Bundle+UIExtension.swift in Sources */,
 				6585D2B12984A834008D4A7F /* SignerError.swift in Sources */,
 				6585D2BB2984B0EC008D4A7F /* Request.swift in Sources */,
+				6585D2CA2984C334008D4A7F /* TestSignView.swift in Sources */,
 				6585D2B72984AC1A008D4A7F /* TestSign.swift in Sources */,
 				650A8EFD2984716000489BE2 /* SettingsSettings.swift in Sources */,
 			);

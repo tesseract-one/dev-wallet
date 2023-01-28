@@ -16,7 +16,16 @@ struct SignerView: View {
     
     var body: some View {
         VStack {
-            Text(model.transaction ?? "")
+            Spacer()
+            switch model.request {
+            case .testSign(let request):
+                TestSignView(request: .constant(request))
+            case .testError(let request):
+                TestErrorView(request: .constant(request))
+            case .none:
+                Text("Invalid request. Probably a bug in the wallet")
+            }
+            Spacer()
             HStack {
                 Spacer()
                 Button(action: model.cancel) {
@@ -30,6 +39,7 @@ struct SignerView: View {
                 }
                 Spacer()
             }
+            Spacer()
         }
     }
 }

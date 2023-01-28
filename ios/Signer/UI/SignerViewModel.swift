@@ -10,16 +10,16 @@ import Foundation
 class SignerViewModel: ObservableObject {
     private var continuation: UnsafeContinuation<Bool, Error>?
     
-    @Published var transaction: String?
+    @Published var request: Request?
     
-    func confirm(tx: String) async throws -> Bool {
+    func confirm(request: Request) async throws -> Bool {
         if (self.continuation != nil) {
             throw SignerError.invalidState
         }
         
         return try await withUnsafeThrowingContinuation { cont in
             self.continuation = cont
-            self.transaction = tx
+            self.request = request
         }
     }
     
