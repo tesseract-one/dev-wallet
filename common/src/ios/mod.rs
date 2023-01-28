@@ -1,6 +1,7 @@
 mod request;
 mod error;
 mod ui;
+mod logger;
 
 mod settings;
 
