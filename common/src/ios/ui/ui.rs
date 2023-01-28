@@ -20,6 +20,6 @@ impl UI {
 #[async_trait]
 impl UIProtocol for UI {
     async fn request_user_confirmation<R: Request>(&self, request: R) -> DWResult<bool> {
-        Ok(true)
+        self.swift.request_user_confirmation("test").await
     }
 }

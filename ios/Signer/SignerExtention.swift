@@ -10,17 +10,20 @@ import SwiftUI
 import TesseractService
 
 class SignerExtention: UIExtention {
-    let core: Core
+    private let core: Core
+    private var model: SignerViewModel
     
     required init(controller: UIViewController) {
-        let ui = UI()
+        let model = SignerViewModel()
+        let ui = UI(model: model)
         let settings = settingsFolder()!
         let transport = IPCTransportIOS(controller)
         
+        self.model = model
         self.core = try! Core(ui: ui, dataDir: settings, transport: transport)
     }
     
     var body: some View {
-        Text("!!!It's alive!!!5")
+        SignerView(model: self.model)
     }
 }

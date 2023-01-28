@@ -10,8 +10,14 @@ import Foundation
 import CWallet
 
 public class UI {
+    private let model: SignerViewModel
+    
+    init(model: SignerViewModel) {
+        self.model = model
+    }
+    
     func requestUserConfirmation(tx: String) async throws -> Bool {
-        fatalError("Not implemented yet")
+        try await model.confirm(tx: tx)
     }
     
     func asRust() -> SUI {
