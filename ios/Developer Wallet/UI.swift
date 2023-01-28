@@ -10,7 +10,7 @@ import Foundation
 import CWallet
 
 public class UI {
-    func requestUserConfirmation(tx: String) async throws -> Bool {
+    func requestUserConfirmation(request: Request) async throws -> Bool {
         fatalError("No UI is implemented in the Wallet. Use extension.")
     }
     

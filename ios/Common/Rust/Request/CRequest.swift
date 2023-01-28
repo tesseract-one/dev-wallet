@@ -1,0 +1,39 @@
+//
+//  CRequest.swift
+//  Signer
+//
+//  Created by Daniel Leping on 28/01/2023.
+//
+
+import Foundation
+
+import TesseractUtils
+
+import CWallet
+
+extension CRequest: CType, CPtr {
+    public func copied() -> Request {
+        switch self.tag {
+            case CRequest_Tag.init(rawValue: 0): //TODO: investigate cases more
+                return Request.testSign(self.test_sign.copied())
+            case CRequest_Tag.init(rawValue: 1): //TODO: investigate cases more
+                return Request.testError(self.test_error.copied())
+        default:
+            fatalError("shity data")
+        }
+    }
+    
+    public mutating func owned() -> Request {
+        defer {
+            self.free()
+        }
+        
+        return self.copied()
+    }
+    
+    public mutating func free() {
+        wallet_crequest_free(&self)
+    }
+    
+    public typealias Val = Request
+}

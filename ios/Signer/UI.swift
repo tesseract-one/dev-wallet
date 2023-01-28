@@ -16,8 +16,15 @@ public class UI {
         self.model = model
     }
     
-    func requestUserConfirmation(tx: String) async throws -> Bool {
-        try await model.confirm(tx: tx)
+    func requestUserConfirmation(request: Request) async throws -> Bool {
+        var tx: String = "AAAAAAA"
+        
+        switch request {
+        case .testSign(let testSign): tx = testSign.transaction
+        default: fatalError()
+        }
+        
+        return try await model.confirm(tx: tx)
     }
     
     func asRust() -> SUI {

@@ -22,10 +22,11 @@ extension SUI {
     }
 }
 
-private func fn_request_user_confirmation(this: UnsafePointer<SUI>!, tx: CStringRef!) -> CFutureBool {
-    let tx = tx.copied()!
+private func fn_request_user_confirmation(this: UnsafePointer<SUI>!, rx: CRequest) -> CFutureBool {
+    var rx = rx
+    let request = rx.owned()
     return CFutureBool {
-        try await this.unowned().requestUserConfirmation(tx: tx)
+        try await this.unowned().requestUserConfirmation(request: request)
     }
 }
 
