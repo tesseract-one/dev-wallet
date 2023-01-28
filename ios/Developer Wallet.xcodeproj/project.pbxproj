@@ -18,7 +18,7 @@
 		650A8EE82984402600489BE2 /* TestSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6534236229805AA800472C6C /* TestSettings.swift */; };
 		650A8EEB298440B300489BE2 /* SUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650A8EE9298440B300489BE2 /* SUI.swift */; };
 		650A8EED298440F000489BE2 /* UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650A8EEC298440F000489BE2 /* UI.swift */; };
-		650A8EF22984527D00489BE2 /* SignerExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650A8EF12984527D00489BE2 /* SignerExtention.swift */; };
+		650A8EF22984527D00489BE2 /* SignerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650A8EF12984527D00489BE2 /* SignerExtension.swift */; };
 		650A8EF5298469A700489BE2 /* Bundle+UIExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650A8EF4298469A700489BE2 /* Bundle+UIExtension.swift */; };
 		650A8EF729846A8E00489BE2 /* UIExtensionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650A8EF629846A8E00489BE2 /* UIExtensionController.swift */; };
 		650A8EF929846EB400489BE2 /* UIExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650A8EF829846EB400489BE2 /* UIExtension.swift */; };
@@ -94,7 +94,7 @@
 		650A8EE9298440B300489BE2 /* SUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SUI.swift; sourceTree = "<group>"; };
 		650A8EEC298440F000489BE2 /* UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UI.swift; sourceTree = "<group>"; };
 		650A8EEE29844A7300489BE2 /* Signer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Signer.entitlements; sourceTree = "<group>"; };
-		650A8EF12984527D00489BE2 /* SignerExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignerExtention.swift; sourceTree = "<group>"; };
+		650A8EF12984527D00489BE2 /* SignerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignerExtension.swift; sourceTree = "<group>"; };
 		650A8EF4298469A700489BE2 /* Bundle+UIExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+UIExtension.swift"; sourceTree = "<group>"; };
 		650A8EF629846A8E00489BE2 /* UIExtensionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtensionController.swift; sourceTree = "<group>"; };
 		650A8EF829846EB400489BE2 /* UIExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtension.swift; sourceTree = "<group>"; };
@@ -235,7 +235,7 @@
 				6585D2C72984C2A4008D4A7F /* UI */,
 				650A8EEC298440F000489BE2 /* UI.swift */,
 				6585D2AB2984A625008D4A7F /* SignerError.swift */,
-				650A8EF12984527D00489BE2 /* SignerExtention.swift */,
+				650A8EF12984527D00489BE2 /* SignerExtension.swift */,
 				656A719B297F1EC100FC66CC /* Info.plist */,
 				656A7194297F1EC100FC66CC /* Media.xcassets */,
 				650A8EEE29844A7300489BE2 /* Signer.entitlements */,
@@ -479,7 +479,7 @@
 				650A8EE429843FDE00489BE2 /* TestSettingsProvider.swift in Sources */,
 				650A8EE629843FE300489BE2 /* CTestSettings.swift in Sources */,
 				650A8EED298440F000489BE2 /* UI.swift in Sources */,
-				650A8EF22984527D00489BE2 /* SignerExtention.swift in Sources */,
+				650A8EF22984527D00489BE2 /* SignerExtension.swift in Sources */,
 				6585D2BD2984B769008D4A7F /* CTestError.swift in Sources */,
 				6585D2B42984AB94008D4A7F /* CTestSign.swift in Sources */,
 				650A8EE529843FE000489BE2 /* SettingsProvider.swift in Sources */,

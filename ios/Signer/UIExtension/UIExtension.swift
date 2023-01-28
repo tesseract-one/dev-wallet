@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-public protocol UIExtention {
+public protocol UIExtension {
     associatedtype Body: View
     
     init(controller: UIViewController)

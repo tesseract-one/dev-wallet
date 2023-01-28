@@ -1,5 +1,5 @@
 //
-//  SignerExtention.swift
+//  SignerExtension.swift
 //  Signer
 //
 //  Created by Daniel Leping on 27/01/2023.
@@ -9,7 +9,7 @@ import SwiftUI
 
 import TesseractService
 
-class SignerExtention: UIExtention {
+class SignerExtension: UIExtension {
     private let core: Core
     private var model: SignerViewModel
     

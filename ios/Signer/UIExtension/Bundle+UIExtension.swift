@@ -8,7 +8,7 @@
 import Foundation
 
 extension Bundle {
-    public var extentionClassName: String? {
+    public var extensionClassName: String? {
         var config: [String: Any]?
                 
         if let infoPlistPath = self.url(forResource: "Info", withExtension: "plist") {
@@ -23,7 +23,7 @@ extension Bundle {
             }
         }
         
-        return (config?["UIExtension"] as? NSDictionary)?["UIExtentionMain"].flatMap {
+        return (config?["UIExtension"] as? NSDictionary)?["UIExtensionMain"].flatMap {
             $0 as? String
         }
     }

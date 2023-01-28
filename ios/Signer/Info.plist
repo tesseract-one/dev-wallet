@@ -4,8 +4,8 @@
 <dict>
 	<key>UIExtension</key>
 	<dict>
-		<key>UIExtentionMain</key>
-		<string>$(PRODUCT_MODULE_NAME).SignerExtention</string>
+		<key>UIExtensionMain</key>
+		<string>$(PRODUCT_MODULE_NAME).SignerExtension</string>
 	</dict>
 	<key>NSExtension</key>
 	<dict>
@@ -25,7 +25,7 @@
 			<string>NSActionTemplate</string>
 		</dict>
 		<key>NSExtensionPrincipalClass</key>
-		<string>$(PRODUCT_MODULE_NAME).UIExtentionController</string>
+		<string>$(PRODUCT_MODULE_NAME).UIExtensionController</string>
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.ui-services</string>
 	</dict>

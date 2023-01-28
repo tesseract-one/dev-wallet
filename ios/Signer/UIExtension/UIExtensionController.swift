@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-public class UIExtentionController: UIHostingController<AnyView> {
+public class UIExtensionController: UIHostingController<AnyView> {
     @objc
     public init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(rootView: AnyView(EmptyView()))
@@ -21,15 +21,15 @@ public class UIExtentionController: UIHostingController<AnyView> {
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        guard let className = Bundle.main.extentionClassName else {
-            fatalError("Please set UIExtension/UIExtentionMain in your Info.plist to your extension class")
+        guard let className = Bundle.main.extensionClassName else {
+            fatalError("Please set UIExtension/UIExtensionMain in your Info.plist to your extension class")
         }
         
         guard let clazz = Bundle.main.classNamed(className) else {
             fatalError("Your extension class `" + className + "` was not found. Maybe it needs a module prefix: `$(PRODUCT_MODULE_NAME)." + className + "`?")
         }
         
-        guard let extClazz = clazz as? any UIExtention.Type else {
+        guard let extClazz = clazz as? any UIExtension.Type else {
             fatalError("Your extension class `" + className + "` does not implement protocol `Extension`")
         }
         
