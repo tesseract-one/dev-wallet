@@ -19,7 +19,9 @@ class SignerViewModel: ObservableObject {
         
         return try await withUnsafeThrowingContinuation { cont in
             self.continuation = cont
-            self.request = request
+            DispatchQueue.main.async {
+                self.request = request
+            }
         }
     }
     
