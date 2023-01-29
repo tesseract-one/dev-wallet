@@ -33,6 +33,8 @@
 		653423672980993900472C6C /* UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653423662980993900472C6C /* UI.swift */; };
 		653423692982F63600472C6C /* SettingsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653423682982F63600472C6C /* SettingsProvider.swift */; };
 		6534236B298300C000472C6C /* TestSettingsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6534236A298300C000472C6C /* TestSettingsProvider.swift */; };
+		655A9A532986E04C008A6974 /* LabeledTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655A9A522986E04C008A6974 /* LabeledTextField.swift */; };
+		655A9A542986E04C008A6974 /* LabeledTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655A9A522986E04C008A6974 /* LabeledTextField.swift */; };
 		656945362985EED500FFD777 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656945352985EED500FFD777 /* HeaderView.swift */; };
 		656945372985EED500FFD777 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656945352985EED500FFD777 /* HeaderView.swift */; };
 		656A7192297F1EC100FC66CC /* UniformTypeIdentifiers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 656A7191297F1EC100FC66CC /* UniformTypeIdentifiers.framework */; };
@@ -107,6 +109,7 @@
 		653423682982F63600472C6C /* SettingsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsProvider.swift; sourceTree = "<group>"; };
 		6534236A298300C000472C6C /* TestSettingsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSettingsProvider.swift; sourceTree = "<group>"; };
 		6534236E298357C200472C6C /* Developer Wallet.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Developer Wallet.entitlements"; sourceTree = "<group>"; };
+		655A9A522986E04C008A6974 /* LabeledTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabeledTextField.swift; sourceTree = "<group>"; };
 		656945352985EED500FFD777 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		656A718F297F1EC100FC66CC /* Signer.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Signer.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		656A7191297F1EC100FC66CC /* UniformTypeIdentifiers.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UniformTypeIdentifiers.framework; path = System/Library/Frameworks/UniformTypeIdentifiers.framework; sourceTree = SDKROOT; };
@@ -162,10 +165,10 @@
 			children = (
 				6534236029805A7F00472C6C /* Entity */,
 				6534235E298059C300472C6C /* Rust */,
+				655A9A512986E004008A6974 /* UI */,
 				650A8EE9298440B300489BE2 /* SUI.swift */,
 				650A8EDE2984334100489BE2 /* CoreProtocol.swift */,
 				650A8EFC2984716000489BE2 /* SettingsSettings.swift */,
-				656945352985EED500FFD777 /* HeaderView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -223,6 +226,15 @@
 				6534236229805AA800472C6C /* TestSettings.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		655A9A512986E004008A6974 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				656945352985EED500FFD777 /* HeaderView.swift */,
+				655A9A522986E04C008A6974 /* LabeledTextField.swift */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 		656A7190297F1EC100FC66CC /* Frameworks */ = {
@@ -501,6 +513,7 @@
 				6585D2CA2984C334008D4A7F /* TestSignView.swift in Sources */,
 				6585D2B72984AC1A008D4A7F /* TestSign.swift in Sources */,
 				650A8EFD2984716000489BE2 /* SettingsSettings.swift in Sources */,
+				655A9A542986E04C008A6974 /* LabeledTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -521,6 +534,7 @@
 				6585D2C02984BAA8008D4A7F /* SUI.swift in Sources */,
 				657F9209297F1863006771BF /* ContentView.swift in Sources */,
 				6571060D297F42D3003DC875 /* Core.swift in Sources */,
+				655A9A532986E04C008A6974 /* LabeledTextField.swift in Sources */,
 				6585D2C62984BAEF008D4A7F /* TestError.swift in Sources */,
 				6585D2C42984BAEA008D4A7F /* Request.swift in Sources */,
 				6534236529805ACF00472C6C /* CTestSettings.swift in Sources */,
