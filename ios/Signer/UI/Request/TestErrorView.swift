@@ -16,7 +16,7 @@ struct TestErrorView: View {
             Text(request.transaction).padding(.bottom)
             Text("Error: ")
             Text(request.error).padding(.bottom)
-        }
+        }.padding()
     }
 }
 
