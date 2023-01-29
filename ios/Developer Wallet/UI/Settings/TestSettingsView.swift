@@ -21,11 +21,9 @@ struct TestSettingsView: View {
                 .font(.system(size: 32))
             
             VStack(alignment: .leading) {
-                Text("Signature:").padding(.top)
-                TextField("Signature", text: $model.settings.signature)
+                LabeledTextField(alignment: .leading, label: .constant("Signature"), text: $model.settings.signature)
                 
-                Text("Invalidator:").padding(.top)
-                TextField("Invalidator", text: $model.settings.invalidator)
+                LabeledTextField(alignment: .leading, label: .constant("Invalidator"), text: $model.settings.invalidator)
                 
                 Spacer()
                 
