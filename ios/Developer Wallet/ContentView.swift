@@ -19,20 +19,20 @@ struct ContentView: View {
         VStack {
             HeaderView()
             TabView {
-                try! TestSettingsView(settingsProvider: try! core.testSettingsProvider)
+                Text("Home")
                     .tabItem {
-                        Image(systemName: "testtube.2")
-                        Text("Test Protocol")
-                    }
-                Text("Screen2")
-                    .tabItem {
-                        Image(systemName: "globe")
-                        Text("Screen2")
+                        Image(systemName: "house")
+                        Text("Home")
                     }
                 Text("Screen3")
                     .tabItem {
                         Image(systemName: "mappin.circle.fill")
                         Text("Screen3")
+                    }
+                try! TestSettingsView(settingsProvider: try! core.testSettingsProvider)
+                    .tabItem {
+                        Image(systemName: "testtube.2")
+                        Text("Test Protocol")
                     }
             }.padding()
         }
