@@ -11,11 +11,11 @@ struct TestErrorView: View {
     @Binding var request: TestError
     
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
             Text("Transaction: ")
-            Text(request.transaction)
+            Text(request.transaction).padding(.bottom)
             Text("Error: ")
-            Text(request.error)
+            Text(request.error).padding(.bottom)
         }
     }
 }

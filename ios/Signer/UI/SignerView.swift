@@ -31,14 +31,20 @@ struct SignerView: View {
             }.aspectRatio(contentMode: .fit)
         
             Spacer()
-            switch model.request {
-            case .testSign(let request):
-                TestSignView(request: .constant(request))
-            case .testError(let request):
-                TestErrorView(request: .constant(request))
-            case .none:
-                Text("Invalid request. Probably a bug in the wallet")
-            }
+            VStack {
+                switch model.request {
+                case .testSign(let request):
+                    TestSignView(request: .constant(request))
+                case .testError(let request):
+                    TestErrorView(request: .constant(request))
+                case .none:
+                    HStack {
+                        Spacer()
+                        Text("Invalid request. Probably a bug in the wallet")
+                        Spacer()
+                    }
+                }
+            }.padding()
             Spacer()
             HStack {
                 Spacer()
