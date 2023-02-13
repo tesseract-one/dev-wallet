@@ -43,6 +43,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
 
                 <data android:mimeType="tesseract/test" />
+                <data android:mimeType="tesseract/substrate-v1" />
             </intent-filter>
 
             <meta-data

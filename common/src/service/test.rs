@@ -1,4 +1,4 @@
-//===------------ service.rs --------------------------------------------===//
+//===------------ test.rs --------------------------------------------===//
 //  Copyright 2022, Tesseract Systems, Inc.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
@@ -26,12 +26,12 @@ use crate::ui::{UI, UIProtocol};
 use crate::settings::{SettingsProvider, TestSettingsProvider};
 
 pub(crate) struct TestService {
-    ui: UI,
+    ui: Arc<UI>,
     settings_provider: Arc<SettingsProvider>
 }
 
 impl TestService {
-    pub fn new(ui: UI, settings_provider: Arc<SettingsProvider>) -> Self {
+    pub fn new(ui: Arc<UI>, settings_provider: Arc<SettingsProvider>) -> Self {
         Self { ui: ui, settings_provider: settings_provider }
     }
 }
