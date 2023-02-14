@@ -25,6 +25,8 @@ use tesseract_protocol_substrate::{AccountType, GetAccountResponse, Substrate};
 use crate::ui::{UI, UIProtocol};
 use crate::settings::{SettingsProvider, TestSettingsProvider};
 
+use super::wallet::Wallet;
+
 pub(crate) struct SubstrateService {
     ui: Arc<UI>,
     settings_provider: Arc<SettingsProvider>
@@ -36,10 +38,22 @@ impl SubstrateService {
     }
 }
 
+const WALLET_PHRASE: &str =
+    "arch flush fabric dentist fade service chronic bacon plunge expand still uncover";
+
 #[async_trait]
 impl tesseract_protocol_substrate::SubstrateService for SubstrateService {
     async fn get_account(self: Arc<Self>, account_type: AccountType) -> Result<GetAccountResponse> {
-        todo!()
+        let wallet = Wallet::new(WALLET_PHRASE).unwrap();
+        let path = "".to_string();
+        let key = wallet.derive(&path).unwrap().to_vec();
+
+        Ok(
+            GetAccountResponse {
+                public_key: key,
+                path: path
+            }
+        )
     }
 
     async fn sign_transaction(
