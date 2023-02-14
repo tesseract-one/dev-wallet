@@ -21,11 +21,12 @@ use async_trait::async_trait;
 use tesseract::{Error, ErrorKind, Result};
 use tesseract_protocol_substrate::{AccountType, GetAccountResponse, Substrate};
 
-use crate::request::SubstrateAccount;
+use crate::request::{SubstrateAccount, SubstrateSign};
 //use crate::request::{TestSign, TestError};
 use crate::ui::{UI, UIProtocol};
 use crate::settings::{SettingsProvider, TestSettingsProvider};
 
+use super::parse::parse_transaction;
 use super::wallet::Wallet;
 
 pub(crate) struct SubstrateService {
@@ -52,7 +53,7 @@ impl tesseract_protocol_substrate::SubstrateService for SubstrateService {
         let strkey = key.to_string();
 
         let request = SubstrateAccount {
-            algorythm: "Sr25519".to_owned(), //TODO: read from param
+            algorithm: "Sr25519".to_owned(), //TODO: read from param
             path: path.clone(),
             key: strkey
         };
@@ -79,7 +80,30 @@ impl tesseract_protocol_substrate::SubstrateService for SubstrateService {
         extrinsic_metadata: &[u8],
         extrinsic_types: &[u8],
     ) -> Result<Vec<u8>> {
-        todo!()
+        let data = parse_transaction(extrinsic_data, extrinsic_metadata, extrinsic_types).unwrap();
+
+        let wallet = Wallet::new(WALLET_PHRASE).unwrap();
+        let path = "".to_string();
+
+        let key = wallet.derive(&path).unwrap();
+        let strkey = key.to_string();
+
+        let request = SubstrateSign {
+            algorithm: "Sr25519".to_owned(), //TODO: read from param
+            path: path,
+            key: strkey,
+            data: data
+        };
+
+        let allow = self.ui.request_user_confirmation(request).await.map_err(|e| e.into())?;
+
+        if allow {
+            let signed = wallet.sign(extrinsic_data).unwrap();
+
+            Ok(signed)
+        } else {
+            Err(tesseract::Error::kinded(tesseract::ErrorKind::Cancelled))
+        }
     }
 }
 

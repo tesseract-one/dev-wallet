@@ -13,9 +13,11 @@ import one.tesseract.ipc.activity.free.Launcher
 
 import one.tesseract.devwallet.R
 import one.tesseract.devwallet.entity.request.SubstrateAccount
+import one.tesseract.devwallet.entity.request.SubstrateSign
 import one.tesseract.devwallet.entity.request.TestError
 import one.tesseract.devwallet.entity.request.TestSign
 import one.tesseract.devwallet.ui.sign.fragments.substrate.account.SubstrateAccountFragment
+import one.tesseract.devwallet.ui.sign.fragments.substrate.sign.SubstrateSignFragment
 import one.tesseract.devwallet.ui.sign.fragments.test.error.TestErrorFragment
 import one.tesseract.devwallet.ui.sign.fragments.test.sign.TestSignFragment
 import one.tesseract.ipc.activity.free.finishFreeActivity
@@ -50,6 +52,9 @@ class SignActivity : AppCompatActivity() {
             }
             is SubstrateAccount -> {
                 SubstrateAccountFragment(request)
+            }
+            is SubstrateSign -> {
+                SubstrateSignFragment(request)
             }
             else -> {
                 throw RuntimeException("Please, don't send garbage here")

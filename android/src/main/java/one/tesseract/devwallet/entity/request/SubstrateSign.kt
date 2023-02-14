@@ -4,4 +4,4 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class SubstrateAccount(var algorithm: String, var path: String, var key: String) : Parcelable
+data class SubstrateSign(var algorithm: String, var path: String, var key: String, var data: String) : Parcelable
