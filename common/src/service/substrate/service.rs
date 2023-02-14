@@ -46,10 +46,10 @@ const WALLET_PHRASE: &str =
 #[async_trait]
 impl tesseract_protocol_substrate::SubstrateService for SubstrateService {
     async fn get_account(self: Arc<Self>, account_type: AccountType) -> Result<GetAccountResponse> {
-        let wallet = Wallet::new(WALLET_PHRASE).unwrap();
+        let wallet = Wallet::new(WALLET_PHRASE).map_err(|e| e.into())?;
         let path = "".to_string();
 
-        let key = wallet.derive(&path).unwrap();
+        let key = wallet.derive(&path).map_err(|e| e.into())?;
         let strkey = key.to_string();
 
         let request = SubstrateAccount {
@@ -80,17 +80,16 @@ impl tesseract_protocol_substrate::SubstrateService for SubstrateService {
         extrinsic_metadata: &[u8],
         extrinsic_types: &[u8],
     ) -> Result<Vec<u8>> {
-        let data = parse_transaction(extrinsic_data, extrinsic_metadata, extrinsic_types).unwrap();
+        let data = parse_transaction(extrinsic_data, extrinsic_metadata, extrinsic_types).map_err(|e| e.into())?;
 
-        let wallet = Wallet::new(WALLET_PHRASE).unwrap();
-        let path = "".to_string();
+        let wallet = Wallet::new(WALLET_PHRASE).map_err(|e| e.into())?;
 
-        let key = wallet.derive(&path).unwrap();
+        let key = wallet.derive(account_path).map_err(|e| e.into())?;
         let strkey = key.to_string();
 
         let request = SubstrateSign {
             algorithm: "Sr25519".to_owned(), //TODO: read from param
-            path: path,
+            path: account_path.to_owned(),
             key: strkey,
             data: data
         };
@@ -98,9 +97,7 @@ impl tesseract_protocol_substrate::SubstrateService for SubstrateService {
         let allow = self.ui.request_user_confirmation(request).await.map_err(|e| e.into())?;
 
         if allow {
-            let signed = wallet.sign(extrinsic_data).unwrap();
-
-            Ok(signed)
+            wallet.sign(extrinsic_data).map_err(|e| e.into())
         } else {
             Err(tesseract::Error::kinded(tesseract::ErrorKind::Cancelled))
         }

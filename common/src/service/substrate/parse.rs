@@ -1,5 +1,3 @@
-use std::error::Error;
-
 use subxt::ext::{
     frame_metadata::ExtrinsicMetadata,
     scale_value::scale::decode_as_type,
@@ -13,7 +11,7 @@ pub (super) fn parse_transaction(
     transaction: &[u8],
     mut extrinsic_metadata: &[u8],
     mut extrinsic_types: &[u8],
-) -> Result<String, Box<dyn Error + Send + Sync>> {
+) -> Result<String, super::Error> {
     let mut transaction = transaction.split_at(1).1;
     let extrinsic_metadata: ExtrinsicMetadata<PortableForm> =
         Decode::decode(&mut extrinsic_metadata)?;
