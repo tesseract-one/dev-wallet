@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable name="model" type="one.tesseract.devwallet.ui.sign.fragments.substrate.account.SubstrateAccountViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.sign.fragments.substrate.account.SubstrateAccountFragment">
+
+        <TextView
+            android:id="@+id/label_transaction"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:text="@{`Type: ` + model.request.algorythm}"
+            android:textAlignment="viewStart"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/label_signature"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:text="@{`Path: ` + model.request.path}"
+            android:textAlignment="viewStart"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/label_transaction" />
+
+        <TextView
+            android:id="@+id/label_result"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:text="@{`Pubkey: ` + model.request.key}"
+            android:textAlignment="viewStart"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/label_signature" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

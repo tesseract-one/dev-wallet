@@ -21,6 +21,7 @@ use async_trait::async_trait;
 use tesseract::{Error, ErrorKind, Result};
 use tesseract_protocol_substrate::{AccountType, GetAccountResponse, Substrate};
 
+use crate::request::SubstrateAccount;
 //use crate::request::{TestSign, TestError};
 use crate::ui::{UI, UIProtocol};
 use crate::settings::{SettingsProvider, TestSettingsProvider};
@@ -46,14 +47,28 @@ impl tesseract_protocol_substrate::SubstrateService for SubstrateService {
     async fn get_account(self: Arc<Self>, account_type: AccountType) -> Result<GetAccountResponse> {
         let wallet = Wallet::new(WALLET_PHRASE).unwrap();
         let path = "".to_string();
-        let key = wallet.derive(&path).unwrap().to_vec();
 
-        Ok(
-            GetAccountResponse {
-                public_key: key,
+        let key = wallet.derive(&path).unwrap();
+        let strkey = key.to_string();
+
+        let request = SubstrateAccount {
+            algorythm: "Sr25519".to_owned(), //TODO: read from param
+            path: path.clone(),
+            key: strkey
+        };
+
+        let allow = self.ui.request_user_confirmation(request).await.map_err(|e| e.into())?;
+
+        if allow {
+            let veckey = key.to_vec();
+
+            Ok(GetAccountResponse {
+                public_key: veckey,
                 path: path
-            }
-        )
+            })
+        } else {
+            Err(tesseract::Error::kinded(tesseract::ErrorKind::Cancelled))
+        }
     }
 
     async fn sign_transaction(
