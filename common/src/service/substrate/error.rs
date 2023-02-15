@@ -3,13 +3,13 @@ use thiserror::Error;
 use subxt::{error::SecretStringError, error::DecodeError};
 
 #[derive(Debug)]
-pub (crate) enum UnsupportedAccountType {
+pub (super) enum UnsupportedAccountType {
     Ed25519,
     Ecdsa
 }
 
 #[derive(Error, Debug)]
-pub (crate) enum Error {
+pub (super) enum Error {
     #[error("User cancelled request")]
     Cancelled,
 
@@ -44,7 +44,7 @@ impl From<SecretStringError> for Error {
     }
 }
 
-pub (crate) type Result<T> = std::result::Result<T, Error>;
+pub (super) type Result<T> = std::result::Result<T, Error>;
 
 impl Into<tesseract::Error> for Error {
     fn into(self) -> tesseract::Error {

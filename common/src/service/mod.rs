@@ -3,5 +3,3 @@ mod substrate;
 
 pub (crate) use test::TestService;
 pub (crate) use substrate::SubstrateService;
-
-pub (crate) use substrate::Error as SubstrateError;

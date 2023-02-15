@@ -21,13 +21,13 @@ pub struct Wallet {
 }
 
 impl Wallet {
-    pub (crate) fn new(phrase: &str) -> Result<Self> {
+    pub (super) fn new(phrase: &str) -> Result<Self> {
         let (pair, _) = sr25519::Pair::from_phrase(phrase, None)?;
         let signer = PairSigner::new(pair.clone());
         Ok(Self { pair, signer })
     }
 
-    pub (crate) fn derive(&self, path: &str) -> Result<Public> {
+    pub (super) fn derive(&self, path: &str) -> Result<Public> {
         let uri = SecretUri::from_str(path)?;
         let path = uri.junctions.into_iter();
         let (pair, _) = self
@@ -38,7 +38,7 @@ impl Wallet {
         Ok(pair.public())
     }
 
-    pub (crate) fn sign(&self, transaction: &[u8]) -> Result<Vec<u8>> {
+    pub (super) fn sign(&self, transaction: &[u8]) -> Result<Vec<u8>> {
         let multi_signature = self.signer.sign(transaction);
         match multi_signature {
             MultiSignature::Sr25519(signature) => Ok(signature.encode()),

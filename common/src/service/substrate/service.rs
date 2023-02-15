@@ -47,8 +47,6 @@ impl SubstrateService {
         Ok(wallet)
     }
 
-    //async fn process_request<Req: Request, Res, FR: FnOnce(&Wallet)->Req, FP: FnOnce(&Wallet)->Res>(self: Arc<Self>, )
-
     async fn get_account_impl(self: Arc<Self>, account_type: AccountType) -> Result<GetAccountResponse> {
         let wallet = self.wallet()?;
         let path = "".to_string();
@@ -109,9 +107,6 @@ impl SubstrateService {
     }
 }
 
-// const WALLET_PHRASE: &str =
-//     "arch flush fabric dentist fade service chronic bacon plunge expand still uncover";
-
 #[async_trait]
 impl tesseract_protocol_substrate::SubstrateService for SubstrateService {
     async fn get_account(self: Arc<Self>, account_type: AccountType) -> tesseract::Result<GetAccountResponse> {
@@ -126,7 +121,12 @@ impl tesseract_protocol_substrate::SubstrateService for SubstrateService {
         extrinsic_metadata: &[u8],
         extrinsic_types: &[u8],
     ) -> tesseract::Result<Vec<u8>> {
-        self.sign_transaction_impl(account_type, account_path, extrinsic_data, extrinsic_metadata, extrinsic_types).await.map_err(|e| e.into())
+        self.sign_transaction_impl(
+            account_type,
+            account_path,
+            extrinsic_data,
+            extrinsic_metadata,
+            extrinsic_types).await.map_err(|e| e.into())
     }
 }
 

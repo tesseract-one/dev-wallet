@@ -7,11 +7,13 @@ use subxt::ext::{
 
 use serde_json::to_value;
 
+use super::error::Result;
+
 pub (super) fn parse_transaction(
     transaction: &[u8],
     mut extrinsic_metadata: &[u8],
     mut extrinsic_types: &[u8],
-) -> Result<String, super::Error> {
+) -> Result<String> {
     let mut transaction = transaction.split_at(1).1;
     let extrinsic_metadata: ExtrinsicMetadata<PortableForm> =
         Decode::decode(&mut extrinsic_metadata)?;
