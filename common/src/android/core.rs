@@ -35,6 +35,17 @@ pub fn testSettingsProvider<'a>(env: JNIEnv<'a>, this: JObject<'a>) -> JObject<'
 }
 
 #[jni_fn("one.tesseract.devwallet.rust.Core")]
+pub fn keySettingsProvider<'a>(env: JNIEnv<'a>, this: JObject<'a>) -> JObject<'a> {
+    deresultify(&env, || {
+        let this = Core::from_java_ref(this, &env)?;
+    
+        let res = this.settings_provider().java_ref(&env, Some(SettingsProviderType::Key))?;
+    
+        Ok(res)
+    })
+}
+
+#[jni_fn("one.tesseract.devwallet.rust.Core")]
 pub fn create<'a>(env: JNIEnv<'a>, _core_class: JClass<'a>, ui: JObject<'a>, data_dir: JString<'a>) -> JObject<'a> {
     deresultify(&env, || {
         android_log::init("DevWallet")?;

@@ -14,4 +14,5 @@ class Core(handle: Long): RustObject(handle) {
     }
 
     external fun testSettingsProvider(): TestSettingsProvider
+    external fun keySettingsProvider(): KeySettingsProvider
 }

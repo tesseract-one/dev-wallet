@@ -18,11 +18,10 @@ use std::sync::Arc;
 
 use async_trait::async_trait;
 
-use tesseract::{Error, ErrorKind, Result};
+use tesseract::Result;
 use tesseract_protocol_substrate::{AccountType, GetAccountResponse, Substrate};
 
 use crate::request::{SubstrateAccount, SubstrateSign};
-//use crate::request::{TestSign, TestError};
 use crate::ui::{UI, UIProtocol};
 use crate::settings::{SettingsProvider, TestSettingsProvider};
 
