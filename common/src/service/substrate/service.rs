@@ -26,7 +26,7 @@ use crate::settings::{SettingsProvider, KeySettingsProvider};
 
 use super::parse::parse_transaction;
 use super::wallet::Wallet;
-use super::error::{Error, Result};
+use super::error::{Error, Result, UnsupportedAccountType};
 
 pub(crate) struct SubstrateService {
     ui: Arc<UI>,
@@ -47,15 +47,27 @@ impl SubstrateService {
         Ok(wallet)
     }
 
+    fn account_type_string(&self, account_type: AccountType) -> Result<&str> {
+        use UnsupportedAccountType::*;
+
+        match account_type {
+            AccountType::Sr25519 => Ok("Sr25519"),
+            AccountType::Ed25519 => Err(Error::UnsupportedAccountType(Ed25519)),
+            AccountType::Ecdsa => Err(Error::UnsupportedAccountType(Ecdsa)),
+        }
+    }
+
     async fn get_account_impl(self: Arc<Self>, account_type: AccountType) -> Result<GetAccountResponse> {
         let wallet = self.wallet()?;
+        let account_type = self.account_type_string(account_type)?;
+
         let path = "".to_string();
 
         let key = wallet.derive(&path)?;
         let strkey = key.to_string();
 
         let request = SubstrateAccount {
-            algorithm: "Sr25519".to_owned(), //TODO: read from param
+            algorithm: account_type.to_owned(),
             path: path.clone(),
             key: strkey
         };
@@ -83,13 +95,14 @@ impl SubstrateService {
         extrinsic_types: &[u8],
     ) -> Result<Vec<u8>> {
         let wallet = self.wallet()?;
+        let account_type = self.account_type_string(account_type)?;
 
         let data = parse_transaction(extrinsic_data, extrinsic_metadata, extrinsic_types)?;
         let key = wallet.derive(account_path)?;
         let strkey = key.to_string();
 
         let request = SubstrateSign {
-            algorithm: "Sr25519".to_owned(), //TODO: read from param
+            algorithm: account_type.to_owned(),
             path: account_path.to_owned(),
             key: strkey,
             data: data
