@@ -23,9 +23,6 @@ pub (crate) enum Error {
     #[error("A string was returned as error: {0}")]
     Config(String),
 
-    #[error(transparent)]
-    Substrate(#[from] crate::service::SubstrateError),
-
     #[allow(dead_code)]
     #[error("Unknown error")]
     Unknown,

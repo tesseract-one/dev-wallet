@@ -18,15 +18,15 @@ use std::sync::Arc;
 
 use async_trait::async_trait;
 
-use tesseract::Result;
 use tesseract_protocol_substrate::{AccountType, GetAccountResponse, Substrate};
 
 use crate::request::{SubstrateAccount, SubstrateSign};
 use crate::ui::{UI, UIProtocol};
-use crate::settings::{SettingsProvider, TestSettingsProvider};
+use crate::settings::{SettingsProvider, KeySettingsProvider};
 
 use super::parse::parse_transaction;
 use super::wallet::Wallet;
+use super::error::{Error, Result};
 
 pub(crate) struct SubstrateService {
     ui: Arc<UI>,
@@ -37,18 +37,23 @@ impl SubstrateService {
     pub fn new(ui: Arc<UI>, settings_provider: Arc<SettingsProvider>) -> Self {
         Self { ui: ui, settings_provider: settings_provider }
     }
-}
 
-const WALLET_PHRASE: &str =
-    "arch flush fabric dentist fade service chronic bacon plunge expand still uncover";
+    fn wallet(&self) -> Result<Wallet> {
+        let settings = self.settings_provider.load_key_settings()?;
+        let mnemonic = settings.mnemonic.ok_or(Error::MnemonicNotSet)?;
 
-#[async_trait]
-impl tesseract_protocol_substrate::SubstrateService for SubstrateService {
-    async fn get_account(self: Arc<Self>, account_type: AccountType) -> Result<GetAccountResponse> {
-        let wallet = Wallet::new(WALLET_PHRASE).map_err(|e| e.into())?;
+        let wallet = Wallet::new(&mnemonic)?;
+
+        Ok(wallet)
+    }
+
+    //async fn process_request<Req: Request, Res, FR: FnOnce(&Wallet)->Req, FP: FnOnce(&Wallet)->Res>(self: Arc<Self>, )
+
+    async fn get_account_impl(self: Arc<Self>, account_type: AccountType) -> Result<GetAccountResponse> {
+        let wallet = self.wallet()?;
         let path = "".to_string();
 
-        let key = wallet.derive(&path).map_err(|e| e.into())?;
+        let key = wallet.derive(&path)?;
         let strkey = key.to_string();
 
         let request = SubstrateAccount {
@@ -57,7 +62,7 @@ impl tesseract_protocol_substrate::SubstrateService for SubstrateService {
             key: strkey
         };
 
-        let allow = self.ui.request_user_confirmation(request).await.map_err(|e| e.into())?;
+        let allow = self.ui.request_user_confirmation(request).await?;
 
         if allow {
             let veckey = key.to_vec();
@@ -67,11 +72,11 @@ impl tesseract_protocol_substrate::SubstrateService for SubstrateService {
                 path: path
             })
         } else {
-            Err(tesseract::Error::kinded(tesseract::ErrorKind::Cancelled))
+            Err(Error::Cancelled)
         }
     }
 
-    async fn sign_transaction(
+    async fn sign_transaction_impl(
         self: Arc<Self>,
         account_type: AccountType,
         account_path: &str,
@@ -79,11 +84,10 @@ impl tesseract_protocol_substrate::SubstrateService for SubstrateService {
         extrinsic_metadata: &[u8],
         extrinsic_types: &[u8],
     ) -> Result<Vec<u8>> {
-        let data = parse_transaction(extrinsic_data, extrinsic_metadata, extrinsic_types).map_err(|e| e.into())?;
+        let wallet = self.wallet()?;
 
-        let wallet = Wallet::new(WALLET_PHRASE).map_err(|e| e.into())?;
-
-        let key = wallet.derive(account_path).map_err(|e| e.into())?;
+        let data = parse_transaction(extrinsic_data, extrinsic_metadata, extrinsic_types)?;
+        let key = wallet.derive(account_path)?;
         let strkey = key.to_string();
 
         let request = SubstrateSign {
@@ -93,13 +97,36 @@ impl tesseract_protocol_substrate::SubstrateService for SubstrateService {
             data: data
         };
 
-        let allow = self.ui.request_user_confirmation(request).await.map_err(|e| e.into())?;
+        let allow = self.ui.request_user_confirmation(request).await?;
 
         if allow {
-            wallet.sign(extrinsic_data).map_err(|e| e.into())
+            let signature = wallet.sign(extrinsic_data)?;
+
+            Ok(signature)
         } else {
-            Err(tesseract::Error::kinded(tesseract::ErrorKind::Cancelled))
+            Err(Error::Cancelled)
         }
+    }
+}
+
+// const WALLET_PHRASE: &str =
+//     "arch flush fabric dentist fade service chronic bacon plunge expand still uncover";
+
+#[async_trait]
+impl tesseract_protocol_substrate::SubstrateService for SubstrateService {
+    async fn get_account(self: Arc<Self>, account_type: AccountType) -> tesseract::Result<GetAccountResponse> {
+        self.get_account_impl(account_type).await.map_err(|e| e.into())
+    }
+
+    async fn sign_transaction(
+        self: Arc<Self>,
+        account_type: AccountType,
+        account_path: &str,
+        extrinsic_data: &[u8],
+        extrinsic_metadata: &[u8],
+        extrinsic_types: &[u8],
+    ) -> tesseract::Result<Vec<u8>> {
+        self.sign_transaction_impl(account_type, account_path, extrinsic_data, extrinsic_metadata, extrinsic_types).await.map_err(|e| e.into())
     }
 }
 
