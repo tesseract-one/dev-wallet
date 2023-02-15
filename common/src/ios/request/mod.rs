@@ -1,6 +1,8 @@
 mod crequest;
 mod test_sign;
 mod test_error;
+mod substrate_account;
+mod substrate_sign;
 
 pub use self::crequest::CRequest;
 

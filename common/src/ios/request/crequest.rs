@@ -2,11 +2,15 @@ use std::mem::ManuallyDrop;
 
 use super::test_sign::CTestSign;
 use super::test_error::CTestError;
+use super::substrate_account::CSubstrateAccount;
+use super::substrate_sign::CSubstrateSign;
 
 #[repr(C)]
 pub enum CRequest {
     TestSign(CTestSign),
-    TestError(CTestError)
+    TestError(CTestError),
+    SubstrateAccount(CSubstrateAccount),
+    SubstrateSign(CSubstrateSign)
 }
 
 #[no_mangle]
