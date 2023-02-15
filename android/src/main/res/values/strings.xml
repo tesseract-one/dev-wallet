@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Developer Wallet</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
+    <string name="title_key_settings">Private Key</string>
     <string name="title_test_settings">Test Protocol</string>
     <string name="signature">Signature</string>
     <string name="label_invalidator">Request that produces error:</string>
