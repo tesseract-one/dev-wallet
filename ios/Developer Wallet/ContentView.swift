@@ -26,7 +26,7 @@ struct ContentView: View {
                     }
                 try! KeySettingsView(settingsProvider: try! core.keySettingsProvider)
                     .tabItem {
-                        Image(systemName: "testtube.2")
+                        Image(systemName: "person.badge.key")
                         Text("Private Key")
                     }
                 try! TestSettingsView(settingsProvider: try! core.testSettingsProvider)
