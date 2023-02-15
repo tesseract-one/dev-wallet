@@ -47,4 +47,10 @@ extension Core: CoreProtocol {
             try self.settingsProvider
         }
     }
+    
+    var keySettingsProvider: KeySettingsProvider {
+        get throws {
+            try self.settingsProvider
+        }
+    }
 }

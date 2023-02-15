@@ -24,10 +24,10 @@ struct ContentView: View {
                         Image(systemName: "house")
                         Text("Home")
                     }
-                Text("Screen3")
+                try! KeySettingsView(settingsProvider: try! core.keySettingsProvider)
                     .tabItem {
-                        Image(systemName: "mappin.circle.fill")
-                        Text("Screen3")
+                        Image(systemName: "testtube.2")
+                        Text("Private Key")
                     }
                 try! TestSettingsView(settingsProvider: try! core.testSettingsProvider)
                     .tabItem {

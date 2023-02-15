@@ -20,4 +20,10 @@ extension PreviewCore: CoreProtocol {
             PreviewSettingsProvider()
         }
     }
+    
+    var keySettingsProvider: KeySettingsProvider {
+        get throws {
+            PreviewSettingsProvider()
+        }
+    }
 }

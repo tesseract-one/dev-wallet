@@ -11,4 +11,8 @@ protocol CoreProtocol {
     var testSettingsProvider: TestSettingsProvider {
         get throws
     }
+    
+    var keySettingsProvider: KeySettingsProvider {
+        get throws
+    }
 }

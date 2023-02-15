@@ -8,19 +8,31 @@
 import Foundation
 
 class PreviewSettingsProvider {
-    fileprivate var saved: TestSettings
+    fileprivate var test: TestSettings
+    fileprivate var key: KeySettings
     
     init() {
-        self.saved = TestSettings(signature: "signed_by_tesseract", invalidator: "err")
+        self.test = TestSettings(signature: "signed_by_tesseract", invalidator: "err")
+        self.key = KeySettings(mnemonic: "my precious too risky too risky thieves they stole it from us")
     }
 }
 
 extension PreviewSettingsProvider: TestSettingsProvider {
     func load() throws -> TestSettings {
-        self.saved
+        self.test
     }
     
     func save(settings: TestSettings) throws {
-        self.saved = settings
+        self.test = settings
+    }
+}
+
+extension PreviewSettingsProvider: KeySettingsProvider {
+    func load() throws -> KeySettings {
+        self.key
+    }
+    
+    func save(settings: KeySettings) throws {
+        self.key = settings
     }
 }
