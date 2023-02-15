@@ -13,9 +13,9 @@
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="one.tesseract.devwallet.ui.settings.dashboard.DashboardFragment"
+        android:name="one.tesseract.devwallet.ui.settings.key.KeySettingsFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_key_settings" />
 
     <fragment
         android:id="@+id/navigation_test_settings"

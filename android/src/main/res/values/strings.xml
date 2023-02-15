@@ -10,4 +10,6 @@
     <string name="caption_sign">Sign</string>
     <string name="caption_cancel">Cancel</string>
     <string name="label_error_explanation"><i>Since transaction matches invalidator, we\'ll invalidate it and reply with the following error message:</i></string>
+    <string name="label_mnemonic">12 words secret key phrase:</string>
+    <string name="mnemonic">Mnemonic</string>
 </resources>
