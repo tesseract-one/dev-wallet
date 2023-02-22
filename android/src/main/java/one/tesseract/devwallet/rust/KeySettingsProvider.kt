@@ -1,7 +1,7 @@
 package one.tesseract.devwallet.rust
 
 import one.tesseract.devwallet.entity.KeySettings
-import one.tesseract.devwallet.interop.RustObject
+import one.tesseract.interop.rust.RustObject
 
 class KeySettingsProvider(handle: Long) : RustObject(handle) {
     external fun load(): KeySettings

@@ -1,7 +1,7 @@
 use jni::{JNIEnv, objects::JObject};
 use jni_fn::jni_fn;
 
-use crate::android::interop::{JavaWrappable, JavaConvertible, deresultify};
+use interop_android::{JavaWrappable, JavaConvertible, deresultify};
 use crate::settings::{TestSettings, SettingsProvider, TestSettingsProvider};
 
 #[jni_fn("one.tesseract.devwallet.rust.TestSettingsProvider")]

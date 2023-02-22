@@ -1,6 +1,6 @@
 use crate::settings::SettingsProvider;
 
-use crate::android::interop::{JavaDesc, JavaWrappableDesc};
+use interop_android::{JavaDesc, JavaWrappableDesc};
 
 impl JavaDesc for SettingsProvider {
     fn java_class<'a>(&'a self) -> &'a str {

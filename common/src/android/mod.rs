@@ -1,6 +1,5 @@
 extern crate android_log;
 
-mod interop;
 mod settings;
 mod core;
 mod request;

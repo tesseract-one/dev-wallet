@@ -4,15 +4,15 @@ use jni::objects::{JObject, JClass, JString};
 use jni::JNIEnv;
 use jni_fn::jni_fn;
 
-use tesseract_ipc_android::service::Transport;
+use interop_android::deresultify;
+use interop_android::{JavaDesc, JavaWrappableDesc, JavaWrappable};
 
-use super::interop::deresultify;
+use tesseract_ipc_android::service::Transport;
 
 use crate::Core;
 use super::UI;
 
 use crate::android::settings::SettingsProviderType;
-use crate::android::interop::{JavaDesc, JavaWrappableDesc, JavaWrappable};
 
 impl JavaDesc for Core {
     fn java_class<'a>(&'a self) -> &'a str {

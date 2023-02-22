@@ -1,7 +1,8 @@
 use jni::{JNIEnv, objects::JObject};
 use jni_fn::jni_fn;
 
-use crate::android::interop::{JavaWrappable, JavaConvertible, deresultify};
+use interop_android::{JavaWrappable, JavaConvertible, deresultify};
+
 use crate::settings::{KeySettings, SettingsProvider, KeySettingsProvider};
 
 #[jni_fn("one.tesseract.devwallet.rust.KeySettingsProvider")]

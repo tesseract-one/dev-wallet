@@ -1,4 +1,4 @@
-use super::interop::JavaConvertible;
+use interop_android::JavaConvertible;
 
 pub (crate) trait Request: JavaConvertible+Send {
 }
