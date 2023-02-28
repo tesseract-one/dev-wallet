@@ -57,6 +57,9 @@ cargo {
     targets = rootProject.ext.rustNdkTargets  // See bellow for a longer list of options
     targetDirectory = '../target'
     rustupChannel = "nightly"
+    features {
+        all()
+    }
 }
 
 dependencies {

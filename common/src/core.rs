@@ -2,7 +2,13 @@ use std::sync::Arc;
 
 use tesseract::service::Tesseract;
 
-use crate::{settings::SettingsProvider, service::TestService, service::SubstrateService, ui::UI};
+use crate::{
+    settings::SettingsProvider,
+    service::TestService,
+    ui::UI};
+
+#[cfg(feature = "substrate")]
+use crate::service::SubstrateService;
 
 pub (crate) struct Core {
     _tesseract: Tesseract,
@@ -16,8 +22,10 @@ impl Core {
         let settings_provider = Arc::new(SettingsProvider::new(&location));
 
         let tesseract = apply_transports(Tesseract::new())
-            .service(TestService::new(Arc::clone(&ui), Arc::clone(&settings_provider)))
-            .service(SubstrateService::new(Arc::clone(&ui), Arc::clone(&settings_provider)));
+            .service(TestService::new(Arc::clone(&ui), Arc::clone(&settings_provider)));
+
+        #[cfg(feature = "substrate")]
+        let tesseract = tesseract.service(SubstrateService::new(Arc::clone(&ui), Arc::clone(&settings_provider)));
 
         info!("Core created successfully");
 
