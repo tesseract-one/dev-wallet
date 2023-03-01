@@ -1,6 +1,11 @@
 #!/bin/bash
 set -e
 
+# rustc chooses the SDK with `xcrun --show-sdk-path -sdk macosx` and `xcrun --show-sdk-path -sdk iphoneos` for macros and regular crates respectively.
+# We need to help it though, by cleaning up the ENV mess xCode pushes to us
+unset $(env | cut -d= -f1 | egrep -v "^PATH$|^SHELL$|^PWD$|^LOGNAME$|^HOME$|^TMPDIR$|^USER$|^SRCROOT$|^CONFIGURATION_BUILD_DIR$|^CONFIGURATION$|^ARCHS$|^PLATFORM_NAME$|^DEVELOPER_DIR$")
+export PATH=`echo $PATH | tr ":" "\n" | egrep -v "platform|xctoolchain" | tr "\n" ":"`
+
 MODULE_NAME="$1"
 C_LIB_NAME="$2"
 
@@ -17,19 +22,6 @@ if [[ "${CONFIGURATION}" == "Release" ]]; then
   RELEASE="--release"
 else
   RELEASE=""
-fi
-
-if [[ -n "${DEVELOPER_SDK_DIR:-}" && "$PLATFORM_NAME" != "macosx" ]]; then
-  # We're in Xcode, and we're cross-compiling.
-  # In this case, we need to add an extra library search path for build scripts and proc-macros,
-  # which run on the host instead of the target.
-  # (macOS Big Sur does not have linkable libraries in /usr/lib/.)
-  # We are adding it by providing Clang variable.
-  # Cargo can't pass any meaningfull conpiler variables to build scripts when cross-compiling.
-  export LIBRARY_PATH="${DEVELOPER_SDK_DIR}/MacOSX.sdk/usr/lib:${LIBRARY_PATH:-}"
-  # And set library path back for our targets (or it will link with macOS system libraries)
-  # we can't avoid it because we can't path build script specific configuration to Cargo
-  export RUSTFLAGS="-L${SDKROOT}/usr/lib"
 fi
 
 function get_platform_triplet() {
