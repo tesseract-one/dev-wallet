@@ -10,4 +10,6 @@ import Foundation
 public enum Request {
     case testSign(TestSign)
     case testError(TestError)
+    case substrateAccount(SubstrateAccount)
+    case substrateSign(SubstrateSign)
 }

@@ -18,6 +18,10 @@ extension CRequest: CType, CPtr {
                 return Request.testSign(self.test_sign.copied())
             case CRequest_TestError:
                 return Request.testError(self.test_error.copied())
+            case CRequest_SubstrateAccount:
+                return Request.substrateAccount(self.substrate_account.copied())
+            case CRequest_SubstrateSign:
+                return Request.substrateSign(self.substrate_sign.copied())
         default:
             fatalError("shity data")
         }

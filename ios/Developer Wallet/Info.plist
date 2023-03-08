@@ -19,6 +19,7 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>tesseract+test</string>
+				<string>tesseract+substrate-v1</string>
 			</array>
 		</dict>
 	</array>

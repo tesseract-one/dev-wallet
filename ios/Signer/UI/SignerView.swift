@@ -25,6 +25,10 @@ struct SignerView: View {
                     TestSignView(request: .constant(request))
                 case .testError(let request):
                     TestErrorView(request: .constant(request))
+                case .substrateAccount (let request):
+                    SubstrateAccountView(request: .constant(request))
+                case .substrateSign (let request):
+                    SubstrateSignView(request: .constant(request))
                 case .none:
                     HStack {
                         Spacer()
