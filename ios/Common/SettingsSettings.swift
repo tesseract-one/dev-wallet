@@ -8,5 +8,5 @@
 import Foundation
 
 func settingsFolder() -> String? {
-    FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "one.tesseract.Developer-Wallet.settings")?.path()
+    FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.one.tesseract.Developer-Wallet.settings")?.path
 }
