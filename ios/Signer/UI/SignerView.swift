@@ -42,12 +42,12 @@ struct SignerView: View {
                 Spacer()
                 Button(action: model.cancel) {
                     Image(systemName: "xmark.seal.fill")
-                    Text("Reject")
+                    Text("Cancel")
                 }
                 Spacer()
                 Button(action: model.sign) {
                     Image(systemName: "checkmark.seal.fill")
-                    Text("Sign")
+                    Text("OK")
                 }
                 Spacer()
             }
