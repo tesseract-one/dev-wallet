@@ -1,4 +1,5 @@
 <resources>
+    <string name="tesseract">Tesseract</string>
     <string name="app_name">Developer Wallet</string>
     <string name="title_home">Home</string>
     <string name="title_key_settings">Private Key</string>

@@ -8,6 +8,7 @@ import one.tesseract.ipc.activity.free.Launcher
 
 import one.tesseract.devwallet.ui.sign.SignActivity
 
+@Suppress("unused") //The class in used from Rust
 class UI(application: Application) {
     private val launcher: Launcher = Launcher(ActivityMonitor(application))
 
