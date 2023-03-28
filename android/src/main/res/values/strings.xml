@@ -13,4 +13,6 @@
     <string name="label_error_explanation"><i>Since transaction matches invalidator, we\'ll invalidate it and reply with the following error message:</i></string>
     <string name="label_mnemonic">12 words secret key phrase:</string>
     <string name="mnemonic">Mnemonic</string>
+    <string name="private_key_settings_label">Private Key settings:</string>
+    <string name="test_protocol_settings_label">Test Protocol settings:</string>
 </resources>

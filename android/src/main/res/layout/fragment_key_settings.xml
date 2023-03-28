@@ -13,17 +13,31 @@
         tools:context=".ui.settings.key.KeySettingsFragment">
 
         <TextView
+            android:id="@+id/label_key_settings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="20dp"
+            android:text="@string/private_key_settings_label"
+            android:textAlignment="viewStart"
+            android:textSize="32sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
             android:id="@+id/label_mnemonic"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
+            android:layout_marginTop="?attr/actionBarSize"
             android:text="@string/label_mnemonic"
             android:textAlignment="viewStart"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/label_key_settings" />
 
         <EditText
             android:id="@+id/edit_mnemonic"
