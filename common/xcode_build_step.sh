@@ -80,7 +80,7 @@ mkdir -p "${CONFIGURATION_BUILD_DIR}/${MODULE_NAME}"
 BUILT_LIBS=""
 for arch in $ARCHS; do
   TTRIPLET=$(get_platform_triplet $arch $PLATFORM_NAME)
-  cargo build -p $C_LIB_NAME --lib $RELEASE --target ${TTRIPLET} --all-features
+  cargo +nightly build -p $C_LIB_NAME --lib $RELEASE --target ${TTRIPLET} --all-features
   BUILT_LIBS="${BUILT_LIBS} ${ROOT_DIR}/target/${TTRIPLET}/${OUTPUT_DIR}/lib${C_LIB_NAME}.a"
 done
 

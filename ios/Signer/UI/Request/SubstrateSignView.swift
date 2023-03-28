@@ -11,17 +11,18 @@ struct SubstrateSignView: View {
     @Binding var request: SubstrateSign
     
     var body: some View {
-        VStack(alignment: .leading) {
-            Text("Algorithm: ")
-            Text(request.algorithm).padding(.bottom)
-            Text("Path: ")
-            Text(request.path).padding(.bottom)
-            Text("Public key: ")
-            Text(request.key).padding(.bottom)
-            Text("Data: ")
-            Text(request.data).padding(.bottom)
-        }
-        .padding()
+        ScrollView {
+            VStack(alignment: .leading) {
+                Text("Algorithm: ")
+                Text(request.algorithm).padding(.bottom)
+                Text("Path: ")
+                Text(request.path).padding(.bottom)
+                Text("Public key: ")
+                Text(request.key).padding(.bottom)
+                Text("Data: ")
+                Text(request.data).padding(.bottom)
+            }
+        }.padding()
     }
 }
 

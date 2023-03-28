@@ -19,7 +19,7 @@ struct ContentView: View {
         VStack {
             HeaderView()
             TabView {
-                Text("Home")
+                HomeView()
                     .tabItem {
                         Image(systemName: "house")
                         Text("Home")

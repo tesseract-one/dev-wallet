@@ -83,6 +83,7 @@
 		6592577329B80C3400312C15 /* CSubstrateSign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6592577129B80C3400312C15 /* CSubstrateSign.swift */; };
 		6592577529B80DA100312C15 /* SubstrateAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6592577429B80DA100312C15 /* SubstrateAccountView.swift */; };
 		6592577729B80DBA00312C15 /* SubstrateSignView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6592577629B80DBA00312C15 /* SubstrateSignView.swift */; };
+		65F89E6A29D34CD000B78B7C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F89E6929D34CD000B78B7C /* HomeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -164,6 +165,7 @@
 		6592577129B80C3400312C15 /* CSubstrateSign.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSubstrateSign.swift; sourceTree = "<group>"; };
 		6592577429B80DA100312C15 /* SubstrateAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubstrateAccountView.swift; sourceTree = "<group>"; };
 		6592577629B80DBA00312C15 /* SubstrateSignView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubstrateSignView.swift; sourceTree = "<group>"; };
+		65F89E6929D34CD000B78B7C /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -216,6 +218,7 @@
 			isa = PBXGroup;
 			children = (
 				65710607297F3BBC003DC875 /* Settings */,
+				65F89E6929D34CD000B78B7C /* HomeView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -597,6 +600,7 @@
 				650A8EE1298435C800489BE2 /* PreviewCore.swift in Sources */,
 				650A8EDD2983730000489BE2 /* PreviewSettingsProvider.swift in Sources */,
 				6592576F29B80C2600312C15 /* CSubstrateAccount.swift in Sources */,
+				65F89E6A29D34CD000B78B7C /* HomeView.swift in Sources */,
 				657F9207297F1863006771BF /* Developer_WalletApp.swift in Sources */,
 				6592576C29B80B7900312C15 /* SubstrateSign.swift in Sources */,
 				6585D2C52984BAEC008D4A7F /* TestSign.swift in Sources */,
