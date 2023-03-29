@@ -51,15 +51,27 @@
             app:layout_constraintTop_toBottomOf="@id/text_dev_wallet"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/transactionFragmentContainerView"
-        android:layout_width="0dp"
+    <ScrollView
+        android:id="@+id/fragment_scroll_view"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginBottom="20dp"
+
         app:layout_constraintBottom_toTopOf="@+id/buttonSign"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/header_container" />
+        app:layout_constraintTop_toBottomOf="@id/header_container">
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/transactionFragmentContainerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </ScrollView>
 
     <Button
         android:id="@+id/buttonSign"
