@@ -6,6 +6,18 @@
 
 ### **Tesseract Developer Wallet** is designed to help you test your dApp integration with Wallets through [Tesseract](https://github.com/tesseract-one/) **dApp/Wallet integration** protocol
 
+## How to use
+
+Install the wallet, by providing [prerequisites](#prerequisites) and following the [installation](#installation) instructions.
+
+Once the wallet is installed, you can just call **Tesseract** methods from within your dApp and it will show you the option to choose Developer Wallet when you try to request a public key or sign a transaction.
+
+## Supported protocols
+
+* [Substrate/Polkadot](https://github.com/tesseract-one/Tesseract.rs/tree/master/protocols/substrate)
+* [Tesseract Test Protocol](https://github.com/tesseract-one/Tesseract.rs/tree/master/protocols/test)
+* Please, crate a github issue to request your blockchain support or contact us by e-mail
+
 ## Prerequisites
 
 ### Common prerequisites
@@ -47,16 +59,6 @@ rustup target add aarch64-apple-ios-sim aarch64-apple-ios x86_64-apple-ios
 1. Checkout [this repo](https://github.com/tesseract-one/dev-wallet).
 2. Open `ios/Developer Wallet.xcodeproj` in Xcode.
 3. Run the **Developer Wallet**.
-
-## How to use
-
-Just call **Tesseract** methods from within your dApp and it will show you the option to choose Developer Wallet when you try to request a public key or sign a transaction.
-
-## Supported protocols
-
-* [Substrate/Polkadot](https://github.com/tesseract-one/Tesseract.rs/tree/master/protocols/substrate)
-* [Tesseract Test Protocol](https://github.com/tesseract-one/Tesseract.rs/tree/master/protocols/test)
-* Please, crate a github issue to request your blockchain support or contact us by e-mail
 
 ## Setting up VSCode
 
