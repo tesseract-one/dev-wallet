@@ -12,12 +12,15 @@ struct SubstrateAccountView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
+            Text("Public key was requested with the following params:").font(.system(size: 32))
+            Spacer()
             Text("Algorithm: ")
             Text(request.algorithm).padding(.bottom)
             Text("Path: ")
             Text(request.path).padding(.bottom)
             Text("Public key: ")
             Text(request.key).padding(.bottom)
+            Spacer()
         }
         .padding()
     }
