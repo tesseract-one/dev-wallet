@@ -6,6 +6,11 @@
 
 ### **Tesseract Developer Wallet** is designed to help you test your dApp integration with Wallets through [Tesseract](https://github.com/tesseract-one/) **dApp/Wallet integration** protocol
 
+<p align="center">
+    <img src=".github/ios-wallet-choosing.png" alt="Wallet choosing on iOS" width="40%"/>
+    <img src=".github/ios-wallet-requested.png" alt="Wallet requested on iOS" width="40%"/>
+</p>
+
 ## How to use
 
 Install the wallet, by providing [prerequisites](#prerequisites) and following the [installation](#installation) instructions.
