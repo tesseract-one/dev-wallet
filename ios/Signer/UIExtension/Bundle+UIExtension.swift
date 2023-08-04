@@ -9,22 +9,9 @@ import Foundation
 
 extension Bundle {
     public var extensionClassName: String? {
-        var config: [String: Any]?
-                
-        if let infoPlistPath = self.url(forResource: "Info", withExtension: "plist") {
-            do {
-                let infoPlistData = try Data(contentsOf: infoPlistPath)
-                
-                if let dict = try PropertyListSerialization.propertyList(from: infoPlistData, options: [], format: nil) as? [String: Any] {
-                    config = dict
-                }
-            } catch {
-                print(error)
-            }
-        }
-        
-        return (config?["UIExtension"] as? NSDictionary)?["UIExtensionMain"].flatMap {
-            $0 as? String
-        }
+        infoDictionary?["UIExtension"]
+            .flatMap { $0 as? [String: Any] }
+            .flatMap { $0["UIExtensionMain"] }
+            .flatMap { $0 as? String }
     }
 }
