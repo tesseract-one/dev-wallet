@@ -63,7 +63,7 @@ impl SubstrateService {
 
         let path = "".to_string();
 
-        let key = wallet.derive(&path)?;
+        let key = wallet.derive(&path)?.to_account_id();
         let strkey = key.to_string();
 
         let request = SubstrateAccount {
@@ -75,10 +75,10 @@ impl SubstrateService {
         let allow = self.ui.request_user_confirmation(request).await?;
 
         if allow {
-            let veckey = key.to_vec();
+            let rawkey: &[u8] = key.as_ref();
 
             Ok(GetAccountResponse {
-                public_key: veckey,
+                public_key: rawkey.into(),
                 path: path
             })
         } else {
@@ -98,7 +98,7 @@ impl SubstrateService {
         let account_type = self.account_type_string(account_type)?;
 
         let data = parse_transaction(extrinsic_data, extrinsic_metadata, extrinsic_types)?;
-        let key = wallet.derive(account_path)?;
+        let key = wallet.derive(account_path)?.to_account_id();
         let strkey = key.to_string();
 
         let request = SubstrateSign {

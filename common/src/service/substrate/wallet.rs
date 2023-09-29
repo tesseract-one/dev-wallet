@@ -1,47 +1,35 @@
 use std::str::FromStr;
 
-use subxt::{
-    ext::{
-        sp_core::{
-            crypto::SecretUri,
-            sr25519::{self, Public},
-            Encode, Pair,
-        },
-        sp_runtime::MultiSignature,
-    },
-    tx::{PairSigner, Signer},
-    PolkadotConfig,
-};
-
-use super::error::{Result, Error, UnsupportedAccountType};
+use subxt::{config::PolkadotConfig, tx::Signer, utils::MultiSignature};
+use subxt_signer::{SecretUri, sr25519::{self, PublicKey}, bip39::Mnemonic};
+use super::error::{Error, Result, UnsupportedAccountType};
 
 pub struct Wallet {
-    pair: sr25519::Pair,
-    signer: PairSigner<PolkadotConfig, sr25519::Pair>,
+    pair: sr25519::Keypair
 }
 
 impl Wallet {
     pub (super) fn new(phrase: &str) -> Result<Self> {
-        let (pair, _) = sr25519::Pair::from_phrase(phrase, None)?;
-        let signer = PairSigner::new(pair.clone());
-        Ok(Self { pair, signer })
+        let mnemonic = Mnemonic::parse(phrase)?;
+        let pair = sr25519::Keypair::from_phrase(&mnemonic, None)?;
+        Ok(Self { pair })
     }
 
-    pub (super) fn derive(&self, path: &str) -> Result<Public> {
+    pub (super) fn derive(&self, path: &str) -> Result<PublicKey> {
         let uri = SecretUri::from_str(path)?;
         let path = uri.junctions.into_iter();
-        let (pair, _) = self
+        let pair= self
             .pair
-            .derive(path, None)
-            .map_err(|_| {Error::Infolliable})?; //Who knows what is Infolliable?
+            .derive(path);
 
-        Ok(pair.public())
+        Ok(pair.public_key())
     }
 
     pub (super) fn sign(&self, transaction: &[u8]) -> Result<Vec<u8>> {
-        let multi_signature = self.signer.sign(transaction);
+        let signer: &dyn Signer<PolkadotConfig> = &self.pair; 
+        let multi_signature = signer.sign(transaction);
         match multi_signature {
-            MultiSignature::Sr25519(signature) => Ok(signature.encode()),
+            MultiSignature::Sr25519(signature) => Ok(signature.into()),
             MultiSignature::Ed25519(_) => Err(Error::UnsupportedAccountType(UnsupportedAccountType::Ed25519)),
             MultiSignature::Ecdsa(_) => Err(Error::UnsupportedAccountType(UnsupportedAccountType::Ecdsa)),
         }

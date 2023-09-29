@@ -14,7 +14,7 @@ public class UI {
         fatalError("No UI is implemented in the Wallet. Use extension.")
     }
     
-    func asRust() -> SUI {
+    func asCore() -> SUI {
         SUI(ui: self)
     }
 }

@@ -1,6 +1,6 @@
 use thiserror::Error;
 
-use subxt::{error::SecretStringError, error::DecodeError};
+use subxt::ext::scale_decode::Error as DecodeError;
 
 #[derive(Debug)]
 pub (super) enum UnsupportedAccountType {
@@ -16,8 +16,11 @@ pub (super) enum Error {
     #[error(transparent)]
     WalletError(#[from] crate::error::Error),
 
+    #[error("Failed to parse derivation path: {0:?}")]
+    SecretUriError(#[from] subxt_signer::SecretUriError),
+
     #[error("Failed to parse mnemonic: {0:?}")]
-    SecretStringError(SecretStringError),
+    Bip39Error(#[from] subxt_signer::bip39::Error),
 
     #[error("Please, set your private key in the wallet settings")]
     MnemonicNotSet,
@@ -25,22 +28,22 @@ pub (super) enum Error {
     #[error("ParityScaleCodec error: {0}")]
     ParityScaleCodec(#[from] subxt::ext::codec::Error),
 
+    #[error("sr25519 error: {0}")]
+    Sr25519Error(#[from] subxt_signer::sr25519::Error),
+
     #[error("Substrate DecodeError error: {0}")]
     DecodeError(#[from] DecodeError),
 
     #[error("Error converting parsed Substrate data to JSON: {0}")]
     SerdeJson(#[from] serde_json::Error),
 
-    #[error("Infolliable")]
-    Infolliable,
-
     #[error("Unsupported account type (should be implemented in the future): {0:?}")]
     UnsupportedAccountType(UnsupportedAccountType),
 }
 
-impl From<SecretStringError> for Error {
-    fn from(value: SecretStringError) -> Self {
-        Self::SecretStringError(value)
+impl From<subxt::ext::scale_decode::visitor::DecodeError> for Error {
+    fn from(value: subxt::ext::scale_decode::visitor::DecodeError) -> Self {
+        DecodeError::from(value).into()
     }
 }
 

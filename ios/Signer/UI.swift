@@ -20,7 +20,7 @@ public class UI {
         return try await model.confirm(request: request)
     }
     
-    func asRust() -> SUI {
+    func asCore() -> SUI {
         SUI(ui: self)
     }
 }
