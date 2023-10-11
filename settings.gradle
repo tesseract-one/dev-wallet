@@ -14,7 +14,7 @@ dependencyResolutionManagement {
 }
 includeBuild('../Tesseract.android') {
     dependencySubstitution {
-        substitute module('one.tesseract.android:interop-rust') using project(':java:interop-rust')
+        substitute module('one.tesseract.android:crabdroid') using project(':java:crabdroid')
         substitute module('one.tesseract.android:tesseract-ipc') using project(':java:tesseract-ipc')
         substitute module('one.tesseract.android:tesseract-ipc-service') using project(':java:tesseract-ipc-service')
     }

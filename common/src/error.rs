@@ -3,8 +3,8 @@ use thiserror::Error;
 #[derive(Error, Debug)]
 pub (crate) enum Error {
     #[cfg(target_os = "android")]
-    #[error("JNI error")]
-    JNI(#[from] jni::errors::Error),
+    #[error("Android error")]
+    Android(#[from] tesseract_android::error::TesseractAndroidError),
 
     #[cfg(target_os = "ios")]
     #[error("Logger initialization error")]
@@ -38,6 +38,17 @@ pub (crate) type Result<T> = std::result::Result<T, Error>;
 
 impl Into<tesseract::Error> for Error {
     fn into(self) -> tesseract::Error {
-        tesseract::Error::nested(Box::new(self))
+        match self {
+            #[cfg(target_os = "android")]
+            Error::Android(e) => e.into(),
+            Error::IO(e) => {
+                let description = format!("IOError: {}", e);
+                tesseract::Error::described(tesseract::ErrorKind::Weird, &description)
+            },
+            e => {
+                let description = format!("Wallet error: {}", e);
+                tesseract::Error::described(tesseract::ErrorKind::Weird, &description)
+            }
+        }
     }
 }

@@ -2,8 +2,9 @@ package one.tesseract.devwallet.ui.settings.key
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.map
+import androidx.lifecycle.switchMap
 import one.tesseract.devwallet.entity.KeySettings
 import one.tesseract.devwallet.rust.KeySettingsProvider
 
@@ -18,8 +19,8 @@ class KeySettingsViewModel : ViewModel() {
     }
     val mnemonic: MutableLiveData<String> = _mnemonic
 
-    val dirty: LiveData<Boolean> = Transformations.switchMap(mnemonic) { mnemonic ->
-        Transformations.map(cache) { cache ->
+    val dirty: LiveData<Boolean> = mnemonic.switchMap { mnemonic ->
+        cache.map { cache ->
             !mnemonic.equals(cache.mnemonic)
         }
     }

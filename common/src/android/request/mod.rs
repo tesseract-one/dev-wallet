@@ -1,4 +1,4 @@
-use interop_android::JavaConvertible;
+use crabdroid::JavaConvertible;
 
 pub (crate) trait Request: JavaConvertible+Send {
 }

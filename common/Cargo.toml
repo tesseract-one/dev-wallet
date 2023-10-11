@@ -24,12 +24,13 @@ log = "0.4.17"
 
 configparser = "3.0.2"
 
-#tesseract = { path = "../../Tesseract.rs/tesseract", features = ["service"] }
-#tesseract-protocol-test = { path = "../../Tesseract.rs/protocols/test", features = ["service"] }
-tesseract = {git = "https://github.com/tesseract-one/Tesseract.rs", branch="master", features=["service"]}
-tesseract-protocol-test = {git = "https://github.com/tesseract-one/Tesseract.rs", branch="master", features=["service"]}
+tesseract = { path = "../../Tesseract.rs/tesseract", features = ["service"] }
+tesseract-protocol-test = { path = "../../Tesseract.rs/protocols/test", features = ["service"] }
+tesseract-protocol-substrate = { path = "../../Tesseract.rs/protocols/substrate", features = ["service"], optional = true}
+#tesseract = {git = "https://github.com/tesseract-one/Tesseract.rs", branch="master", features=["service"]}
+#tesseract-protocol-test = {git = "https://github.com/tesseract-one/Tesseract.rs", branch="master", features=["service"]}
+#tesseract-protocol-substrate = {git = "https://github.com/tesseract-one/Tesseract.rs", branch="master", features=["service"], optional = true}
 
-tesseract-protocol-substrate = {git = "https://github.com/tesseract-one/Tesseract.rs", branch="master", features=["service"], optional = true}
 subxt = {version = "0.32", optional = true}
 subxt-signer = {version = "0.32", features = ["subxt"], optional = true}
 scale-info = {version = "*", optional = true}
@@ -41,8 +42,8 @@ android_log = "0.1.3"
 jni = "0.20.0"
 jni_fn = "0.1.0"
 
-interop_android = { path = "../../Tesseract.android/rust/interop" }
-tesseract_ipc_android = { path = "../../Tesseract.android/rust/ipc", features = ["service"] }
+crabdroid = { path = "../../Tesseract.android/rust/crabdroid" }
+tesseract-android = { path = "../../Tesseract.android/rust/sdk", features=["service"]}
 
 [target.'cfg(target_os = "ios")'.dependencies]
 stderrlog = "0.5.4"

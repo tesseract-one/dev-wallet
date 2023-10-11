@@ -31,7 +31,7 @@ class SignActivity : AppCompatActivity() {
 
             bundle.putParcelable(REQUEST, request)
 
-            return launcher.startFreeActivityForResult<Boolean>(SignActivity::class.java, bundle).thenApply {
+            return launcher.startFreeActivityForResultFuture<Boolean>(SignActivity::class.java, bundle).thenApply {
                 it.second
             }
         }

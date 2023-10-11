@@ -17,7 +17,7 @@
 use jni::{objects::{JObject, JValue}, JNIEnv};
 use jni::errors::Result;
 
-use interop_android::future::completion_stage::JCompletionStage;
+use crabdroid::future::JCompletionStage;
 
 /// Lifetime'd representation of a `UI`. Just a `JObject` wrapped in a
 /// new class.
@@ -49,8 +49,7 @@ impl<'a: 'b, 'b> JUI<'a, 'b> {
         }
     }
 
-    pub (crate) fn request_user_confirmation(&self, request: JObject<'a>) -> Result<JCompletionStage> {
-
+    pub (crate) fn request_user_confirmation(&self, request: JObject<'a>) -> Result<JCompletionStage<'a, 'b>> {
         let stage = self.env
             .call_method(
                 self.internal,

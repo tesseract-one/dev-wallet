@@ -21,9 +21,9 @@ class TestSettingsViewModel : ViewModel() {
     }
     val invalidator: MutableLiveData<String> = _invalidator
 
-    val dirty: LiveData<Boolean> = Transformations.switchMap(signature) { signature ->
-        Transformations.switchMap(invalidator) { invalidator ->
-            Transformations.map(cache) { cache ->
+    val dirty: LiveData<Boolean> = signature.switchMap { signature ->
+        invalidator.switchMap { invalidator ->
+            cache.map { cache ->
                 (!signature.equals(cache.signature)) || (!invalidator.equals(cache.invalidator))
             }
         }

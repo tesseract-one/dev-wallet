@@ -1,7 +1,7 @@
 package one.tesseract.devwallet.rust
 
 import one.tesseract.devwallet.UI
-import one.tesseract.interop.rust.RustObject
+import one.tesseract.crabdroid.RustObject
 
 class Core(handle: Long): RustObject(handle) {
     companion object {

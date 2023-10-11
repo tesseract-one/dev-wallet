@@ -2,7 +2,7 @@ use async_trait::async_trait;
 
 use jni::{JNIEnv, objects::JObject, errors::Result as JResult};
 
-use interop_android::{ContextedGlobal, JFuture};
+use crabdroid::ContextedGlobal;
 
 use crate::request::Request;
 use crate::ui::UIProtocol;
@@ -25,19 +25,14 @@ impl UI {
 #[async_trait]
 impl UIProtocol for UI {
     async fn request_user_confirmation<R: Request>(&self, request: R) -> DWResult<bool> {
-        let allow = self.internal.do_in_context_rret(64, |env, ui| {
+        let allow = self.internal.with_async_context(64, |env, ui| {
             let request = request.into_java(&env)?;
-
             let jui = JUI::from_env(&env, ui);
-            let allow = jui.request_user_confirmation(request);
+            jui.request_user_confirmation(request)
+        }).await?;
 
-            Ok(JFuture::from_stage_result(allow))
-        })?.await?;
-
-        let allow = allow.do_in_context_rret(64, |env, jallow| {
+        Ok(allow.with_safe_context_rret(64, |env, jallow| {
             env.call_method(jallow, "booleanValue", "()Z", &[])?.z()
-        })?;
-
-        Ok(allow)
+        })?)
     }
 }

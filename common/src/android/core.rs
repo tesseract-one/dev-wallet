@@ -4,12 +4,13 @@ use jni::objects::{JObject, JClass, JString};
 use jni::JNIEnv;
 use jni_fn::jni_fn;
 
-use interop_android::deresultify;
-use interop_android::{JavaDesc, JavaWrappableDesc, JavaWrappable};
+use crabdroid::error::JavaErrorContext;
+use crabdroid::{JavaDesc, JavaWrappableDesc, JavaWrappable};
 
-use tesseract_ipc_android::service::Transport;
+use tesseract_android::service::transport::IPCTransport;
 
 use crate::Core;
+use crate::Error;
 use super::UI;
 
 use crate::android::settings::SettingsProviderType;
@@ -25,7 +26,7 @@ impl JavaWrappableDesc for Core {
 
 #[jni_fn("one.tesseract.devwallet.rust.Core")]
 pub fn testSettingsProvider<'a>(env: JNIEnv<'a>, this: JObject<'a>) -> JObject<'a> {
-    deresultify(&env, || {
+    Error::java_context(&env, || {
         let this = Core::from_java_ref(this, &env)?;
     
         let res = this.settings_provider().java_ref(&env, Some(SettingsProviderType::Test))?;
@@ -36,7 +37,7 @@ pub fn testSettingsProvider<'a>(env: JNIEnv<'a>, this: JObject<'a>) -> JObject<'
 
 #[jni_fn("one.tesseract.devwallet.rust.Core")]
 pub fn keySettingsProvider<'a>(env: JNIEnv<'a>, this: JObject<'a>) -> JObject<'a> {
-    deresultify(&env, || {
+    Error::java_context(&env, || {
         let this = Core::from_java_ref(this, &env)?;
     
         let res = this.settings_provider().java_ref(&env, Some(SettingsProviderType::Key))?;
@@ -47,12 +48,12 @@ pub fn keySettingsProvider<'a>(env: JNIEnv<'a>, this: JObject<'a>) -> JObject<'a
 
 #[jni_fn("one.tesseract.devwallet.rust.Core")]
 pub fn create<'a>(env: JNIEnv<'a>, _core_class: JClass<'a>, ui: JObject<'a>, data_dir: JString<'a>) -> JObject<'a> {
-    deresultify(&env, || {
+    Error::java_context(&env, || {
         android_log::init("DevWallet")?;
 
         let ui = UI::from_java(&env, ui)?;
         let data_dir: String = env.get_string(data_dir)?.into();
-        let ipc = Transport::default(&env)?;
+        let ipc = IPCTransport::default(&env)?;
 
         let core = Arc::new(Core::new(ui, &data_dir, |tesseract| {
             tesseract.transport(ipc)

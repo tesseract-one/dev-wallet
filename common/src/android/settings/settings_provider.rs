@@ -1,6 +1,6 @@
 use crate::settings::SettingsProvider;
 
-use interop_android::{JavaDesc, JavaWrappableDesc};
+use crabdroid::{JavaDesc, JavaWrappableDesc};
 
 impl JavaDesc for SettingsProvider {
     fn java_class<'a>(&'a self) -> &'a str {
