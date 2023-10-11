@@ -18,6 +18,7 @@ use std::sync::Arc;
 
 use async_trait::async_trait;
 
+use tesseract::error::TesseractErrorContext;
 use tesseract::{Error, ErrorKind};
 use tesseract_protocol_test::Test;
 
@@ -53,44 +54,47 @@ impl tesseract::service::Service for TestService {
 #[async_trait]
 impl tesseract_protocol_test::TestService for TestService {
     async fn sign_transaction(self: Arc<Self>, req: &str) -> tesseract::Result<String> {
+        crate::Error::tesseract_context_async(async move || {
+            let settings = self.settings_provider.load_test_settings()?;
+
+            Ok(if req == settings.invalidator {
+                let error = format!("Intentional error. Because your transaction `{}` is set as the invalidator in DevWallet settings", req);
+    
+                let request = TestError {
+                    transaction: req.to_owned(),
+                    error: error.clone()
+                };
+    
+                let allow = self.ui.request_user_confirmation(request).await?;
+    
+                Err(if allow {
+                    Error::described(
+                        ErrorKind::Weird,
+                        &error,
+                    )
+                } else {
+                    tesseract::Error::kinded(tesseract::ErrorKind::Cancelled)
+                })
+            } else {
+                let signature = settings.signature.to_owned();
+                let signed = format!("{}_{}", req, signature);
+    
+                let request = TestSign {
+                    transaction: req.to_owned(),
+                    signature: signature,
+                    result: signed.clone()
+                };
+    
+                let allow = self.ui.request_user_confirmation(request).await?;
+    
+                if allow {
+                    Ok(signed)
+                } else {
+                    Err(tesseract::Error::kinded(tesseract::ErrorKind::Cancelled).into())
+                }
+            }?)
+        }).await
         //TODO: change this to showing an error in the wallet itself that it can't load settings
-        let settings = self.settings_provider.load_test_settings().map_err(|e| e.into())?;
-
-        if req == settings.invalidator {
-            let error = format!("Intentional error. Because your transaction `{}` is set as the invalidator in DevWallet settings", req);
-
-            let request = TestError {
-                transaction: req.to_owned(),
-                error: error.clone()
-            };
-
-            let allow = self.ui.request_user_confirmation(request).await.map_err(|e| e.into())?;
-
-            if allow {
-                Err(Error::described(
-                    ErrorKind::Weird,
-                    &error,
-                ))
-            } else {
-                Err(tesseract::Error::kinded(tesseract::ErrorKind::Cancelled))
-            }
-        } else {
-            let signature = settings.signature.to_owned();
-            let signed = format!("{}_{}", req, signature);
-
-            let request = TestSign {
-                transaction: req.to_owned(),
-                signature: signature,
-                result: signed.clone()
-            };
-
-            let allow = self.ui.request_user_confirmation(request).await.map_err(|e| e.into())?;
-
-            if allow {
-                Ok(signed)
-            } else {
-                Err(tesseract::Error::kinded(tesseract::ErrorKind::Cancelled))
-            }
-        }
     }
 }
+

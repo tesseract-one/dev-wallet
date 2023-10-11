@@ -1,6 +1,7 @@
 #![feature(iterator_try_collect)]
 #![feature(result_option_inspect)]
 #![feature(auto_traits, negative_impls)]
+#![feature(async_closure)]
 
 #[macro_use]
 extern crate log;
