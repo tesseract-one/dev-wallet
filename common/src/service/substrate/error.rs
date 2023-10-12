@@ -53,7 +53,7 @@ impl Into<tesseract::Error> for Error {
     fn into(self) -> tesseract::Error {
         match self {
             Self::Cancelled => tesseract::Error::kinded(tesseract::ErrorKind::Cancelled),
-            other => tesseract::Error::nested(Box::new(other))
+            other => tesseract::Error::nested(other)
         }
     }
 }

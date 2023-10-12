@@ -17,10 +17,11 @@ substrate = [
 async-trait = "0.1"
 
 thiserror = "1.0.31"
-log = "0.4.17"
+errorcon = "0.1"
 
-# futures = "0.3.21"
-# lazy_static = "1.4.0"
+#logger
+log = "0.3.9"
+log-panics = { version = "1.2", features = ["with-backtrace"]}
 
 configparser = "3.0.2"
 

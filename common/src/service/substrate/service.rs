@@ -94,12 +94,23 @@ impl SubstrateService {
         extrinsic_metadata: &[u8],
         extrinsic_types: &[u8],
     ) -> Result<Vec<u8>> {
+        debug!("About to sign a transaction");
         let wallet = self.wallet()?;
+        debug!("Got wallet");
         let account_type = self.account_type_string(account_type)?;
+        debug!("Got account type: {}", &account_type);
 
         let data = parse_transaction(extrinsic_data, extrinsic_metadata, extrinsic_types)?;
+
+        debug!("Transaction parsed: {}", &data);
+
         let key = wallet.derive(account_path)?.to_account_id();
+
+        debug!("Got key");
+
         let strkey = key.to_string();
+
+        debug!("Got strkey");
 
         let request = SubstrateSign {
             algorithm: account_type.to_owned(),
@@ -108,10 +119,17 @@ impl SubstrateService {
             data: data
         };
 
+        //debug!("Formed a request: {:?}", &request);
+        debug!("Formed a request");
+
         let allow = self.ui.request_user_confirmation(request).await?;
+
+        debug!("User allowed signing: {}", &allow);
 
         if allow {
             let signature = wallet.sign(extrinsic_data)?;
+
+            debug!("Signed the transaction");
 
             Ok(signature)
         } else {

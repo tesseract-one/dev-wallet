@@ -50,6 +50,7 @@ pub fn keySettingsProvider<'a>(env: JNIEnv<'a>, this: JObject<'a>) -> JObject<'a
 pub fn create<'a>(env: JNIEnv<'a>, _core_class: JClass<'a>, ui: JObject<'a>, data_dir: JString<'a>) -> JObject<'a> {
     Error::java_context(&env, || {
         android_log::init("DevWallet")?;
+        log_panics::init();
 
         let ui = UI::from_java(&env, ui)?;
         let data_dir: String = env.get_string(data_dir)?.into();
