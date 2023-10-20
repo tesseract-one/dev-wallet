@@ -6,9 +6,7 @@
 //
 
 import Foundation
-
-import TesseractUtils
-
+import TesseractTransportsService
 import CWallet
 
 extension SUI: CSwiftDropPtr {
@@ -26,7 +24,9 @@ private func fn_request_user_confirmation(this: UnsafePointer<SUI>!, rx: CReques
     var rx = rx
     let request = rx.owned()
     return CFutureBool {
-        try await this.unowned().requestUserConfirmation(request: request)
+        await this.unowned().castError().asyncFlatMap {
+            await $0.requestUserConfirmation(request: request)
+        }
     }
 }
 

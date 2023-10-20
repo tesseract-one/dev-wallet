@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-import TesseractService
+import TesseractTransportsService
 
 class SignerExtension: UIExtension {
     private let core: Core

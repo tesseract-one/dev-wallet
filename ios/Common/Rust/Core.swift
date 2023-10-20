@@ -6,8 +6,7 @@
 //
 
 import Foundation
-import TesseractUtils
-import TesseractService
+import TesseractTransportsService
 
 import CWallet
 
@@ -15,13 +14,13 @@ final class Core {
     fileprivate var `internal`: CCore
     
     public init(ui: UI, dataDir: String, transport: IPCTransportIOS?) throws {
-        self.internal = try CResult<CCore>.wrap { value, error in
+        self.internal = try Result<CCore, WalletError>.wrap { value, error in
             if let transport = transport {
-                return wallet_ccore_create_extension(ui.asCore(), dataDir,
-                                                     transport.asNative(),
+                return wallet_ccore_create_extension(ui.toCore(), dataDir,
+                                                     transport.toCore(),
                                                      value, error)
             } else {
-                return wallet_ccore_create_app(ui.asCore(), dataDir,
+                return wallet_ccore_create_app(ui.toCore(), dataDir,
                                                value, error)
             }
         }.get()
@@ -29,7 +28,7 @@ final class Core {
     
     fileprivate var settingsProvider: SettingsProvider {
         get throws {
-            let rust = try CResult<CSettingsProvider>.wrap { value, error in
+            let rust = try Result<CSettingsProvider, WalletError>.wrap { value, error in
                 wallet_ccore_test_settings_provider(self.internal, value, error)
             }.get()
             

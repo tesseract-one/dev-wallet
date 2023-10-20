@@ -5,7 +5,7 @@ language = "C"
 documentation_style = "C"
 pragma_once = true
 cpp_compat = true
-after_includes = "@import CTesseractUtils;\n@import CTesseractService;"
+after_includes = "@import CTesseract;"
 
 [enum]
 prefix_with_name = true
@@ -15,6 +15,7 @@ parse_deps = true
 include = ["tesseract_utils", "tesseract_service"]
 
 [export]
+include = ["WalletErrorCode"]
 exclude = [
   "CFutureBool", "SyncPtr_Void", "BoundTransport", "Transport",
   "TransportProcessor", "Void", "CError", "CString", "CStringRef", 

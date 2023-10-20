@@ -1,19 +1,22 @@
 use std::sync::atomic::{AtomicBool, Ordering};
 
+use crate::error::Result;
+
 static INITIALIZED: AtomicBool = AtomicBool::new(false);
 
-pub (super) fn init() -> crate::error::Result<()> {
-    use stderrlog::LogLevelNum;
-
+pub (super) fn init() -> Result<()> {
     let level = if cfg!(debug_assertions) {
-        LogLevelNum::Debug
+        log::LogLevel::Debug
         //LogLevelNum::Trace
     } else {
-        LogLevelNum::Error
+        log::LogLevel::Error
     };
 
-    Ok(if !INITIALIZED.load(Ordering::Relaxed) {
-        stderrlog::new().verbosity(level).show_module_names(true).init()?;
-        INITIALIZED.store(true, Ordering::Relaxed)
-    })
+    if !INITIALIZED.swap(true, Ordering::Relaxed) {
+        stderrlog::new().verbosity(level as usize)
+            .module("DevWallet")
+            .init()?;
+    }
+    log_panics::init();
+    Ok(())
 }

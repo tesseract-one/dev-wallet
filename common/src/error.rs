@@ -11,8 +11,8 @@ pub (crate) enum Error {
     LoggerInit(#[from] log::SetLoggerError),
 
     #[cfg(target_os = "ios")]
-    #[error("C error")]
-    CError(#[from] tesseract_utils::error::CError),
+    #[error("IOS error {0}")]
+    IOS(#[from] tesseract_swift_transports::error::TesseractSwiftError),
 
     #[error("Lock poison error: {0}")]
     Poison(String),
@@ -41,6 +41,8 @@ impl Into<tesseract::Error> for Error {
         match self {
             #[cfg(target_os = "android")]
             Error::Android(e) => e.into(),
+            #[cfg(target_os = "ios")]
+            Error::IOS(e) => e.into(),
             Error::IO(e) => {
                 let description = format!("IOError: {}", e);
                 tesseract::Error::described(tesseract::ErrorKind::Weird, &description)

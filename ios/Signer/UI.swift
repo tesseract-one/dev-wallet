@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import TesseractTransportsService
 import CWallet
 
 public class UI {
@@ -16,11 +16,11 @@ public class UI {
         self.model = model
     }
     
-    func requestUserConfirmation(request: Request) async throws -> Bool {
-        return try await model.confirm(request: request)
+    func requestUserConfirmation(request: Request) async -> Result<Bool, WalletError> {
+        await model.confirm(request: request)
     }
     
-    func asCore() -> SUI {
+    func toCore() -> SUI {
         SUI(ui: self)
     }
 }

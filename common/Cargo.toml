@@ -47,10 +47,10 @@ crabdroid = { path = "../../Tesseract.android/rust/crabdroid" }
 tesseract-android = { path = "../../Tesseract.android/rust/sdk", features=["service"]}
 
 [target.'cfg(target_os = "ios")'.dependencies]
-stderrlog = "0.5.4"
+stderrlog = "0.3"
 
-tesseract_utils = { git = "https://github.com/tesseract-one/Tesseract.swift", branch = "master" }
-tesseract_service = { git = "https://github.com/tesseract-one/Tesseract.swift", branch = "master" }
+tesseract-swift-utils = { path = "../../Tesseract.swift/Rust/utils" }
+tesseract-swift-transports = { path = "../../Tesseract.swift/Rust/transports", features = ["service"]}
 
 [build-dependencies]
 cbindgen = "0.26"

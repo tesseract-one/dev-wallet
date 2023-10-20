@@ -6,15 +6,15 @@
 //
 
 import Foundation
-
+import TesseractTransportsService
 import CWallet
 
 public class UI {
-    func requestUserConfirmation(request: Request) async throws -> Bool {
+    func requestUserConfirmation(request: Request) async -> Result<Bool, WalletError> {
         fatalError("No UI is implemented in the Wallet. Use extension.")
     }
     
-    func asCore() -> SUI {
+    func toCore() -> SUI {
         SUI(ui: self)
     }
 }
