@@ -6,11 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+
+import one.tesseract.activity.ActivityMonitor
+import one.tesseract.activity.detached.Launcher
+
 import one.tesseract.devwallet.databinding.FragmentHomeBinding
 import one.tesseract.devwallet.entity.request.TestSign
 import one.tesseract.devwallet.ui.sign.SignActivity
-import one.tesseract.ipc.activity.ActivityMonitor
-import one.tesseract.ipc.activity.free.Launcher
 
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null

@@ -49,8 +49,16 @@ pub fn keySettingsProvider<'a>(env: JNIEnv<'a>, this: JObject<'a>) -> JObject<'a
 #[jni_fn("one.tesseract.devwallet.rust.Core")]
 pub fn create<'a>(env: JNIEnv<'a>, _core_class: JClass<'a>, ui: JObject<'a>, data_dir: JString<'a>) -> JObject<'a> {
     Error::java_context(&env, || {
-        android_log::init("DevWallet")?;
-        log_panics::init();
+        let log_level = if cfg!(debug_assertions) {
+            log::LevelFilter::Debug
+        } else {
+            log::LevelFilter::Error
+        };
+        android_logger::init_once(
+            android_logger::Config::default()
+                .with_max_level(log_level)
+                .with_tag("DevWallet"),
+        );
 
         let ui = UI::from_java(&env, ui)?;
         let data_dir: String = env.get_string(data_dir)?.into();

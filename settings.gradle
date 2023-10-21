@@ -10,14 +10,18 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven {
+            url = uri("https://maven.tesseract.one/Tesseract.android")
+        }
     }
 }
 includeBuild('../Tesseract.android') {
     dependencySubstitution {
-        substitute module('one.tesseract.android:crabdroid') using project(':java:crabdroid')
-        substitute module('one.tesseract.android:tesseract-ipc') using project(':java:tesseract-ipc')
-        substitute module('one.tesseract.android:tesseract-ipc-service') using project(':java:tesseract-ipc-service')
+        substitute module('one.tesseract:crabdroid') using project(':java:crabdroid')
+        substitute module('one.tesseract:detached-activity') using project(':java:detached-activity')
+        substitute module('one.tesseract:service-transport-ipc') using project(':java:service-transport-ipc')
     }
 }
 rootProject.name = "Developer Wallet"
 include ':android'
+project(":android").name = "dev-wallet"

@@ -35,7 +35,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name="one.tesseract.ipc.service.TesseractActivity"
+            android:name="one.tesseract.service.transport.ipc.TesseractActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="one.tesseract.CALL" />

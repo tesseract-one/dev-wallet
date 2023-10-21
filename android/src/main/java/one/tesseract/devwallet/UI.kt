@@ -3,8 +3,8 @@ package one.tesseract.devwallet
 import android.os.Parcelable
 import java.util.concurrent.CompletionStage
 
-import one.tesseract.ipc.activity.ActivityMonitor
-import one.tesseract.ipc.activity.free.Launcher
+import one.tesseract.activity.ActivityMonitor
+import one.tesseract.activity.detached.Launcher
 
 import one.tesseract.devwallet.ui.sign.SignActivity
 

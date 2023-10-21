@@ -1,5 +1,3 @@
-extern crate android_log;
-
 mod settings;
 mod core;
 mod request;

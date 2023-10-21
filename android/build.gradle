@@ -73,9 +73,9 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:$rootProject.ext.navVersion"
     implementation "androidx.navigation:navigation-ui-ktx:$rootProject.ext.navVersion"
 
-    implementation 'one.tesseract.android:crabdroid'
-    implementation 'one.tesseract.android:tesseract-ipc'
-    implementation 'one.tesseract.android:tesseract-ipc-service'
+    implementation 'one.tesseract:crabdroid:0.1.0'
+    implementation 'one.tesseract:detached-activity:0.2.0'
+    implementation 'one.tesseract:service-transport-ipc:0.5.4'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'

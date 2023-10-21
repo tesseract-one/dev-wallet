@@ -9,7 +9,8 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
 
-import one.tesseract.ipc.activity.free.Launcher
+import one.tesseract.activity.detached.Launcher
+import one.tesseract.activity.detached.finishDetachedActivity
 
 import one.tesseract.devwallet.R
 import one.tesseract.devwallet.entity.request.SubstrateAccount
@@ -20,7 +21,6 @@ import one.tesseract.devwallet.ui.sign.fragments.substrate.account.SubstrateAcco
 import one.tesseract.devwallet.ui.sign.fragments.substrate.sign.SubstrateSignFragment
 import one.tesseract.devwallet.ui.sign.fragments.test.error.TestErrorFragment
 import one.tesseract.devwallet.ui.sign.fragments.test.sign.TestSignFragment
-import one.tesseract.ipc.activity.free.finishFreeActivity
 
 class SignActivity : AppCompatActivity() {
     companion object {
@@ -31,7 +31,7 @@ class SignActivity : AppCompatActivity() {
 
             bundle.putParcelable(REQUEST, request)
 
-            return launcher.startFreeActivityForResultFuture<Boolean>(SignActivity::class.java, bundle).thenApply {
+            return launcher.startDetachedActivityForResultFuture<Boolean>(SignActivity::class.java, bundle).thenApply {
                 it.second
             }
         }
@@ -41,6 +41,7 @@ class SignActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         val extras = intent.extras ?: throw RuntimeException("No Extras :(")
+        @Suppress("DEPRECATION")
         val request: Any = extras.getParcelable(REQUEST) ?: throw RuntimeException("No Request")
 
         val fragment = when (request) {
@@ -74,11 +75,11 @@ class SignActivity : AppCompatActivity() {
         val buttonCancel = findViewById<Button>(R.id.buttonCancel)
 
         buttonSign.setOnClickListener {
-            this.finishFreeActivity(RESULT_OK, true)
+            this.finishDetachedActivity(RESULT_OK, true)
         }
 
         buttonCancel.setOnClickListener {
-            this.finishFreeActivity(RESULT_CANCELED, false)
+            this.finishDetachedActivity(RESULT_CANCELED, false)
         }
     }
 }
