@@ -883,7 +883,7 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/tesseract-one/Tesseract.swift.git";
 			requirement = {
-				branch = "swift-wallet";
+				branch = master;
 				kind = branch;
 			};
 		};

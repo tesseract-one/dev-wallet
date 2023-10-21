@@ -6,15 +6,15 @@ static INITIALIZED: AtomicBool = AtomicBool::new(false);
 
 pub (super) fn init() -> Result<()> {
     let level = if cfg!(debug_assertions) {
-        log::LogLevel::Debug
-        //LogLevelNum::Trace
+        stderrlog::LogLevelNum::Debug
     } else {
-        log::LogLevel::Error
+        stderrlog::LogLevelNum::Error
     };
 
     if !INITIALIZED.swap(true, Ordering::Relaxed) {
-        stderrlog::new().verbosity(level as usize)
+        stderrlog::new().verbosity(level)
             .module("DevWallet")
+            .show_module_names(true)
             .init()?;
     }
     log_panics::init();
