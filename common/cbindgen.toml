@@ -12,12 +12,12 @@ prefix_with_name = true
 
 [parse]
 parse_deps = true
-include = ["tesseract_utils", "tesseract_service"]
+include = ["tesseract-swift-utils", "tesseract-swift-transports"]
 
 [export]
 include = ["WalletErrorCode"]
 exclude = [
-  "CFutureBool", "SyncPtr_Void", "BoundTransport", "Transport",
-  "TransportProcessor", "Void", "CError", "CString", "CStringRef", 
+  "CFutureBool", "SyncPtr_Void", "ServiceBoundTransport", "ServiceTransport",
+  "ServiceTransportProcessor", "Void", "CError", "CString", "CStringRef", 
   "CAnyDropPtr", "CAnyRustPtr", "Nothing"
 ]
