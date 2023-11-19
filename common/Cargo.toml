@@ -24,12 +24,12 @@ log-panics = { version = "2", features = ["with-backtrace"] }
 
 configparser = "3.0"
 
-tesseract = { path = "../../Tesseract.rs/tesseract", features = ["service"] }
-tesseract-protocol-test = { path = "../../Tesseract.rs/protocols/test", features = ["service"] }
-tesseract-protocol-substrate = { path = "../../Tesseract.rs/protocols/substrate", features = ["service"], optional = true}
-#tesseract = {git = "https://github.com/tesseract-one/Tesseract.rs", branch="master", features=["service"]}
-#tesseract-protocol-test = {git = "https://github.com/tesseract-one/Tesseract.rs", branch="master", features=["service"]}
-#tesseract-protocol-substrate = {git = "https://github.com/tesseract-one/Tesseract.rs", branch="master", features=["service"], optional = true}
+#tesseract = { path = "../../Tesseract.rs/tesseract", features = ["service"] }
+#tesseract-protocol-test = { path = "../../Tesseract.rs/protocols/test", features = ["service"] }
+#tesseract-protocol-substrate = { path = "../../Tesseract.rs/protocols/substrate", features = ["service"], optional = true}
+tesseract = {git = "https://github.com/tesseract-one/Tesseract.rs", branch="master", features=["service"]}
+tesseract-protocol-test = {git = "https://github.com/tesseract-one/Tesseract.rs", branch="master", features=["service"]}
+tesseract-protocol-substrate = {git = "https://github.com/tesseract-one/Tesseract.rs", branch="master", features=["service"], optional = true}
 
 subxt = {version = "0.32", optional = true}
 subxt-signer = {version = "0.32", features = ["subxt"], optional = true}
