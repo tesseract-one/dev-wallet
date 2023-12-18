@@ -24,32 +24,29 @@ log-panics = { version = "2", features = ["with-backtrace"] }
 
 configparser = "3.0"
 
-#tesseract = { path = "../../Tesseract.rs/tesseract", features = ["service"] }
-#tesseract-protocol-test = { path = "../../Tesseract.rs/protocols/test", features = ["service"] }
-#tesseract-protocol-substrate = { path = "../../Tesseract.rs/protocols/substrate", features = ["service"], optional = true}
-tesseract = {git = "https://github.com/tesseract-one/Tesseract.rs", branch="master", features=["service"]}
-tesseract-protocol-test = {git = "https://github.com/tesseract-one/Tesseract.rs", branch="master", features=["service"]}
-tesseract-protocol-substrate = {git = "https://github.com/tesseract-one/Tesseract.rs", branch="master", features=["service"], optional = true}
+tesseract-one = { version = "0.5", features = ["service"] }
+tesseract-protocol-test = { version = "0.5", features = ["service"] }
+tesseract-protocol-substrate = { version = "0.5", features = ["service"], optional = true }
 
-subxt = {version = "0.32", optional = true}
-subxt-signer = {version = "0.32", features = ["subxt"], optional = true}
-scale-info = {version = "*", optional = true}
-serde = {version = "*", optional = true }
-serde_json = {version = "1.0", optional = true}
+subxt = { version = "0.32", optional = true }
+subxt-signer = { version = "0.32", features = ["subxt"], optional = true }
+scale-info = { version = "*", optional = true }
+serde = { version = "*", optional = true }
+serde_json = { version = "1.0", optional = true }
 
 [target.'cfg(target_os = "android")'.dependencies]
 android_logger = "0.13"
 jni = "0.20"
 jni_fn = "0.1"
 
-crabdroid = { path = "../../Tesseract.android/rust/crabdroid" }
-tesseract-android = { path = "../../Tesseract.android/rust/sdk", features=["service"]}
+crabdroid = "0.3"
+tesseract-android = { version = "0.5", features = ["service"] }
 
 [target.'cfg(target_os = "ios")'.dependencies]
 stderrlog = "0.5"
 
-tesseract-swift-utils = { path = "../../Tesseract.swift/Rust/utils" }
-tesseract-swift-transports = { path = "../../Tesseract.swift/Rust/transports", features = ["service"]}
+#tesseract-swift-utils = { path = "../../Tesseract.swift/Rust/utils" }
+#tesseract-swift-transports = { path = "../../Tesseract.swift/Rust/transports", features = ["service"]}
 
 [build-dependencies]
 cbindgen = "0.26"

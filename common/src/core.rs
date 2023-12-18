@@ -1,6 +1,6 @@
 use std::sync::Arc;
 
-use tesseract::service::Tesseract;
+use tesseract_one::service::Tesseract;
 
 use crate::{
     settings::SettingsProvider,

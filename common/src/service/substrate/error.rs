@@ -49,11 +49,11 @@ impl From<subxt::ext::scale_decode::visitor::DecodeError> for Error {
 
 pub (super) type Result<T> = std::result::Result<T, Error>;
 
-impl Into<tesseract::Error> for Error {
-    fn into(self) -> tesseract::Error {
+impl Into<tesseract_one::Error> for Error {
+    fn into(self) -> tesseract_one::Error {
         match self {
-            Self::Cancelled => tesseract::Error::kinded(tesseract::ErrorKind::Cancelled),
-            other => tesseract::Error::nested(other)
+            Self::Cancelled => tesseract_one::Error::kinded(tesseract_one::ErrorKind::Cancelled),
+            other => tesseract_one::Error::nested(other)
         }
     }
 }

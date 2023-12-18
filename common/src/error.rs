@@ -36,8 +36,8 @@ impl<T> From<std::sync::PoisonError<T>> for Error {
 
 pub (crate) type Result<T> = std::result::Result<T, Error>;
 
-impl Into<tesseract::Error> for Error {
-    fn into(self) -> tesseract::Error {
+impl Into<tesseract_one::Error> for Error {
+    fn into(self) -> tesseract_one::Error {
         match self {
             #[cfg(target_os = "android")]
             Error::Android(e) => e.into(),
@@ -45,11 +45,11 @@ impl Into<tesseract::Error> for Error {
             Error::IOS(e) => e.into(),
             Error::IO(e) => {
                 let description = format!("IOError: {}", e);
-                tesseract::Error::described(tesseract::ErrorKind::Weird, &description)
+                tesseract_one::Error::described(tesseract_one::ErrorKind::Weird, &description)
             },
             e => {
                 let description = format!("Wallet error: {}", e);
-                tesseract::Error::described(tesseract::ErrorKind::Weird, &description)
+                tesseract_one::Error::described(tesseract_one::ErrorKind::Weird, &description)
             }
         }
     }

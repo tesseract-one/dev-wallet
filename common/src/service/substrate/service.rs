@@ -140,7 +140,7 @@ impl SubstrateService {
 
 #[async_trait]
 impl tesseract_protocol_substrate::SubstrateService for SubstrateService {
-    async fn get_account(self: Arc<Self>, account_type: AccountType) -> tesseract::Result<GetAccountResponse> {
+    async fn get_account(self: Arc<Self>, account_type: AccountType) -> tesseract_one::Result<GetAccountResponse> {
         self.get_account_impl(account_type).await.map_err(|e| e.into())
     }
 
@@ -151,7 +151,7 @@ impl tesseract_protocol_substrate::SubstrateService for SubstrateService {
         extrinsic_data: &[u8],
         extrinsic_metadata: &[u8],
         extrinsic_types: &[u8],
-    ) -> tesseract::Result<Vec<u8>> {
+    ) -> tesseract_one::Result<Vec<u8>> {
         self.sign_transaction_impl(
             account_type,
             account_path,
@@ -161,14 +161,14 @@ impl tesseract_protocol_substrate::SubstrateService for SubstrateService {
     }
 }
 
-impl tesseract::service::Service for SubstrateService {
+impl tesseract_one::service::Service for SubstrateService {
     type Protocol = Substrate;
 
     fn protocol(&self) -> &Substrate {
         &Substrate::Protocol
     }
 
-    fn to_executor(self) -> Box<dyn tesseract::service::Executor + Send + Sync> {
+    fn to_executor(self) -> Box<dyn tesseract_one::service::Executor + Send + Sync> {
         Box::new(tesseract_protocol_substrate::service::SubstrateExecutor::from_service(
             self,
         ))
