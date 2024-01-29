@@ -1,6 +1,6 @@
 use std::mem::ManuallyDrop;
 
-use tesseract_swift_utils::{ptr::CAnyDropPtr, future_impls::CFutureBool};
+use tesseract_swift::utils::{ptr::CAnyDropPtr, future_impls::CFutureBool};
 
 use crate::{error::Result, request::Request};
 

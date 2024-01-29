@@ -9,7 +9,7 @@ import Foundation
 import TesseractTransportsService
 import CWallet
 
-extension SUI: CSwiftDropPtr {
+extension SUI: CObjectPtr {
     public typealias SObject = UI
 }
 

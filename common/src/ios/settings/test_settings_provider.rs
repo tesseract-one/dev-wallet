@@ -1,8 +1,8 @@
 use std::mem::ManuallyDrop;
 use std::sync::Arc;
 
-use tesseract_swift_utils::error::CError;
-use tesseract_swift_utils::panic::PanicContext;
+use tesseract_swift::utils::error::CError;
+use tesseract_swift::utils::panic::PanicContext;
 
 use crate::error::Error;
 use crate::settings::{SettingsProvider, TestSettingsProvider};
@@ -15,7 +15,7 @@ pub unsafe extern "C" fn wallet_test_settings_provider_load(
     provider: ManuallyDrop<CSettingsProvider>,
     ret: &mut ManuallyDrop<CTestSettings>, err: &mut ManuallyDrop<CError>
 ) -> bool {
-    use tesseract_swift_utils::response::CMoveResponse;
+    use tesseract_swift::utils::response::CMoveResponse;
 
     Error::panic_context(|| {
         let provider = provider.as_ref::<Arc<SettingsProvider>>()?;
@@ -30,7 +30,7 @@ pub unsafe extern "C" fn wallet_test_settings_provider_save(
     provider: ManuallyDrop<CSettingsProvider>,
     value: ManuallyDrop<CTestSettings>, err: &mut ManuallyDrop<CError>
 ) -> bool {
-    use tesseract_swift_utils::response::CVoidResponse;
+    use tesseract_swift::utils::response::CVoidResponse;
 
     Error::panic_context(|| {
         let provider = provider.as_ref::<Arc<SettingsProvider>>()?;

@@ -1,5 +1,5 @@
 use std::mem::ManuallyDrop;
-use tesseract_swift_utils::{string::CString, error::CError};
+use tesseract_swift::utils::{string::CString, error::CError};
 use crate::settings::TestSettings;
 
 #[repr(C)]

@@ -1,5 +1,5 @@
-use tesseract_swift_transports::error::TesseractSwiftError;
-use tesseract_swift_utils::{panic::FromPanic, error::{CError, ErrorCode}};
+use tesseract_swift::error::TesseractSwiftError;
+use tesseract_swift::utils::{panic::FromPanic, error::{CError, ErrorCode}};
 
 /// cbindgen:add-sentinel
 #[repr(u32)]
@@ -48,8 +48,8 @@ impl From<crate::error::Error> for TesseractSwiftError {
     }
 }
 
-impl From<tesseract::Error> for crate::error::Error {
-    fn from(value: tesseract::Error) -> Self {
+impl From<tesseract_one::Error> for crate::error::Error {
+    fn from(value: tesseract_one::Error) -> Self {
         let ctes: TesseractSwiftError = value.into();
         ctes.into()
     }

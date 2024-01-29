@@ -44,9 +44,7 @@ tesseract-android = { version = "0.5", features = ["service"] }
 
 [target.'cfg(target_os = "ios")'.dependencies]
 stderrlog = "0.5"
-
-#tesseract-swift-utils = { path = "../../Tesseract.swift/Rust/utils" }
-#tesseract-swift-transports = { path = "../../Tesseract.swift/Rust/transports", features = ["service"]}
+tesseract-swift = { version = "0.5", features = ["service"] }
 
 [build-dependencies]
 cbindgen = "0.26"

@@ -1,6 +1,6 @@
 use std::mem::ManuallyDrop;
 
-use tesseract_swift_utils::string::CString;
+use tesseract_swift::utils::string::CString;
 
 use crate::request::SubstrateSign;
 

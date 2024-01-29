@@ -1,6 +1,6 @@
 use std::mem::ManuallyDrop;
 
-use tesseract_swift_utils::{
+use tesseract_swift::utils::{
     error::CError, panic::PanicContext, ptr::{CAnyRustPtr, IntoAnyPtr},
     string::CStringRef, traits::TryAsRef, response::CMoveResponse
 };
@@ -31,7 +31,7 @@ pub unsafe extern "C" fn wallet_ccore_create_app(
 #[no_mangle]
 pub unsafe extern "C" fn wallet_ccore_create_extension(
     ui: SUI, data_dir: CStringRef,
-    transport: tesseract_swift_transports::service::ServiceTransport,
+    transport: tesseract_swift::service::transport::ServiceTransport,
     ret: &mut ManuallyDrop<CCore>, err: &mut ManuallyDrop<CError>
 ) -> bool {
     crate::error::Error::panic_context(|| {
